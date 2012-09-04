@@ -44,10 +44,15 @@ border: 1px;
 	PAGE LAYOUT
 ****************************************/
 
-.elgg-page-default {
+.elgg-page-default .elgg-page-header > .elgg-inner {
 	width: 100%;
 }
-
+.elgg-page-default .elgg-page-body > .elgg-inner {
+	width: 100%;
+}
+.elgg-page-default .elgg-page-footer > .elgg-inner {
+	width: 100%;
+}
 
 /****************************************
 	TOPBAR DROPDOWN MENU
