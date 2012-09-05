@@ -14,6 +14,12 @@ $french = array(
     'isegoria:title' => "Isegoria",
 
     /**
+     * Widget strings
+     */
+     
+     'gvisegoria:seeall:activity' => "Afficher toutes les activités ...",
+
+    /**
      * Settings
      */
     'admin:isegoria' => 'GV isegoria',
