@@ -470,8 +470,8 @@ function groups_handle_mine_page() {
     
     $pagecontent .= $content;
 
-    // first, free groups
-    $group_options["metadata_name"] = 'grouptype';
+    // finally, free groups
+/*    $group_options["metadata_name"] = 'grouptype';
     $group_options["metadata_value"] = 'default';
 
     $pagecontent .= elgg_view('page/elements/subtitle', array('title' => elgg_echo('freegroups:mine'), 'class' => 'elgg-subtitle'));
@@ -480,7 +480,7 @@ function groups_handle_mine_page() {
 	if (!$content) {
 		$content = elgg_echo('groups:none');
 	}
-    
+*/    
     $pagecontent .= $content;
 
 	$params = array(
