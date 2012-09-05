@@ -5,6 +5,13 @@
  */
 
 $french = array(
+
+    /**
+     * Overloads some strings 
+     */
+     'widgets:add' => "Modifier les widgets",
+     'pages' => "documents",
+     
     'isegoria:title' => "Isegoria",
 
     /**

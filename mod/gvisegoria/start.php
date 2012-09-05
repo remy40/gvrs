@@ -24,6 +24,17 @@ function gvisegoria_init() {
     'text' => elgg_echo('gvgroups:isegoria'),
     'priority' => '10',
     ));
+    
+    // register widget types
+    elgg_register_widget_type(
+        "online_users",
+        elgg_echo("admin:widget:online_users"),
+        elgg_echo("admin:widget:online_users:help"));
+
+    elgg_register_widget_type(
+        "new_users",
+        elgg_echo("admin:widget:new_users"),
+        elgg_echo("admin:widget:new_users:help"));
 }
 
 /**
