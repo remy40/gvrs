@@ -55,7 +55,16 @@ border: 1px;
 }
 
 /****************************************
-	TOPBAR DROPDOWN MENU
+	TOPBAR MENU ITEMS
+****************************************/
+
+.elgg-menu-topbar > li > a.elgg-topbar-avatar {
+  height:18px;
+  width: 100%;
+}
+
+/****************************************
+	TOPBAR DROPDOWN MENUS
 ****************************************/
 
 .elgg-child-menu {
@@ -74,7 +83,9 @@ li:hover > .elgg-child-menu {
 display: block;
 }
 
-.elgg-child-menu a {
+/**** TOPBAR DROPDOWN MENU ****/
+
+.gvtheme-profile-child-menu a {
 background-color: #333;
 color: #eee;
 border-bottom: 1px solid #000;
@@ -85,8 +96,24 @@ padding-left: 6px;
 padding-top: 4px;
 }
 
-.elgg-child-menu a:hover {
+.gvtheme-profile-child-menu a:hover {
 text-decoration: none;
 color: #4690D6;
 background-color: #2a2a2a;
+}
+
+/*** SITE DROPDOWN MENU ****/
+
+.gvgroup-child-menu a {
+color: #0046A9;
+font-weight: bold;
+height: 22px;
+padding-bottom: 0;
+padding-left: 6px;
+}
+
+.gvgroup-child-menu a:hover {
+text-decoration: none;
+color: #FFF;
+background-color: #0046A9;
 }

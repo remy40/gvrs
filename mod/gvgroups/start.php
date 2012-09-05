@@ -35,8 +35,10 @@ function gvgroups_init() {
     elgg_register_action("admin/createfields", "$action_base/admin/createfields.php");
     elgg_register_action("admin/update_old_groups", "$action_base/admin/update_old_groups.php");
     
-    // add some menu items in the topbar
-    elgg_register_menu_item('topbar', array(
+    // add a hook to transform group menu item in a dropdown menu
+    elgg_register_plugin_hook_handler('register', 'menu:site', 'gvgroups_custom_sitemenu_setup');
+
+/*    elgg_register_menu_item('topbar', array(
     'name' => 'workinggroups',
     'href' => 'groups/working',
     'text' => elgg_echo('gvgroups:workinggroups')
@@ -47,7 +49,7 @@ function gvgroups_init() {
     'href' => 'groups/local',
     'text' => elgg_echo('gvgroups:localgroups')
     ));
-
+*/
     elgg_register_menu_item('topbar', array(
     'name' => 'mygroups',
     'href' => "groups/member/$user->username",
@@ -57,6 +59,31 @@ function gvgroups_init() {
     
     // register event handlers
     elgg_register_event_handler('create', 'member', 'gvgroups_subscribe_to_group');
+}
+
+function gvgroups_custom_sitemenu_setup($hook, $type, $values) {
+   
+   $menus = array();
+   
+    foreach($values as $item) {
+        if ($item->getName() == 'groups') {
+            // remove menu item link
+            $item->setHref('');
+            
+            // add 2 children items (local groups and working groups)
+            $localgroup_item = new ElggMenuItem('localgroups', elgg_echo('gvgroups:localgroups'), 'groups/local');
+            $localgroup_item->setItemClass('gvgroup-child-menu');
+            $item->addChild($localgroup_item);
+
+            $workinggroup_item = new ElggMenuItem('workinggroups', elgg_echo('gvgroups:workinggroups'), 'groups/working');
+            $workinggroup_item->setItemClass('gvgroup-child-menu');
+            $item->addChild($workinggroup_item);
+        }
+        
+        $menus[] = $item;
+    }
+    
+    return $menus;
 }
 
 function gvgroups_subscribe_to_group($event, $type, $relationship) {

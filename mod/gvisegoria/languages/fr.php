@@ -10,7 +10,6 @@ $french = array(
      * Overloads some strings 
      */
      'widgets:add' => "Modifier les widgets",
-     'pages' => "Documents",
      
     'isegoria:title' => "Isegoria",
 

@@ -18,13 +18,13 @@ function gvisegoria_init() {
     elgg_unregister_menu_item('topbar', 'dashboard');
 
     // add isegoria item in the topbar menu
-    elgg_register_menu_item('topbar', array(
+/*    elgg_register_menu_item('topbar', array(
     'name' => 'isegoria',
     'href' => 'dashboard',
     'text' => elgg_echo('gvgroups:isegoria'),
     'priority' => '10',
     ));
-    
+*/    
     // register widget types
     elgg_register_widget_type(
         "online_users",

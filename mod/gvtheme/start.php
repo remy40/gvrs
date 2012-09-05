@@ -36,7 +36,7 @@ function gvtheme_custom_topbarmenu_setup ($hook, $type, $values) {
         /* the profile item becomes a dropdown menu */
         foreach($values as $key => $item) {
             if ($item->getName() == 'profile') {
-                $values[$key]->setText($values[$key]->getText().$user->name);
+                $values[$key]->setText("<span class=\"elgg-icon elgg-icon-users \"/>".$values[$key]->getText()."</span>".$user->name);
                 $profileItem = $values[$key];
             }
         }
@@ -46,15 +46,18 @@ function gvtheme_custom_topbarmenu_setup ($hook, $type, $values) {
                 if ($item->getName() == 'administration')
                 {
                     $item->setText(elgg_echo('admin'));
+                    $item->setItemClass('gvtheme-profile-child-menu');
                     $profileItem->addChild($item);
                 }
                 elseif ($item->getName() == 'usersettings')
                 {
                     $item->setText(elgg_echo('settings:user'));
+                    $item->setItemClass('gvtheme-profile-child-menu');
                     $profileItem->addChild($item);
                 }
                 elseif ($item->getName() == 'logout')
                 {
+                    $item->setItemClass('gvtheme-profile-child-menu');
                     $profileItem->addChild($item);
                 }
                 else
@@ -77,8 +80,6 @@ function gvtheme_custom_topbarmenu_setup ($hook, $type, $values) {
             }
         }
 
-        $profileItem->setSection('alt');
-        $profileItem->setPriority(1000);
         $return[] = $profileItem;
     }
     else
