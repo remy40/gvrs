@@ -39,7 +39,7 @@ if ($context == "search" && $count > 0 && $viewtypetoggle) {
 
 if ($pagination) {
 	$nav .= elgg_view('navigation/pagination',array(
-		'baseurl' => $baseurl,
+		'base_url' => $baseurl,
 		'offset' => $offset,
 		'count' => $count,
 		'limit' => $limit,

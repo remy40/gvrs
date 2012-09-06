@@ -3,7 +3,7 @@ elgg_load_js('elgg.event_calendar');
 $nav = elgg_view('navigation/pagination',array(
 			
 //												'baseurl' => $_SERVER['REQUEST_URI'],
-												'baseurl' => $_SERVER['SCRIPT_NAME'].'/?'.$_SERVER['QUERY_STRING'],
+												'base_url' => $_SERVER['SCRIPT_NAME'].'/?'.$_SERVER['QUERY_STRING'],
 												'offset' => $vars['offset'],
 												'count' => $vars['count'],
 												'limit' => $vars['limit'],
