@@ -73,6 +73,7 @@ function create_local_groups() {
             $group->grouptype = 'local';
             $group->localtype = 'national';
             $group->membership = ACCESS_PUBLIC;
+            $group->access_id = ACCESS_LOGGED_IN;
             $group->save();
             $countrygroup_guid[$country] = $group->guid;
         }
@@ -102,6 +103,7 @@ function create_local_groups() {
             $group->grouptype = 'local';
             $group->localtype = 'departemental';
             $group->membership = ACCESS_PUBLIC;
+            $group->access_id = ACCESS_LOGGED_IN;
             $group->save();
             $depgroup_guids[$num] = $group->guid;
         }
@@ -132,7 +134,7 @@ function create_local_groups() {
             $group->grouptype = 'local';
             $group->localtype = 'regional';
             $group->membership = ACCESS_PUBLIC;
-
+            $group->access_id = ACCESS_LOGGED_IN;
             $group->save();
             
             //add relationship with departement groups
