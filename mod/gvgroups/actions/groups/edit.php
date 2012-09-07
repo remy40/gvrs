@@ -47,7 +47,7 @@ if (($group_guid) && (!$group->canEdit())) {
 	forward(REFERER);
 }
 
-// check if it's a free group, a local group or a working group
+// check if it's a local group or a working group
 $grouptype_set_by_admin = get_input(grouptype_set_by_admin);
 
 // admin can modify group type for an existing group

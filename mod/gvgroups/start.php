@@ -16,11 +16,9 @@ function gvgroups_init() {
     // add admin menu
 	elgg_register_admin_menu_item('administer', 'createlocal', 'groups');
 	elgg_register_admin_menu_item('administer', 'deletelocal', 'groups');
-//	elgg_register_admin_menu_item('administer', 'createfields', 'groups');
-	elgg_register_admin_menu_item('administer', 'update_old_groups', 'groups');
 
     // unregister the sidebar menu
-	elgg_unregister_event_handler('pagesetup', 'system', 'groups_setup_sidebar_menus');
+//	elgg_unregister_event_handler('pagesetup', 'system', 'groups_setup_sidebar_menus');
 
     // add some page handler
     elgg_register_plugin_hook_handler("route", "groups", "gvgroups_route_groups_handler");
@@ -32,35 +30,21 @@ function gvgroups_init() {
     // register some new actions
     elgg_register_action("admin/createlocal", "$action_base/admin/createlocal.php");
     elgg_register_action("admin/deletelocal", "$action_base/admin/deletelocal.php");
-    elgg_register_action("admin/createfields", "$action_base/admin/createfields.php");
-    elgg_register_action("admin/update_old_groups", "$action_base/admin/update_old_groups.php");
     
     // add a hook to transform group menu item in a dropdown menu
     elgg_register_plugin_hook_handler('register', 'menu:site', 'gvgroups_custom_sitemenu_setup');
 
-/*    elgg_register_menu_item('topbar', array(
-    'name' => 'workinggroups',
-    'href' => 'groups/working',
-    'text' => elgg_echo('gvgroups:workinggroups')
-    ));
-
-    elgg_register_menu_item('topbar', array(
-    'name' => 'localgroups',
-    'href' => 'groups/local',
-    'text' => elgg_echo('gvgroups:localgroups')
-    ));
-*/
+    // add "my groups" menu to the topbar
     elgg_register_menu_item('topbar', array(
     'name' => 'mygroups',
     'href' => "groups/member/$user->username",
     'text' => elgg_echo('gvgroups:mygroups'),
     'section' => 'alt'
     ));
-    
-    // register event handlers
-    elgg_register_event_handler('create', 'member', 'gvgroups_subscribe_to_group');
 }
-
+/**
+ * Transform group item site menu to a dropdrown menu with local and working group menu items
+ */
 function gvgroups_custom_sitemenu_setup($hook, $type, $values) {
    
    $menus = array();
@@ -84,48 +68,6 @@ function gvgroups_custom_sitemenu_setup($hook, $type, $values) {
     }
     
     return $menus;
-}
-
-function gvgroups_subscribe_to_group($event, $type, $relationship) {
-    
-    if(!empty($relationship) && ($relationship instanceof ElggRelationship)){
-        $user_guid = $relationship->guid_one;
-        $group_guid = $relationship->guid_two;
-        
-        $group = get_entity($group_guid);
-        
-        // checks subscribing limits for local groups
-        if ($group->grouptype == 'local') {
-            $param_name = $group->localtype . "_limit";
-            $limit = elgg_get_plugin_setting($param_name, 'gvgroups');
-            
-            // 0 means unlimited
-            if ($limit > 0) {
-                
-                // get how many local groups of this type, the user is member of
-                $options["type"] = 'group';
-                $options["relationship"] = 'member';
-                $options["relationship_guid"] = $user_guid;
-                $group_options["inverse_relationship"] = false;
-                $options["limit"] = 0;
-                $options["count"] = TRUE;
-                $options["joins"]	= array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid");
-                $options["metadata_name_value_pairs"][] = array(
-                        "name" => 'grouptype',
-                        "value" => 'local');
-                $options["metadata_name_value_pairs"][] = array(
-                        "name" => 'localtype',
-                        "value" => $group->localtype);
-                
-                $count = elgg_get_entities_from_relationship($options); 
-
-                error_log("count: " . $count . " limit = " . $limit);
-                if ($count > $limit) {
-                    return false;
-                }
-            }
-        }
-    }
 }
 
 /**
@@ -155,8 +97,14 @@ function gvgroups_route_groups_handler($hook, $type, $return_value, $params) {
         $page = $return_value['segments'];
 
         switch ($page[0]) {
+            case 'all':
+                // remove this url to avoid normal group access
+                forward(REFERER);
+                $result = false;
+                break;
             case 'add':
-                groups_handle_edit_page('add', 'default');
+                // remove this url to avoid normal group creation
+                forward(REFERER);
                 $result = false;
                 break;
 

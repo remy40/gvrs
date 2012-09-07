@@ -1,40 +1,28 @@
 <?php
-
-require_once(dirname(__FILE__) . "/country.php");
-
 /**
  * Groups function library
  */
 
-// check if a group name already exists
+// add country functions
+require_once(dirname(__FILE__) . "/country.php");
+
+/**
+ * Check if a group name already exists
+ * @name : name of the group
+ * @entities: a group list
+ */
 function is_group_name_existing($name, $entities) {
     foreach($entities as $entity) {
         if ($entity->name == $name) {
             return true;
         }
     }
-    
     return false;
 }
 
-// update old groups (without grouptype) to set their group type.
-function update_old_groups() {
-    $options["type"] = 'group';
-    $options["limit"] = NULL;
-
-    $groups = elgg_get_entities($options);
-    
-    foreach ($groups as $group) {
-        if (!isset($group->grouptype)) {
-            $group->grouptype = 'default';
-            $group->save();
-            
-            system_message($group->name . " Ok !");
-        }
-    }
-}
-
-// delete all local groups
+/**
+ * Delete all local groups
+ */
 function delete_all_local_groups() {
     $depgroup = array();
     $options["type"] = 'group';
@@ -49,9 +37,12 @@ function delete_all_local_groups() {
     }
 }
 
-// create all local groups
+/**
+ * Create all local groups
+ */
 function create_local_groups() {
-    // country
+
+    // first, creates country groups
     $countrygroup_guid = array();
     $options["type"] = 'group';
     $options["limit"] = NULL;
@@ -79,7 +70,7 @@ function create_local_groups() {
         }
     }    
 
-    // departements
+    // then, creates departement groups
     $depgroup_guids = array();
     $options["type"] = 'group';
     $options["limit"] = NULL;
@@ -109,7 +100,7 @@ function create_local_groups() {
         }
     }
 
-    // regions
+    // finally, creates region groups
       $options["metadata_name_value_pairs"] = array(
         array(
             'name' => 'grouptype',
@@ -360,6 +351,9 @@ function groups_handle_all_page($type = 'default') {
 	echo elgg_view_page($title, $body);
 }
 
+/**
+ * return a list of groups that match options (used to search in name and description)
+ */
 function elgg_get_group_by_name($options) {
     $query = "SELECT DISTINCT e.* FROM elgg_entities e, elgg_groups_entity g ";
     $query .= "WHERE e.guid = g.guid AND e.type = 'group' AND (g.name LIKE '%" . $options['groupname'] . "%' ";
@@ -369,6 +363,9 @@ function elgg_get_group_by_name($options) {
     return $dt;
 }
 
+/**
+ * show the group search page
+ */
 function groups_search_page() {
 	$searchstring = get_input("searchstring");
 	$title = elgg_echo('groups:search:title', array($searchstring));
@@ -497,7 +494,7 @@ function groups_handle_mine_page() {
 
 
 /**
- * Create or edit a local group
+ * Create local group (which is a town group)
  *
  */
 function groups_handle_add_local_page($guid) {

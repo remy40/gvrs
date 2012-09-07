@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * return the list of countries available on the social network
+ */
 function get_country_data() {
     return array(
         'Belgique', 
@@ -9,6 +12,9 @@ function get_country_data() {
         );
 }
         
+/**
+ * return the list of departement available on the social network
+ */
 function get_departement_data() {
     return array(
                 '01' => 'Ain',
@@ -114,6 +120,9 @@ function get_departement_data() {
                 '976' =>'Mayotte');
 }
 
+/**
+ * return the list of region available on the social network. Each region has a list of its departements.
+ */
 function get_region_data() {
     return array(
             'Alsace' => array ('67', '68'),
@@ -145,29 +154,3 @@ function get_region_data() {
             'Rhône-Alpes' => array ('01', '07', '26', '38', '42', '69', '73', '74'),
             );
     }
-
-function get_country_list() {
-    return implode(",", get_country_data());
-}
-
-function get_region_list() {
-    $regions = array();
-    
-    $region_data = get_region_data();
-    foreach($region_data as $region_name => $region_data) {
-        $regions[] = $region_name;
-    }
-    
-    return implode(",", $regions);
-}
-
-function get_departement_list() {
-    $departements = array();
-    
-    $departements_data = get_departement_data();
-    foreach($departements_data as $dep_num => $dep_name) {
-        $departements[] = $dep_name;
-    }
-    
-    return implode(",", $departements);
-}
