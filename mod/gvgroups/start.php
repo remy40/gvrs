@@ -82,6 +82,10 @@ function gvgroups_profileupdate($hook, $type, $user) {
     $nationalgroup_name = $user->country;
     $regionalgroup_name = get_regional_group_name_from_postalcode($user->postalcode);
     $departementalgroup_name = get_departemental_group_name_from_postalcode($user->postalcode);
+
+    $addtonationalgroup = true;
+    $addtoregionalgroup = true;
+    $addtodepartementalgroup = true;
         
     if ($groups) {
         foreach($groups as $group) {
@@ -92,19 +96,25 @@ function gvgroups_profileupdate($hook, $type, $user) {
                 case 'national':
                     if ($group->name != $nationalgroup_name) {
                         $leave_group = true;
-                        add_user_to_local_group($user, $nationalgroup_name, 'national');
+                    }
+                    else {
+                        $addtonationalgroup = false;
                     }
                     break;
                 case 'regional':
                     if ($group->name != $regionalgroup_name) {
                         $leave_group = true;
-                        add_user_to_local_group($user, $regionalgroup_name, 'regional');
+                    }
+                    else {
+                        $addtoregionalgroup = false;
                     }
                     break;
                 case 'departemental':
                     if ($group->name != $departementalgroup_name) {
                         $leave_group = true;
-                        add_user_to_local_group($user, $departementalgroup_name, 'departemental');
+                    }
+                    else {
+                        $addtodepartementalgroup = false;
                     }
                     break;
                 default:
@@ -119,6 +129,17 @@ function gvgroups_profileupdate($hook, $type, $user) {
                     register_error(elgg_echo("gvgroups:localgroups:error_unsubscribe", array($group->name)));
                 }
             }
+        }
+        
+        // add user to local groups if necessary
+        if ($addtonationalgroup) {
+            add_user_to_local_group($user, $nationalgroup_name, 'national');
+        }
+        if ($addtoregionalgroup) {
+            add_user_to_local_group($user, $regionalgroup_name, 'regional');
+        }
+        if ($addtodepartementalgroup) {
+            add_user_to_local_group($user, $departementalgroup_name, 'departemental');
         }
     }
 }

@@ -1,8 +1,35 @@
 <?php
 
+/**
+ * Get the departement number from the postal code
+ * @return a string that contains the departement number
+ */
+function get_departement_number_from_postal_code($postalcode) {
+    $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
+    
+    // manage specific cases (Corse and oversea departements)
+    if ($depnum == "20") {
+        if ($postalcode < 20200) {
+            $depnum = "2A";
+        }
+        else {
+            $depnum = "2B";
+        }
+    }
+    else if ($depnum == "97") {
+        $depnum = sprintf("%1$03d", (int)($postalcode / 100));
+    }
+
+    return $depnum;
+}
+
+/**
+ * Get the region group name from the postal code
+ * @return a string that contains the region group name
+ */
 function get_regional_group_name_from_postalcode($postalcode) {
     $regions = get_region_data();
-    $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
+    $depnum = get_departement_number_from_postal_code($postalcode);
     
     foreach ($regions as $regionname => $region_deplist) {
         if (in_array($depnum, $region_deplist)) {
@@ -13,11 +40,14 @@ function get_regional_group_name_from_postalcode($postalcode) {
     return false;
 }
 
+/**
+ * Get the departement group name from the postal code
+ * @return a string that contains the departement group name
+ */
 function get_departemental_group_name_from_postalcode($postalcode) {
     $departements = get_departement_data();
-    $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
+    $depnum = get_departement_number_from_postal_code($postalcode);
     
-    error_log("depnum: $depnum");
     return ("$depnum - ".$departements[$depnum]);
 }
 
