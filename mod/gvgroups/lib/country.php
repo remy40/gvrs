@@ -1,5 +1,26 @@
 <?php
 
+function get_regional_group_name_from_postalcode($postalcode) {
+    $regions = get_region_data();
+    $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
+    
+    foreach ($regions as $regionname => $region_deplist) {
+        if (in_array($depnum, $region_deplist)) {
+            return $regionname;
+        }
+    }
+
+    return false;
+}
+
+function get_departemental_group_name_from_postalcode($postalcode) {
+    $departements = get_departement_data();
+    $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
+    
+    error_log("depnum: $depnum");
+    return ("$depnum - ".$departements[$depnum]);
+}
+
 /**
  * return the list of countries available on the social network
  */

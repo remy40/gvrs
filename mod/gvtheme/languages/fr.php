@@ -7,6 +7,10 @@ $french = array(
 //     'pages' => "Documents",
      'file' => "Partage de fichiers",
 
+    /* new profile fields */
+    'profile:country' => "Pays",
+    'profile:postalcode' => "Code Postal",
+
     /* Topbar */
 	'gvtheme:mymessages' => 'Mes messages',
 	'gvtheme:myfriends' => 'Mes amis',

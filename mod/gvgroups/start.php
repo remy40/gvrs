@@ -17,8 +17,8 @@ function gvgroups_init() {
 	elgg_register_admin_menu_item('administer', 'createlocal', 'groups');
 	elgg_register_admin_menu_item('administer', 'deletelocal', 'groups');
 
-    // unregister the sidebar menu
-//	elgg_unregister_event_handler('pagesetup', 'system', 'groups_setup_sidebar_menus');
+    // unregister the sidebar menu (my groups, group that I own, ...)
+	elgg_unregister_event_handler('pagesetup', 'system', 'groups_setup_sidebar_menus');
 
     // add some page handler
     elgg_register_plugin_hook_handler("route", "groups", "gvgroups_route_groups_handler");
@@ -34,6 +34,9 @@ function gvgroups_init() {
     // add a hook to transform group menu item in a dropdown menu
     elgg_register_plugin_hook_handler('register', 'menu:site', 'gvgroups_custom_sitemenu_setup');
 
+    // add an event handler to add the user in local groups, according to his profile
+    elgg_register_event_handler('profileupdate', 'user', 'gvgroups_profileupdate');
+
     // add "my groups" menu to the topbar
     elgg_register_menu_item('topbar', array(
     'name' => 'mygroups',
@@ -42,6 +45,84 @@ function gvgroups_init() {
     'section' => 'alt'
     ));
 }
+
+function add_user_to_local_group($user, $groupname, $localtype) {
+    $options["type"] = 'group';
+    $options["limit"] = NULL;
+    $options["metadata_name_value_pairs"][] = array(
+            "name" => 'grouptype',
+            "value" => 'local');
+    $options["metadata_name_value_pairs"][] = array(
+            "name" => 'localtype',
+            "value" => $localtype);
+    $options["joins"] = array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid");
+    $options["wheres"] = array ("ge.name = '". $groupname . "'");
+
+    $groups = elgg_get_entities_from_metadata($options);
+
+    if ($groups && (count($groups) == 1)) {
+        if ($groups[0]->join($user)) {
+            system_message(elgg_echo("gvgroups:localgroups:subscribe", array($groups[0]->name)));
+        }
+        else {
+            register_error(elgg_echo("gvgroups:localgroups:error_subscribe", array($groups[0]->name)));
+        }
+    }
+}
+
+/**
+ * Add the user in local groups, according to his profile
+ */
+function gvgroups_profileupdate($hook, $type, $user) {
+    elgg_load_library('elgg:groups');
+    
+    // get the current local groups list of the user.
+    $groups = get_local_groups_for_user($user->guid);
+        
+    $nationalgroup_name = $user->country;
+    $regionalgroup_name = get_regional_group_name_from_postalcode($user->postalcode);
+    $departementalgroup_name = get_departemental_group_name_from_postalcode($user->postalcode);
+        
+    if ($groups) {
+        foreach($groups as $group) {
+            $leave_group = false;
+            
+            // for each type, check if the group must be changed or not
+            switch ($group->localtype) {
+                case 'national':
+                    if ($group->name != $nationalgroup_name) {
+                        $leave_group = true;
+                        add_user_to_local_group($user, $nationalgroup_name, 'national');
+                    }
+                    break;
+                case 'regional':
+                    if ($group->name != $regionalgroup_name) {
+                        $leave_group = true;
+                        add_user_to_local_group($user, $regionalgroup_name, 'regional');
+                    }
+                    break;
+                case 'departemental':
+                    if ($group->name != $departementalgroup_name) {
+                        $leave_group = true;
+                        add_user_to_local_group($user, $departementalgroup_name, 'departemental');
+                    }
+                    break;
+                default:
+                    // ignore others local groups
+            }
+
+            if ($leave_group) {
+                if ($group->leave($user)) {
+                    system_message(elgg_echo("gvgroups:localgroups:unsubscribe", array($group->name)));
+                }
+                else {
+                    register_error(elgg_echo("gvgroups:localgroups:error_unsubscribe", array($group->name)));
+                }
+            }
+        }
+    }
+}
+
 /**
  * Transform group item site menu to a dropdrown menu with local and working group menu items
  */

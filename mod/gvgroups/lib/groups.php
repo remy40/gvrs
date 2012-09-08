@@ -155,6 +155,26 @@ function create_local_groups() {
 }
 
 /**
+ * Get the local groups list where the user subscribed 
+ */
+function get_local_groups_for_user($user_guid) {
+  	$group_options["type"] = 'group';
+	$group_options["relationship"] = 'member';
+	$group_options["relationship_guid"] = $user_guid;
+	$group_options["inverse_relationship"] = false;
+	$group_options["full_view"] = false;
+	$group_options["limit"] = NULL;
+    $group_options["joins"]	= array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid");
+    $group_options["order_by"] = "ge.name ASC";
+
+    // first, local groups
+    $group_options["metadata_name"] = 'grouptype';
+    $group_options["metadata_value"] = 'local';
+
+	return elgg_get_entities_from_relationship($group_options);
+}
+
+/**
  * Create the page title according to options
  */
 function groups_get_pagetitle($action, $type) {
