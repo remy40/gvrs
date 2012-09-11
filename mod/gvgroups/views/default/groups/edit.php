@@ -14,4 +14,4 @@ $form_vars = array(
 	'class' => 'elgg-form-alt',
 );
 $body_vars = array('entity' => $entity, 'group_type' => $group_type, 'parent_guid' => $parent_guid);
-echo elgg_view_form('groups/edit', $form_vars, $body_vars);
+echo elgg_view_form('gvgroups/edit', $form_vars, $body_vars);

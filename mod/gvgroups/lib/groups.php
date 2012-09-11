@@ -327,7 +327,7 @@ function groups_handle_all_page($type = 'default') {
                         'name' => 'localtype',
                         'value' => $selected_tab)
                         ),
-                'limit' => NULL,
+                'limit' => 20,
                 'joins'	=> array("JOIN " . $dbprefix . "groups_entity ge ON e.guid = ge.guid"),
                 'order_by' => "ge.name ASC",
             ));
@@ -340,7 +340,7 @@ function groups_handle_all_page($type = 'default') {
 
         $group_options["type"] = 'group';
         $group_options["full_view"] = false;
-        $group_options["limit"] = NULL;
+        $group_options["limit"] = 20;
         $group_options["metadata_name"] = 'grouptype';
         $group_options["metadata_value"] = $type;
 

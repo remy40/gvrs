@@ -1300,6 +1300,10 @@ function elgg_view_river_item($item, array $vars = array()) {
 function elgg_view_form($action, $form_vars = array(), $body_vars = array()) {
 	global $CONFIG;
 
+    error_log("wwwroot : " . $CONFIG->wwwroot);
+    error_log("action : " . $CONFIG->wwwroot . "action/$action");
+    error_log("view : forms/$action");
+
 	$defaults = array(
 		'action' => $CONFIG->wwwroot . "action/$action",
 		'body' => elgg_view("forms/$action", $body_vars)

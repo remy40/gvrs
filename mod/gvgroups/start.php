@@ -24,9 +24,9 @@ function gvgroups_init() {
     elgg_register_plugin_hook_handler("route", "groups", "gvgroups_route_groups_handler");
     
    	// override some actions
-	$action_base = elgg_get_plugins_path() . 'gvgroups/actions/';
-	elgg_register_action("groups/edit", "$action_base/groups/edit.php");
-    
+	$action_base = elgg_get_plugins_path() . 'gvgroups/actions';
+	elgg_register_action("gvgroups/edit", "$action_base/gvgroups/edit.php");
+   
     // register some new actions
     elgg_register_action("admin/createlocal", "$action_base/admin/createlocal.php");
     elgg_register_action("admin/deletelocal", "$action_base/admin/deletelocal.php");
