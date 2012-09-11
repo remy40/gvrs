@@ -16,6 +16,8 @@ $french = array(
     'groups:grouptype:working' => 'groupe de travail',
     'groups:grouptype:default' => 'groupe libre',
     
+    'gvgroups:towngroups:error_subscribe' => "Pour vous inscrire au groupe %s vous devez être membre du groupe départemental %s.",
+    
     'gvgroups:localgroups:unsubscribe' => "vous avez été désinscrit du groupe %s",
     'gvgroups:localgroups:error_unsubscribe' => "impossible de vous désinscrire du groupe %s",
     'gvgroups:localgroups:subscribe' => "vous avez été inscrit au groupe %s",

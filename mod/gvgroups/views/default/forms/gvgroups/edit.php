@@ -53,7 +53,6 @@ if ($group_profile_fields > 0) {
 }
 
 // admins are able to modify grouptype in case of group editing (not adding)
-error_log("ici, check de l'admin");
 if (isset($vars['entity']) && $user->isAdmin()) {
     $grouptype = $vars['entity']->grouptype;
 ?>

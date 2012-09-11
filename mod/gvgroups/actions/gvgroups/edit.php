@@ -103,6 +103,11 @@ switch (get_input('membership')) {
 		$group->membership = ACCESS_PRIVATE;
 }
 
+// town groups are always opened to members of the parent group (departement).
+if (($group->grouptype == 'local') && ($group->localtype == 'town')) {
+    $group->membership = ACCESS_PUBLIC;
+}
+
 if ($new_group_flag) {
 	$group->access_id = ACCESS_PUBLIC;
 }

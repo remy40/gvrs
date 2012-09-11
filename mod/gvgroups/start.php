@@ -36,6 +36,9 @@ function gvgroups_init() {
 
     // add an event handler to add the user in local groups, according to his profile
     elgg_register_event_handler('profileupdate', 'user', 'gvgroups_profileupdate');
+    
+    // manage some specific subscribing (town groups)
+    elgg_register_event_handler('create', 'member', 'gvgroups_join_group');
 
     // add "my groups" menu to the topbar
     elgg_register_menu_item('topbar', array(
@@ -80,6 +83,36 @@ function gvgroups_leave_group($group, $user) {
 }
 
 /**
+ * some specific group subscribing (town groups)
+ */
+function gvgroups_join_group($hook, $type, $relationship) {
+    $result = true;
+    
+    if ($relationship instanceof ElggRelationship) {
+        $user  = get_entity($relationship->guid_one);
+        $group = get_entity($relationship->guid_two);
+        
+        if (($user instanceof ElggUser) && ($group instanceof ElggGroup) &&
+            $user && $group) {
+
+            // to be a member of a town group, the user must be a member of the parent group (which is a departemental group) 
+            if (($group->grouptype == 'local') && ($group->localtype == 'town')) {
+                $parentgroup = $group->getEntitiesFromRelationship('parent');
+                
+                if ($parentgroup) {
+                    if (!$parentgroup[0]->isMember($user)) {
+                        register_error(elgg_echo("gvgroups:towngroups:error_subscribe"), array($group->name, $parentgroup[0]->name));
+                        $result = false;
+                    }
+                }
+            }
+        }
+    }
+    
+    return $result;
+}
+
+/**
  * Add the user in local groups, according to his profile
  */
 function gvgroups_profileupdate($hook, $type, $user) {
@@ -87,11 +120,13 @@ function gvgroups_profileupdate($hook, $type, $user) {
 
     $addtonationalgroup = true;
     $addtoregionalgroup = true;
+    $addtodepartementalgroup = true;
     
     // get current user's local groups
     $nationalgroup = get_local_group_for_user($user->guid, 'national');
     $regionalgroup = get_local_group_for_user($user->guid, 'regional');
     $departementalgroup = get_local_group_for_user($user->guid, 'departemental');
+    $towngroups = get_local_group_for_user($user->guid, 'town');
 
     // extract objects from array (easier to manipulate)
     if (count($nationalgroup) == 1) {
@@ -126,19 +161,23 @@ function gvgroups_profileupdate($hook, $type, $user) {
     if ($nationalgroup) {
         // if the country has changed, leave all local groups
         if ($nationalgroup->name != $nationalgroup_name) {
-            error_log("leave national group");
             gvgroups_leave_group($nationalgroup, $user);
         
             if ($regionalgroup) {
-                error_log("leave regional group (1)");
                 gvgroups_leave_group($regionalgroup, $user);
                 $regionalgroup = false;
             }
             
             if ($departementalgroup) {
-                error_log("leave departemental group (1)");
                 gvgroups_leave_group($departementalgroup, $user);
                 $departementalgroup = false;
+                
+                // leave every town groups
+                if ($towngroups) {
+                    foreach($towngroups as $towngroup) {
+                        gvgroups_leave_group($towngroup, $user);
+                    }
+                }
             }
         }
         else {
@@ -146,16 +185,27 @@ function gvgroups_profileupdate($hook, $type, $user) {
         }
     }
 
-    // then, check departement group (if it has changed, the regional group has to change too)
+    // then, check departement group
     if ($departementalgroup) {
         if ($departementalgroup_name && ($departementalgroup->name != $departementalgroup_name)) {
-            error_log("leave departemental group (2)");
             gvgroups_leave_group($departementalgroup, $user);
-            
-            if ($regionalgroup) {
-                error_log("leave regional group (2)");
-                gvgroups_leave_group($regionalgroup, $user);
+
+            // leave every town groups
+            if ($towngroups) {
+                foreach($towngroups as $towngroup) {
+                    gvgroups_leave_group($towngroup, $user);
+                }
             }
+        }
+        else {
+            $addtodepartementalgroup = false;
+        }
+    }
+
+    // then, check regional group
+    if ($regionalgroup) {
+        if ($regionalgroup_name && ($regionalgroup->name != $regionalgroup_name)) {
+            gvgroups_leave_group($regionalgroup, $user);
         }
         else {
             $addtoregionalgroup = false;
@@ -168,6 +218,8 @@ function gvgroups_profileupdate($hook, $type, $user) {
     }
     if ($addtoregionalgroup) {
         add_user_to_local_group($user, $regionalgroup_name, 'regional');
+    }
+    if ($addtodepartementalgroup) {
         add_user_to_local_group($user, $departementalgroup_name, 'departemental');
     }
 }
