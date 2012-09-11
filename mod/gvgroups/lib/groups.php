@@ -155,6 +155,28 @@ function create_local_groups() {
 }
 
 /**
+ * Get the local group of type $localtype where the user subscribed 
+ */
+function get_local_group_for_user($user_guid, $localtype) {
+  	$group_options["type"] = 'group';
+	$group_options["relationship"] = 'member';
+	$group_options["relationship_guid"] = $user_guid;
+	$group_options["inverse_relationship"] = false;
+	$group_options["full_view"] = false;
+	$group_options["limit"] = NULL;
+    $group_options["joins"]	= array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid");
+    $group_options["order_by"] = "ge.name ASC";
+    $group_options["metadata_name_value_pairs"][] = array(
+                    "name" => 'grouptype',
+                    "value" => 'local');
+    $group_options["metadata_name_value_pairs"][] = array(
+                    "name" => 'localtype',
+                    "value" => $localtype);
+
+	return elgg_get_entities_from_relationship($group_options);
+}
+
+/**
  * Get the local groups list where the user subscribed 
  */
 function get_local_groups_for_user($user_guid) {
@@ -450,13 +472,11 @@ function groups_handle_owned_page() {
  */
 function groups_handle_mine_page() {
 
-	$page_owner = elgg_get_page_owner_entity();
-
 	$title = elgg_echo('groups:yours');
 
 	$group_options["type"] = 'group';
 	$group_options["relationship"] = 'member';
-	$group_options["relationship_guid"] = elgg_get_page_owner_guid();
+	$group_options["relationship_guid"] = elgg_get_logged_in_user_guid();
 	$group_options["inverse_relationship"] = false;
 	$group_options["full_view"] = false;
 	$group_options["limit"] = NULL;
@@ -499,8 +519,8 @@ function groups_handle_mine_page() {
 	if (!$content) {
 		$content = elgg_echo('groups:none');
 	}
-*/    
     $pagecontent .= $content;
+*/    
 
 	$params = array(
 		'content' => $pagecontent,
@@ -810,55 +830,65 @@ function groups_handle_requests_page($guid) {
  * @param ElggGroup $group
  */
 function groups_register_profile_buttons($group) {
-
+    $user = elgg_get_logged_in_user_entity();
 	$actions = array();
 
 	// group owners
 	if ($group->canEdit()) {
-		// edit and invite
-        // regional and departemental groups cannot be edited
-        if (($group->grouptype != 'local') || (($group->grouptype == 'local') && ($group->localtype == 'town'))) {
+        // local groups except town groups cannot be edited (except by admins)
+        if (($group->grouptype != 'local') || 
+            (($group->grouptype == 'local') && ($group->localtype == 'town')) ||
+            $user->isAdmin()) {
             $url = elgg_get_site_url() . "groups/edit/{$group->getGUID()}";
             $actions[$url] = 'groups:edit';
         }
-		$url = elgg_get_site_url() . "groups/invite/{$group->getGUID()}";
-		$actions[$url] = 'groups:invite';
+
+        // local groups except town groups cannot use invitation system
+        if (($group->grouptype != 'local') || 
+            (($group->grouptype == 'local') && ($group->localtype == 'town'))) {
+            $url = elgg_get_site_url() . "groups/invite/{$group->getGUID()}";
+            $actions[$url] = 'groups:invite';
+        }
 	}
 
-    // add a button to allow adding town groups
-    if (($group->grouptype == 'local') && ($group->localtype == 'departemental')) {
+    // add a button to allow adding town groups (only for group members)
+    if (($group->grouptype == 'local') && ($group->localtype == 'departemental') &&
+         $group->isMember(elgg_get_logged_in_user_entity())) {
         $url = elgg_get_site_url() . "groups/local/add/{$group->getGUID()}";
         $actions[$url] = 'localgroups:addtown';
     }
 
-	// group members
-	if ($group->isMember(elgg_get_logged_in_user_entity())) {
-		if ($group->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
-			// leave
-			$url = elgg_get_site_url() . "action/groups/leave?group_guid={$group->getGUID()}";
-			$url = elgg_add_action_tokens_to_url($url);
-			$actions[$url] = 'groups:leave';
-		}
-	} elseif (elgg_is_logged_in()) {
-		// join - admins can always join.
-		$url = elgg_get_site_url() . "action/groups/join?group_guid={$group->getGUID()}";
-		$url = elgg_add_action_tokens_to_url($url);
-		if ($group->isPublicMembership() || $group->canEdit()) {
-			$actions[$url] = 'groups:join';
-		} else {
-			// request membership
-			$actions[$url] = 'groups:joinrequest';
-		}
-	}
+	// group members (not for local groups except town group)
+    if ((($group->grouptype == 'local') && ($group->localtype == 'town')) ||
+        ($group->grouptype != 'local')) {
+        if ($group->isMember(elgg_get_logged_in_user_entity())) {
+            if ($group->getOwnerGUID() != elgg_get_logged_in_user_guid()) {
+                // leave
+                $url = elgg_get_site_url() . "action/groups/leave?group_guid={$group->getGUID()}";
+                $url = elgg_add_action_tokens_to_url($url);
+                $actions[$url] = 'groups:leave';
+            }
+        } elseif (elgg_is_logged_in()) {
+            // join - admins can always join.
+            $url = elgg_get_site_url() . "action/groups/join?group_guid={$group->getGUID()}";
+            $url = elgg_add_action_tokens_to_url($url);
+            if ($group->isPublicMembership() || $group->canEdit()) {
+                $actions[$url] = 'groups:join';
+            } else {
+                // request membership
+                $actions[$url] = 'groups:joinrequest';
+            }
+        }
+    }
 
-	if ($actions) {
-		foreach ($actions as $url => $text) {
-			elgg_register_menu_item('title', array(
-				'name' => $text,
-				'href' => $url,
-				'text' => elgg_echo($text),
-				'link_class' => 'elgg-button elgg-button-action',
-			));
-		}
-	}
+    if ($actions) {
+        foreach ($actions as $url => $text) {
+            elgg_register_menu_item('title', array(
+                'name' => $text,
+                'href' => $url,
+                'text' => elgg_echo($text),
+                'link_class' => 'elgg-button elgg-button-action',
+            ));
+        }
+    }
 }

@@ -70,77 +70,105 @@ function add_user_to_local_group($user, $groupname, $localtype) {
     }
 }
 
+function gvgroups_leave_group($group, $user) {
+    if ($group->leave($user)) {
+        system_message(elgg_echo("gvgroups:localgroups:unsubscribe", array($group->name)));
+    }
+    else {
+        register_error(elgg_echo("gvgroups:localgroups:error_unsubscribe", array($group->name)));
+    }
+}
+
 /**
  * Add the user in local groups, according to his profile
  */
 function gvgroups_profileupdate($hook, $type, $user) {
     elgg_load_library('elgg:groups');
-    
-    // get the current local groups list of the user.
-    $groups = get_local_groups_for_user($user->guid);
-        
-    $nationalgroup_name = $user->country;
-    $regionalgroup_name = get_regional_group_name_from_postalcode($user->postalcode);
-    $departementalgroup_name = get_departemental_group_name_from_postalcode($user->postalcode);
 
     $addtonationalgroup = true;
     $addtoregionalgroup = true;
-    $addtodepartementalgroup = true;
-        
-    if ($groups) {
-        foreach($groups as $group) {
-            $leave_group = false;
-            
-            // for each type, check if the group must be changed or not
-            switch ($group->localtype) {
-                case 'national':
-                    if ($group->name != $nationalgroup_name) {
-                        $leave_group = true;
-                    }
-                    else {
-                        $addtonationalgroup = false;
-                    }
-                    break;
-                case 'regional':
-                    if ($group->name != $regionalgroup_name) {
-                        $leave_group = true;
-                    }
-                    else {
-                        $addtoregionalgroup = false;
-                    }
-                    break;
-                case 'departemental':
-                    if ($group->name != $departementalgroup_name) {
-                        $leave_group = true;
-                    }
-                    else {
-                        $addtodepartementalgroup = false;
-                    }
-                    break;
-                default:
-                    // ignore others local groups
-            }
+    
+    // get current user's local groups
+    $nationalgroup = get_local_group_for_user($user->guid, 'national');
+    $regionalgroup = get_local_group_for_user($user->guid, 'regional');
+    $departementalgroup = get_local_group_for_user($user->guid, 'departemental');
 
-            if ($leave_group) {
-                if ($group->leave($user)) {
-                    system_message(elgg_echo("gvgroups:localgroups:unsubscribe", array($group->name)));
-                }
-                else {
-                    register_error(elgg_echo("gvgroups:localgroups:error_unsubscribe", array($group->name)));
-                }
+    // extract objects from array (easier to manipulate)
+    if (count($nationalgroup) == 1) {
+        $nationalgroup = $nationalgroup[0];
+    }
+    else {
+        // never happen
+        $nationalgroup = false;
+    }
+
+    if (count($regionalgroup) == 1) {
+        $regionalgroup = $regionalgroup[0];
+    }
+    else {
+        // never happen
+        $regionalgroup = false;
+    }
+
+    if (count($departementalgroup) == 1) {
+        $departementalgroup = $departementalgroup[0];
+    }
+    else {
+        // never happen
+        $departementalgroup = false;
+    }
+
+    // get the names of new local groups  
+    $nationalgroup_name = $user->country;
+    $regionalgroup_name = get_regional_group_name_from_postalcode($user->country, $user->postalcode);
+    $departementalgroup_name = get_departemental_group_name_from_postalcode($user->country, $user->postalcode);
+    
+    if ($nationalgroup) {
+        // if the country has changed, leave all local groups
+        if ($nationalgroup->name != $nationalgroup_name) {
+            error_log("leave national group");
+            gvgroups_leave_group($nationalgroup, $user);
+        
+            if ($regionalgroup) {
+                error_log("leave regional group (1)");
+                gvgroups_leave_group($regionalgroup, $user);
+                $regionalgroup = false;
+            }
+            
+            if ($departementalgroup) {
+                error_log("leave departemental group (1)");
+                gvgroups_leave_group($departementalgroup, $user);
+                $departementalgroup = false;
             }
         }
-        
-        // add user to local groups if necessary
-        if ($addtonationalgroup) {
-            add_user_to_local_group($user, $nationalgroup_name, 'national');
+        else {
+            $addtonationalgroup = false;
         }
-        if ($addtoregionalgroup) {
-            add_user_to_local_group($user, $regionalgroup_name, 'regional');
+    }
+
+    // then, check departement group (if it has changed, the regional group has to change too)
+    if ($departementalgroup) {
+        if ($departementalgroup_name && ($departementalgroup->name != $departementalgroup_name)) {
+            error_log("leave departemental group (2)");
+            gvgroups_leave_group($departementalgroup, $user);
+            
+            if ($regionalgroup) {
+                error_log("leave regional group (2)");
+                gvgroups_leave_group($regionalgroup, $user);
+            }
         }
-        if ($addtodepartementalgroup) {
-            add_user_to_local_group($user, $departementalgroup_name, 'departemental');
+        else {
+            $addtoregionalgroup = false;
         }
+    }
+    
+    // add user to local groups if necessary
+    if ($addtonationalgroup) {
+        add_user_to_local_group($user, $nationalgroup_name, 'national');
+    }
+    if ($addtoregionalgroup) {
+        add_user_to_local_group($user, $regionalgroup_name, 'regional');
+        add_user_to_local_group($user, $departementalgroup_name, 'departemental');
     }
 }
 

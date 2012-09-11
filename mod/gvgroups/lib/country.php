@@ -27,16 +27,18 @@ function get_departement_number_from_postal_code($postalcode) {
  * Get the region group name from the postal code
  * @return a string that contains the region group name
  */
-function get_regional_group_name_from_postalcode($postalcode) {
-    $regions = get_region_data();
-    $depnum = get_departement_number_from_postal_code($postalcode);
-    
-    foreach ($regions as $regionname => $region_deplist) {
-        if (in_array($depnum, $region_deplist)) {
-            return $regionname;
+function get_regional_group_name_from_postalcode($country, $postalcode) {
+    if ($country == 'France') {
+        $regions = get_region_data();
+        $depnum = get_departement_number_from_postal_code($postalcode);
+        
+        foreach ($regions as $regionname => $region_deplist) {
+            if (in_array($depnum, $region_deplist)) {
+                return $regionname;
+            }
         }
     }
-
+    
     return false;
 }
 
@@ -44,11 +46,15 @@ function get_regional_group_name_from_postalcode($postalcode) {
  * Get the departement group name from the postal code
  * @return a string that contains the departement group name
  */
-function get_departemental_group_name_from_postalcode($postalcode) {
-    $departements = get_departement_data();
-    $depnum = get_departement_number_from_postal_code($postalcode);
+function get_departemental_group_name_from_postalcode($country, $postalcode) {
+    if ($country == 'France') {
+        $departements = get_departement_data();
+        $depnum = get_departement_number_from_postal_code($postalcode);
+        
+        return ("$depnum - ".$departements[$depnum]);
+    }
     
-    return ("$depnum - ".$departements[$depnum]);
+    return false;
 }
 
 /**
