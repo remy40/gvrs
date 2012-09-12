@@ -11,6 +11,9 @@ function gvtheme_init() {
     elgg_register_plugin_hook_handler('register', 'menu:topbar', 'gvtheme_custom_topbarmenu_setup');
 
 	elgg_extend_view('css/elgg', 'gvtheme/css');
+
+    // remove entities statistics views from user account
+    elgg_unextend_view('core/settings/statistics', 'core/settings/statistics/numentities');
 }
 
 /* custom the index page */
@@ -37,7 +40,6 @@ function gvtheme_custom_topbarmenu_setup ($hook, $type, $values) {
         foreach($values as $key => $item) {
             if ($item->getName() == 'profile') {
                 $values[$key]->setText("<span class=\"elgg-icon elgg-icon-users \"/>".$values[$key]->getText()."</span>".$user->name);
-                $values[$key]->setHref('');
                 $profileItem = $values[$key];
             }
         }

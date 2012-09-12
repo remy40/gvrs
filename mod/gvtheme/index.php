@@ -1,7 +1,6 @@
 <?php
 /**
  * GV custom index page
- * 
  */
 
 if (elgg_is_logged_in()) {
