@@ -187,7 +187,8 @@ function gvgroups_profileupdate($hook, $type, $user) {
 
     // then, check departement group
     if ($departementalgroup) {
-        if ($departementalgroup_name && ($departementalgroup->name != $departementalgroup_name)) {
+        if (!$departementalgroup_name || 
+            ($departementalgroup_name && ($departementalgroup->name != $departementalgroup_name))) {
             gvgroups_leave_group($departementalgroup, $user);
 
             // leave every town groups
@@ -204,7 +205,8 @@ function gvgroups_profileupdate($hook, $type, $user) {
 
     // then, check regional group
     if ($regionalgroup) {
-        if ($regionalgroup_name && ($regionalgroup->name != $regionalgroup_name)) {
+        if (!$regionalgroup_name ||
+        ($regionalgroup_name && ($regionalgroup->name != $regionalgroup_name))) {
             gvgroups_leave_group($regionalgroup, $user);
         }
         else {

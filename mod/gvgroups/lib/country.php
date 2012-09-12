@@ -5,21 +5,26 @@
  * @return a string that contains the departement number
  */
 function get_departement_number_from_postal_code($postalcode) {
-    $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
     
-    // manage specific cases (Corse and oversea departements)
-    if ($depnum == "20") {
-        if ($postalcode < 20200) {
-            $depnum = "2A";
+    $depnum = false;
+    
+    if (is_numeric($postalcode)) {
+        $depnum = sprintf("%1$02d", (int)($postalcode / 1000));
+        
+        // manage specific cases (Corse and oversea departements)
+        if ($depnum == "20") {
+            if ($postalcode < 20200) {
+                $depnum = "2A";
+            }
+            else {
+                $depnum = "2B";
+            }
         }
-        else {
-            $depnum = "2B";
+        else if ($depnum == "97") {
+            $depnum = sprintf("%1$03d", (int)($postalcode / 100));
         }
     }
-    else if ($depnum == "97") {
-        $depnum = sprintf("%1$03d", (int)($postalcode / 100));
-    }
-
+    
     return $depnum;
 }
 
@@ -31,10 +36,12 @@ function get_regional_group_name_from_postalcode($country, $postalcode) {
     if ($country == 'France') {
         $regions = get_region_data();
         $depnum = get_departement_number_from_postal_code($postalcode);
-        
-        foreach ($regions as $regionname => $region_deplist) {
-            if (in_array($depnum, $region_deplist)) {
-                return $regionname;
+
+        if ($depnum) {
+            foreach ($regions as $regionname => $region_deplist) {
+                if (in_array($depnum, $region_deplist)) {
+                    return $regionname;
+                }
             }
         }
     }
@@ -50,8 +57,10 @@ function get_departemental_group_name_from_postalcode($country, $postalcode) {
     if ($country == 'France') {
         $departements = get_departement_data();
         $depnum = get_departement_number_from_postal_code($postalcode);
-        
-        return ("$depnum - ".$departements[$depnum]);
+    
+        if ($depnum) {
+            return ("$depnum - ".$departements[$depnum]);
+        }
     }
     
     return false;
