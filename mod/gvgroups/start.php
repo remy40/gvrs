@@ -59,7 +59,7 @@ function add_user_to_local_group($user, $groupname, $localtype) {
             "name" => 'localtype',
             "value" => $localtype);
     $options["joins"] = array("JOIN " . elgg_get_config("dbprefix") . "groups_entity ge ON e.guid = ge.guid");
-    $options["wheres"] = array ("ge.name = '". $groupname . "'");
+    $options["wheres"] = array ("ge.name = '". sanitise_string($groupname) . "'");
 
     $groups = elgg_get_entities_from_metadata($options);
 

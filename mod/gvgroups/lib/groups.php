@@ -398,8 +398,8 @@ function groups_handle_all_page($type = 'default') {
  */
 function elgg_get_group_by_name($options) {
     $query = "SELECT DISTINCT e.* FROM elgg_entities e, elgg_groups_entity g ";
-    $query .= "WHERE e.guid = g.guid AND e.type = 'group' AND (g.name LIKE '%" . $options['groupname'] . "%' ";
-    $query .= " OR g.description LIKE '%" . $options['groupname'] . "%')";
+    $query .= "WHERE e.guid = g.guid AND e.type = 'group' AND (g.name LIKE '%" . sanitise_string($options['groupname']) . "%' ";
+    $query .= " OR g.description LIKE '%" . sanitise_string($options['groupname']) . "%')";
 
     $dt = get_data($query, entity_row_to_elggstar);
     return $dt;
