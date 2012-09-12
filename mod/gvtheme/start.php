@@ -37,6 +37,7 @@ function gvtheme_custom_topbarmenu_setup ($hook, $type, $values) {
         foreach($values as $key => $item) {
             if ($item->getName() == 'profile') {
                 $values[$key]->setText("<span class=\"elgg-icon elgg-icon-users \"/>".$values[$key]->getText()."</span>".$user->name);
+                $values[$key]->setHref('');
                 $profileItem = $values[$key];
             }
         }
@@ -79,6 +80,11 @@ function gvtheme_custom_topbarmenu_setup ($hook, $type, $values) {
                 }
             }
         }
+    
+        // add "my profile" menu item
+        $myprofileitem = new ElggMenuItem('myprofile', elgg_echo('gvtheme:myprofile'), "profile/".$user->username); 
+        $myprofileitem->setSection('alt');
+        $return[] = $myprofileitem;
 
         $return[] = $profileItem;
     }

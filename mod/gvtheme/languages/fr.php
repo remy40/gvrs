@@ -12,6 +12,7 @@ $french = array(
     'profile:postalcode' => "Code Postal",
 
     /* Topbar */
+    'gvtheme:myprofile' => 'Mon profil',
 	'gvtheme:mymessages' => 'Mes messages',
 	'gvtheme:myfriends' => 'Mes amis',
     'settings:user' => 'Mon compte',
