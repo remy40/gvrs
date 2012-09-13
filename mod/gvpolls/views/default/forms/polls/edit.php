@@ -62,9 +62,8 @@ echo <<<__HTML
 			$responses_control
 		</p>
 		<p>
-			<label>$multiple_choices_label</label><br />
-			$multiple_choices_input
-		</p>
+			$multiple_choices_input<label>$multiple_choices_label</label><br />
+        </p>
 		<p>
 			<label>$tag_label</label><br />
 			$tag_input
