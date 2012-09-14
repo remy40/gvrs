@@ -8,8 +8,6 @@
 $response = get_input('response');
 $guid = get_input('guid');
 
-error_log("reponse: $response");
-
 //get the poll entity
 $poll = get_entity($guid);
 if (elgg_instanceof($poll,'object','poll')) {

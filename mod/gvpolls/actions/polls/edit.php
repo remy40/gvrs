@@ -11,6 +11,7 @@ elgg_make_sticky_form('polls');
 
 // Get input data
 $question = get_input('question');
+$description = get_input('description');
 $number_of_choices = (int) get_input('number_of_choices',0);
 $front_page = get_input('front_page');
 $tags = get_input('tags');
@@ -52,6 +53,7 @@ if ($guid) {
 			$poll->access_id = $access_id;
 		
 			$poll->question = $question;
+            $poll->description = $description;
 			$poll->title = $question;
             $poll->multiple_choices = $multiple_choices;
 				
@@ -114,6 +116,7 @@ if ($guid) {
 		$poll->access_id = $access_id;
 	
 		$poll->question = $question;
+		$poll->description = $description;
 		$poll->title = $question;
         $poll->multiple_choices = $multiple_choices;
 

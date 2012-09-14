@@ -24,6 +24,23 @@ function polls_check_for_previous_vote($poll, $user_guid)
 	}
 }
 
+function gvpolls_remove_previous_vote($poll, $user_guid) {
+	$options = array(
+		'guid'	=>	$poll->guid,
+		'type'	=>	"object",
+		'subtype' => "poll",
+		'annotation_name' => "vote",
+		'annotation_owner_guid' => $user_guid,
+		'limit' => 1
+	);
+	$votes = elgg_get_annotations($options);
+	if ($votes) {
+        foreach($votes as $vote) {
+            $vote->delete();
+        }
+    }
+}
+
 function polls_get_choices($poll) {
 	$options = array(
 		'relationship' => 'poll_choice',

@@ -7,12 +7,16 @@ if ($poll) {
 }
 
 $question = $vars['fd']['question'];
+$description = $vars['fd']['description'];
 $tags = $vars['fd']['tags'];
 $access_id = $vars['fd']['access_id'];
 $multiple_choices = $vars['fd']['multiple_choices'];
 
 $question_label = elgg_echo('polls:question');
 $question_textbox = elgg_view('input/text', array('name' => 'question', 'value' => $question));
+
+$description_label = elgg_echo('gvpolls:description');
+$description_textbox = elgg_view('input/longtext', array('name' => 'description', 'value' => $description));
 
 $responses_label = elgg_echo('polls:responses');
 $responses_control = elgg_view('polls/input/choices',array('poll'=>$poll));
@@ -56,6 +60,10 @@ echo <<<__HTML
 		<p>
 			<label>$question_label</label><br />
 			$question_textbox
+		</p>
+		<p>
+			<label>$description_label</label><br />
+			$description_textbox
 		</p>
 		<p>
 			<label>$responses_label</label><br />

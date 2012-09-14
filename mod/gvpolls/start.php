@@ -17,4 +17,5 @@ function gvpolls_init() {
 	$action_path = elgg_get_plugins_path() . 'gvpolls/actions/polls';
 	elgg_register_action("polls/edit","$action_path/edit.php");
 	elgg_register_action("polls/vote","$action_path/vote.php");
+	elgg_register_action("polls/cancelvote","$action_path/cancelvote.php");
 }
