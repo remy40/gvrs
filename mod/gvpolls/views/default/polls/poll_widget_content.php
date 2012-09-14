@@ -38,21 +38,14 @@ if (elgg_is_logged_in()) {
         echo "</div></br>";
     }
 ?>
-<?php
-    if ($results_display != 'none') {
-        echo "<label>".elgg_echo("gvpolls:results")."</label>";
-    }
-?>
+
 <div id="poll-post-body-<?php echo $poll->guid; ?>" class="poll_post_body" style="display:<?php echo $results_display ?>;">
-<?php if (!$can_vote) {echo '<p>'.$voted_text.'</p>';}?>
-<?php echo elgg_view('polls/results_for_widget', array('entity' => $poll)); ?>
+<?php 
+    echo "<label>".elgg_echo("gvpolls:results")."</label>";
+    if (!$can_vote) {echo '<p>'.$voted_text.'</p>';}
+    echo elgg_view('polls/results_for_widget', array('entity' => $poll)); ?>
 </div>
 
-<?php
-    if ($poll_display != 'none') {
-        echo "<label>".elgg_echo("gvpolls:answers")."</label>";
-    }
-?>
 <?php 
 echo elgg_view_form('polls/vote', array('id'=>'poll-vote-form-'.$poll->guid),array('entity' => $poll,'callback'=>1,'form_display'=>$poll_display));
 

@@ -32,7 +32,8 @@ if (isset($vars['entity'])) {
 	$entity_hidden = '';
 }
 
-$form_body =  "<p>" . $response_inputs . "</p>";
+$form_body = "<label>".elgg_echo("gvpolls:answers")."</label>";
+$form_body .=  "<p>" . $response_inputs . "</p>";
 $form_body .= "<p>" . $submit_input . $entity_hidden . "</p>";
 if ($vars['form_display']) {
 	echo '<div id="poll-vote-form-container-'.$poll->guid.'" style="display:'.$vars['form_display'].'">';
