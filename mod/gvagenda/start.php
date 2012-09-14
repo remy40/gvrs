@@ -11,14 +11,14 @@ elgg_register_event_handler('init', 'system', 'gvagenda_init');
 function gvagenda_init() {
   
     // override library
-	elgg_register_library('elgg:event_calendar', elgg_get_plugins_path() . 'gvagenda/models/model.php');
+//	elgg_register_library('elgg:event_calendar', elgg_get_plugins_path() . 'gvagenda/models/model.php');
 
     // override actions
-	$action_path = elgg_get_plugins_path() . 'gvagenda/actions';
-	elgg_register_action("event_calendar/edit","$action_path/edit.php");
+//	$action_path = elgg_get_plugins_path() . 'gvagenda/actions';
+//	elgg_register_action("event_calendar/edit","$action_path/edit.php");
 
     // override some entity menu items
-	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvagenda_entity_menu_setup');
+//	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvagenda_entity_menu_setup');
 
     // extend css
     elgg_extend_view('css/elgg', 'gvagenda/css');

@@ -27,6 +27,8 @@
         'gvagenda:end_date' => "date de fin",
         'gvagenda:description' => "description brève",
         'gvagenda:organiser' => "organisateur",
+
+        'event_calendar:personal_event_calendars_link' => "dans (%s) agendas",
     );
     
 	add_translation("fr", $french);
