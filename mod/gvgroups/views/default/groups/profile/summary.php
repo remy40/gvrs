@@ -19,7 +19,9 @@ $owner = $group->getOwnerEntity();
 <div class="groups-profile clearfix elgg-image-block">
 	<div class="groups-profile-fields elgg-body">
 		<?php
-            echo "<label>".elgg_echo("gvgroups:description").": </label>".$group->description;
+            if ($group->description) {
+                echo "<label>".elgg_echo("gvgroups:description").": </label>".$group->description;
+            }
 //            echo "<label>".elgg_echo("groups:members").": </label>" . $group->getMembers(0, 0, TRUE);
 		?>
 	</div>
