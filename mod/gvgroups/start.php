@@ -47,6 +47,9 @@ function gvgroups_init() {
     'text' => elgg_echo('gvgroups:mygroups'),
     'section' => 'alt'
     ));
+
+    // extend CSS view
+    elgg_extend_view('css/elgg', 'gvgroups/css');
 }
 
 function add_user_to_local_group($user, $groupname, $localtype) {

@@ -60,7 +60,7 @@ $french = array(
     'gvgroups:mycountry' => 'Mon pays :',
     'gvgroups:myregion' => 'Ma région :',
     'gvgroups:mydepartement' => 'Mon département :',
-
+    'gvgroups:description' => "Description du groupe",
 	/**
 	 * Local & Working
 	 */
