@@ -103,6 +103,7 @@ freidefines = {
     chatHistoryDeleted:'<?php echo $frei_trans["chatHistoryDeleted"]; ?>',
     chatHistoryNotFound:'<?php echo $frei_trans["chatHistoryNotFound"]; ?>',
     cb_head:'<?php echo $frei_trans["cb_head"]; ?>',
+    pwdby:'<?php echo $frei_trans["pwdby"]; ?>',
     nopermsmesg:'<?php echo $frei_trans["noperms"]; ?>',
     nolinemesg:'<?php echo $frei_trans["noline"]; ?>',
     newmesg:'<?php echo $frei_trans["newmesg"]; ?>',
