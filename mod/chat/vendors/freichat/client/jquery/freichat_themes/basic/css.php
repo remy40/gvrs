@@ -205,6 +205,10 @@ border:1px solid black;
 background-image:url('<?php echo $freichat_theme."/".$frei_user_brandimg; ?>');
 }
 
+.frei_user_brand font {
+    display: none;
+}
+
 .frei_user_count {
 color:inherit;
 }
