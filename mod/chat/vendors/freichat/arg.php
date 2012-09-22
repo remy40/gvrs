@@ -42,7 +42,7 @@
 
         $load=$parameters['load']; //chatbox
         $dyncss='disable'; //template patch
-        $evnixpower='visible'; //powered by evnix
+        $evnixpower='disable'; //powered by evnix
         $show_chatbox='';
         $time=$parameters['time']; //In seconds
 	    $GZIP_handler = $parameters['GZIP_handler'];

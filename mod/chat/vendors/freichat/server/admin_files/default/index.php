@@ -38,8 +38,7 @@
                 Current Version: 7.2<br/>
                 Latest Version: <img src="http://evnix.com/drupal2/latest_ver.png" style="display: inline;height:10px"/><br/>
 
-                 Powered By <a target="_blank" style="color:blue" href="http://evnix.com">EvNiX</a>
-               
+              
                                   </div>
                 
             
