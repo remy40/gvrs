@@ -18,7 +18,7 @@ $params["nick"] =  elgg_get_logged_in_user_entity()->username;
 $params["frozen_nick"] =  true;
 $params["nickmeta"]    = array("avatar" => elgg_get_logged_in_user_entity()->getIconURL("medium"));
 $params["isadmin"] = false;
-$params["firstisadmin"] =  true;
+$params["firstisadmin"] =  false;
 $params["channels"] = array(elgg_echo("gvchat:defaultchannel"));
 $params["max_channels"] = 10;
 $params["refresh_delay"] =  2000;
