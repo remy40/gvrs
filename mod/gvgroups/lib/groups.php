@@ -397,7 +397,9 @@ function groups_handle_all_page($type = 'default') {
  * return a list of groups that match options (used to search in name and description)
  */
 function elgg_get_group_by_name($options) {
-    $query = "SELECT DISTINCT e.* FROM elgg_entities e, elgg_groups_entity g ";
+	$db_prefix = elgg_get_config('dbprefix');
+
+    $query = "SELECT DISTINCT e.* FROM {$db_prefix}entities e, {$db_prefix}groups_entity g ";
     $query .= "WHERE e.guid = g.guid AND e.type = 'group' AND (g.name LIKE '%" . sanitise_string($options['groupname']) . "%' ";
     $query .= " OR g.description LIKE '%" . sanitise_string($options['groupname']) . "%')";
 
