@@ -67,7 +67,7 @@ border: 1px;
 	TOPBAR DROPDOWN MENUS
 ****************************************/
 
-.elgg-child-menu {
+.elgg-menu-topbar-child {
 z-index: 10;
 display: none;
 position: absolute;
@@ -79,7 +79,7 @@ box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
 opacity: 0.95;
 }
 
-li:hover > .elgg-child-menu {
+li:hover > .elgg-menu-topbar-child {
 display: block;
 }
 
