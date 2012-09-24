@@ -40,7 +40,8 @@ function expages_public($hook, $handler, $return, $params){
  * Setup the links to site pages
  */
 function expages_setup_footer_menu() {
-	$pages = array('about', 'terms', 'privacy');
+//	$pages = array('about', 'terms', 'privacy');
+	$pages = array('about', 'terms');
 	foreach ($pages as $page) {
 		$url = "$page";
 		$wg_item = new ElggMenuItem($page, elgg_echo("expages:$page"), $url);

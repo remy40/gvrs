@@ -11,7 +11,7 @@ $french = array(
 	'expages' => "Pages externes",
 	'admin:appearance:expages' => "Pages du site",
 	'expages:about' => "A propos",
-	'expages:terms' => "Mentions légales",
+	'expages:terms' => "Conditions d'utilisation",
 	'expages:privacy' => "Informations personnelles",
 	'expages:contact' => "Contact",
 
