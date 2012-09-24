@@ -12,7 +12,7 @@ $french = array(
 	'notifications:subscriptions:collections:edit' => "Pour éditer vos notifications d'accès partagés, cliquez ici.",
 
 	'notifications:subscriptions:changesettings' => "Notifications",
-	'notifications:subscriptions:changesettings:groups' => "Notifications pour les groupes",
+	'notifications:subscriptions:changesettings:groups' => "Notifications de groupes",
 
 	'notifications:subscriptions:title' => "Notifications par utilisateur",
 	'notifications:subscriptions:description' => "Pour recevoir des notifications de vos contacts (sur une base individuelle) quand ils créent de nouveaux contenus, trouvez-les ci-dessous, et choisissez le mode de notifications que vous souhaitez utiliser.",

@@ -10,10 +10,23 @@ function gvtheme_init() {
     elgg_unregister_menu_item('topbar', 'elgg_logo');
     elgg_register_plugin_hook_handler('register', 'menu:topbar', 'gvtheme_custom_topbarmenu_setup');
 
+    elgg_register_event_handler('pagesetup', 'system', 'gvtheme_custom_usersettings_pagesetup');
+
 	elgg_extend_view('css/elgg', 'gvtheme/css');
 
     // remove entities statistics views from user account
     elgg_unextend_view('core/settings/statistics', 'core/settings/statistics/numentities');
+    
+    // override some actions
+	$action_base = elgg_get_plugins_path() . 'gvtheme/actions';
+	elgg_register_action("avatar/upload", "$action_base/avatar/upload.php");
+	elgg_register_action("avatar/crop", "$action_base/avatar/crop.php");
+	elgg_register_action("friends/add", "$action_base/friends/add.php");
+}
+
+function gvtheme_custom_usersettings_pagesetup(){
+    elgg_unregister_menu_item('page', '1_statistics');
+    elgg_unregister_menu_item('page', '1_plugins');
 }
 
 /* custom the index page */
