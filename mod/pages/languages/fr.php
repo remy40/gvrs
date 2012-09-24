@@ -12,7 +12,7 @@ $french = array(
 	 */
 
 	'pages' => "Pages",
-	'pages:owner' => "Pages de s%",
+	'pages:owner' => "Pages de %s",
 	'pages:friends' => "Pages de amis ",
 	'pages:all' => "Toutes les pages du site",
 	'pages:add' => "Ajouter une page",

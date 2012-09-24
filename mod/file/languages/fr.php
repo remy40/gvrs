@@ -65,7 +65,7 @@ $french = array(
 
 	'groups:enablefiles' => "Activer les fichiers de groupes",
 
-	'file:download' => "Télécharger ce",
+	'file:download' => "Télécharger ce fichier",
 
 	'file:delete:confirm' => "Etes-vous sûr(e) de vouloir supprimer ce fichier ?",
 
