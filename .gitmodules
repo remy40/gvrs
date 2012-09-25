@@ -1,3 +1,6 @@
 [submodule "mod/event_calendar"]
 	path = mod/event_calendar
 	url = https://github.com/kevinjardine/Elgg-Event-Calendar.git
+[submodule "mod/etherpad"]
+	path = mod/etherpad
+	url = https://github.com/efault/elggpad-lite.git
