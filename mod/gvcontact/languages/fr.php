@@ -1,6 +1,8 @@
 <?php
 
 	$french = array(
+        'gvcontact:contact' => "Contact",
+    
         'gvcontact:intro' => "Ce formulaire vous permet de contacter l'équipe des webmestres pour toute question. Pour que votre requête soit correctement traitée, essayer d'être le plus clair possible. Merci !",
         'gvcontact:yourname' => "Votre nom :",
         'gvcontact:yourmail' => "Votre email :",
