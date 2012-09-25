@@ -20,6 +20,32 @@ function gvthewire_init() {
     // extend thewire page handler
     elgg_register_plugin_hook_handler("route", "thewire", "gvthewire_route_handler");
 
+    // add thewire group option
+	add_group_tool_option('thewire', elgg_echo('gvthewire:enablemicroblog'), true);
+
+    // add a menu item in the group menu
+	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'gvthewire_owner_block_menu');
+}
+
+/**
+ * Add a menu item to an ownerblock
+ * 
+ * @param string $hook
+ * @param string $type
+ * @param array  $return
+ * @param array  $params
+ */
+function gvthewire_owner_block_menu($hook, $type, $return, $params) {
+
+	if (elgg_instanceof($params['entity'], 'group')) {
+		if ($params['entity']->thewire_enable != 'no') {
+			$url = "thewire/group/{$params['entity']->guid}";
+			$item = new ElggMenuItem('thewire', elgg_echo('gvthewire:group'), $url);
+			$return[] = $item;
+		}
+	}
+
+	return $return;
 }
 
 function gvthewire_route_handler($hook, $type, $return_value, $params){
