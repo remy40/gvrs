@@ -1,5 +1,7 @@
 <?php
 
+    gatekeeper();
+
 $category_options = array('bug' => elgg_echo('gvcontact:bug'),
                           'improvement' => elgg_echo('gvcontact:improvement'),
                           'help' => elgg_echo('gvcontact:help'),
