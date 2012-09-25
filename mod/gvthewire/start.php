@@ -12,14 +12,47 @@ elgg_register_event_handler('init', 'system', 'gvthewire_init');
 function gvthewire_init() {
 	$action_base = elgg_get_plugins_path() . 'gvthewire/actions';
 	elgg_register_action("thewire/add", "$action_base/add.php");
+
+    // extend thewire page handler
+    elgg_register_plugin_hook_handler("route", "thewire", "gvthewire_route_handler");
+
 }
 
-function gvthewire_save_post($text, $userid, $access_id, $parent_guid = 0, $method = "site") {
+function gvthewire_route_handler($hook, $type, $return_value, $params){
+    /**
+     * $return_value contains:
+     * $return_value['handler'] => requested handler
+     * $return_value['segments'] => url parts ($page)
+     */
+    $result = $return_value;
+    
+    if(!empty($return_value) && is_array($return_value)){
+        $page = $return_value['segments'];
+        
+        $base_dir = elgg_get_plugins_path() . 'gvthewire/pages/';
+        switch($page[0]){
+            case "group":
+                if (isset($page[1])) {
+                    set_input('container_guid', $page[1]);
+                    include "$base_dir/group.php";
+                    $result = false;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+    
+    return $result;
+}
+
+function gvthewire_save_post($text, $userid, $access_id, $parent_guid = 0, $method = "site", $container_guid = 0) {
 	$post = new ElggObject();
 
 	$post->subtype = "thewire";
 	$post->owner_guid = $userid;
 	$post->access_id = $access_id;
+    $post->container_guid = $container_guid;
 
 	$text = elgg_substr($text, 0, gvthewire_get_character_limit());
 

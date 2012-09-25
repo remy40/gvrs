@@ -10,6 +10,7 @@ $body = get_input('body', '', false);
 $access_id = ACCESS_PUBLIC;
 $method = 'site';
 $parent_guid = (int) get_input('parent_guid');
+$container_guid = get_input('container_guid');
 
 // make sure the post isn't blank
 if (empty($body)) {
@@ -17,7 +18,7 @@ if (empty($body)) {
 	forward(REFERER);
 }
 
-$guid = gvthewire_save_post($body, elgg_get_logged_in_user_guid(), $access_id, $parent_guid, $method);
+$guid = gvthewire_save_post($body, elgg_get_logged_in_user_guid(), $access_id, $parent_guid, $method, $container_guid);
 if (!$guid) {
 	register_error(elgg_echo("thewire:error"));
 	forward(REFERER);

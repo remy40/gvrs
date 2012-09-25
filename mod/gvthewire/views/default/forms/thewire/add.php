@@ -8,6 +8,8 @@
 elgg_load_js('elgg.thewire');
 
 $post = elgg_extract('post', $vars);
+$container_guid = $vars['container_guid'];
+error_log("FORMS : container_guid: $container_guid");
 
 $text = elgg_echo('post');
 if ($post) {
@@ -18,6 +20,13 @@ if ($post) {
 	echo elgg_view('input/hidden', array(
 		'name' => 'parent_guid',
 		'value' => $post->guid,
+	));
+}
+
+if ($container_guid) {
+	echo elgg_view('input/hidden', array(
+		'name' => 'container_guid',
+		'value' => $container_guid,
 	));
 }
 

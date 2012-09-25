@@ -39,7 +39,7 @@ function gvchat_init() {
 function gvchat_owner_block_menu($hook, $type, $return, $params) {
 
 	if (elgg_instanceof($params['entity'], 'group')) {
-		if ($params['entity']->gvchat_enable != 'no') {
+		if ($params['entity']->chat_enable != 'no') {
 			$url = "chat/group/{$params['entity']->guid}";
 			$item = new ElggMenuItem('gvchat', elgg_echo('gvchat:group'), $url);
 			$return[] = $item;
