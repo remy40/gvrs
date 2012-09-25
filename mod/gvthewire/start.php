@@ -10,6 +10,10 @@ elgg_register_event_handler('init', 'system', 'gvthewire_init');
  * The GV Wire initialization
  */
 function gvthewire_init() {
+    
+    elgg_register_library('elgg:thewire', elgg_get_plugins_path() . "gvthewire/lib/thewire.php");
+    
+    // override action
 	$action_base = elgg_get_plugins_path() . 'gvthewire/actions';
 	elgg_register_action("thewire/add", "$action_base/add.php");
 
@@ -38,6 +42,12 @@ function gvthewire_route_handler($hook, $type, $return_value, $params){
                     $result = false;
                 }
                 break;
+
+            case "all":
+                include "$base_dir/everyone.php";
+                $result = false;
+                break;
+
             default:
                 break;
         }
@@ -52,8 +62,11 @@ function gvthewire_save_post($text, $userid, $access_id, $parent_guid = 0, $meth
 	$post->subtype = "thewire";
 	$post->owner_guid = $userid;
 	$post->access_id = $access_id;
-    $post->container_guid = $container_guid;
-
+    
+    if ($container_guid) {
+        $post->container_guid = $container_guid;
+    }
+    
 	$text = elgg_substr($text, 0, gvthewire_get_character_limit());
 
 	// no html tags allowed so we escape
