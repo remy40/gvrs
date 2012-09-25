@@ -52,7 +52,7 @@ elgg.extended_tinymce_full.init = function() {
 		theme_advanced_statusbar_location : "bottom",
 		theme_advanced_resizing : true,
 		theme_advanced_path : true,
-        spellchecker_languages : "+English=en,French=fr",
+        spellchecker_languages : "+French=fr",
         spellchecker_report_misspellings: true,
 		width : "100%",
         height: "600",

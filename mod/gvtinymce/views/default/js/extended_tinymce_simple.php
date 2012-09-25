@@ -42,7 +42,7 @@ elgg.extended_tinymce_simple.init = function() {
 		relative_urls : false,
 		remove_script_host : false,
 		document_base_url : elgg.config.wwwroot,
-		theme_advanced_buttons1 : "bold,italic,underline,separator,strikethrough,bullist,numlist,undo,redo,link,unlink,image,blockquote,code,pastetext,pasteword,more,fullscreen",
+		theme_advanced_buttons1 : "spellchecker,bold,italic,underline,separator,strikethrough,bullist,numlist,undo,redo,link,unlink,image,blockquote,code,pastetext,pasteword,more,fullscreen",
 		theme_advanced_buttons2 : "",
 		theme_advanced_buttons3 : "",
 		theme_advanced_toolbar_location : "top",
@@ -50,6 +50,8 @@ elgg.extended_tinymce_simple.init = function() {
 		theme_advanced_statusbar_location : "bottom",
 		theme_advanced_resizing : true,
 		theme_advanced_path : true,
+        spellchecker_languages : "+French=fr",
+        spellchecker_report_misspellings: true,
 		width : "100%",
 		extended_valid_elements : "@[id|class|style|title|dir<ltr?rtl|lang|xml::lang|onclick|ondblclick|onmousedown|onmouseup|onmouseover|onmousemove|onmouseout|onkeypress|onkeydown|onkeyup],a[name|href|target|title|onclick],img[class|src|border=0|alt|title|hspace|vspace|width|height|align|onmouseover|onmouseout|name|style],hr[class|width|size|noshade],font[face|size|color|style],span[class|align|style],embed[src|type|wmode|width|height],object[classid|clsid|codebase|width|height],font[face|size|color|style],span[class|align|style],style[lang|media|title|type]",
 		setup : function(ed) {
