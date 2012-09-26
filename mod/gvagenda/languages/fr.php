@@ -1,6 +1,13 @@
 <?php
 
 	$french = array(
+        'agenda:moreevents' => "Voir plus d'événements ...",
+        'agenda:noevents' => "Aucun événement planifié.",
+        'myagenda:widget_title' => "Mon agenda",
+        'myagenda:widget:description' => "Les événements planifiés dans mon agenda",
+        'agenda:widget_title' => "Agenda du réseau",
+        'agenda:widget:description' => "Derniers événements planifiés sur le réseau",
+    
         'gvagenda:repeat_event_label' => "Répéter l'événement",
         'gvagenda:repeat_frequency_label' => "Fréquence de répétition",
         'gvagenda:repeat_duration_label' => "Durée de la répétition (l'unité de la durée correspond à la fréquence choisie. Si vous avez choisi \"toutes les semaines\" l'unité sera la semaine)",

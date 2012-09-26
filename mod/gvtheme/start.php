@@ -22,6 +22,10 @@ function gvtheme_init() {
 	elgg_register_action("avatar/upload", "$action_base/avatar/upload.php");
 	elgg_register_action("avatar/crop", "$action_base/avatar/crop.php");
 	elgg_register_action("friends/add", "$action_base/friends/add.php");
+
+    // modify widgets context
+    elgg_register_widget_type('pages', elgg_echo('pages'), elgg_echo('pages:widget:description'), "group");
+
 }
 
 function gvtheme_custom_usersettings_pagesetup(){

@@ -23,6 +23,10 @@ function gvthewire_init() {
 
     // add a menu item in the group menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'gvthewire_owner_block_menu');
+
+    // update widget type
+	elgg_unregister_widget_type('thewire');
+	elgg_register_widget_type('thewire', elgg_echo('thewire'), elgg_echo("thewire:widget:desc"), "groups");
 }
 
 /**

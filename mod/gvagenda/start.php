@@ -9,26 +9,15 @@ elgg_register_event_handler('init', 'system', 'gvagenda_init');
  * Initialize the GV agenda plugin.
  */
 function gvagenda_init() {
-  
-    // override library
-//	elgg_register_library('elgg:event_calendar', elgg_get_plugins_path() . 'gvagenda/models/model.php');
-
-    // override actions
-//	$action_path = elgg_get_plugins_path() . 'gvagenda/actions';
-//	elgg_register_action("event_calendar/edit","$action_path/edit.php");
-
-    // override some entity menu items
-//	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvagenda_entity_menu_setup');
 
     // extend css
     elgg_extend_view('css/elgg', 'gvagenda/css');
 
-/*
-    $events = elgg_get_entities(array('type' => 'object', 'subtype' => 'event_calendar', 'limit' => null));
-    foreach($events as $event) {
-        $event->delete();
-    }
-*/
+    elgg_unregister_widget_type('event_calendar');
+
+    // the default event_calendar widget show only logged in user events -> convert it to my_calendar widget
+	elgg_register_widget_type('myagenda',elgg_echo("myagenda:widget_title"),elgg_echo('myagenda:widget:description'), 'groups,profile');
+	elgg_register_widget_type('agenda',elgg_echo("agenda:widget_title"),elgg_echo('agenda:widget:description'), 'dashboard,groups');
 }
 
 /**

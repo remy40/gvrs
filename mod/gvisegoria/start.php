@@ -17,24 +17,29 @@ function gvisegoria_init() {
     // remove dashboard item in the topbar
     elgg_unregister_menu_item('topbar', 'dashboard');
 
-    // add isegoria item in the topbar menu
-/*    elgg_register_menu_item('topbar', array(
-    'name' => 'isegoria',
-    'href' => 'dashboard',
-    'text' => elgg_echo('gvgroups:isegoria'),
-    'priority' => '10',
-    ));
-*/    
+    // unregister some widget types
+	elgg_unregister_widget_type('poll');	
+	elgg_unregister_widget_type('group_invitations');	
+	elgg_unregister_widget_type('featured_groups');	
+	elgg_unregister_widget_type('index_groups');	
+
     // register widget types
+    elgg_register_widget_type('pages', elgg_echo('pages'), elgg_echo('pages:widget:description'), "groups");
+	elgg_register_widget_type('etherpad', elgg_echo('etherpad'), elgg_echo('etherpad:profile:widgetdesc'), "groups");
+	elgg_register_widget_type('poll_individual',elgg_echo('polls:individual'),elgg_echo('poll_individual_group:widget:description'), "profile");	
+	elgg_register_widget_type('questions', elgg_echo("widget:questions:title"), elgg_echo("widget:questions:description"), "groups");
+	elgg_register_widget_type('blog', elgg_echo('widget:blog:title'), elgg_echo('blog:widget:description'));
+	elgg_register_widget_type('filerepo', elgg_echo("widget:file:title"), elgg_echo("file:widget:description"));
+    elgg_register_widget_type('friends', elgg_echo('widget:friends:title'), elgg_echo('friends:widget:description'));
     elgg_register_widget_type(
         "online_users",
         elgg_echo("admin:widget:online_users"),
-        elgg_echo("admin:widget:online_users:help"));
+        elgg_echo("admin:widget:online_users:help"), "dashboard");
 
     elgg_register_widget_type(
         "new_users",
         elgg_echo("admin:widget:new_users"),
-        elgg_echo("admin:widget:new_users:help"));
+        elgg_echo("admin:widget:new_users:help"), "dashboard");
 }
 
 /**
