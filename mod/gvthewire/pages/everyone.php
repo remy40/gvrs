@@ -4,8 +4,6 @@
  * 
  */
 
-elgg_load_library('elgg:thewire');
-
 elgg_push_breadcrumb(elgg_echo('thewire'));
 
 $title = elgg_echo('thewire:everyone');
@@ -17,10 +15,16 @@ if (elgg_is_logged_in()) {
 	$content .= elgg_view('input/urlshortener');
 }
 
-$content .= elgg_list_entities(array('limit' => 15, 
-                                     'order_by' => 'e.guid', 
-                                     'reverse_order_by' => true), 
-                               'elgg_get_sitewide_thewire');
+$db_prefix = elgg_get_config('dbprefix');
+$options = array('types' => 'object',
+                 'subtypes' => 'thewire',
+                 'limit' => 15, 
+                 'order_by' => 'e.guid', 
+                 'reverse_order_by' => true,
+                 'joins' => array("LEFT JOIN {$db_prefix}groups_entity AS g ON e.container_guid = g.guid "),
+                 'wheres' => array("g.guid IS NULL"));
+
+$content .= elgg_list_entities($options);
 
 $body = elgg_view_layout('content', array(
 	'filter_context' => 'all',

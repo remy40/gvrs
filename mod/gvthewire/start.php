@@ -10,9 +10,7 @@ elgg_register_event_handler('init', 'system', 'gvthewire_init');
  * The GV Wire initialization
  */
 function gvthewire_init() {
-    
-    elgg_register_library('elgg:thewire', elgg_get_plugins_path() . "gvthewire/lib/thewire.php");
-    
+   
     // override action
 	$action_base = elgg_get_plugins_path() . 'gvthewire/actions';
 	elgg_register_action("thewire/add", "$action_base/add.php");

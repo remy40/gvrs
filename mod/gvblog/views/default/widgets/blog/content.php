@@ -14,7 +14,8 @@ $options = array(
 	'full_view' => FALSE,
 	'pagination' => FALSE,
 );
-$content = elgg_list_entities($options, 'elgg_get_sitewide_blog');
+
+$content = elgg_list_entities($options);
 
 echo $content;
 
