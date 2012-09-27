@@ -2,7 +2,7 @@
 <plugin_manifest xmlns="http://www.elgg.org/plugin_manifest/1.8">
 	<name>GV Friend request</name>
 	<author>GV Team</author>
-	<version>1.8</version>
+	<version>1.0</version>
 	<category>social</category>
 	<category>widget</category>
 	<description>Modify friend request plugin with new functionalities</description>

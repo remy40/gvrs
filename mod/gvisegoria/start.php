@@ -28,8 +28,8 @@ function gvisegoria_init() {
 	elgg_register_widget_type('etherpad', elgg_echo('etherpad'), elgg_echo('etherpad:profile:widgetdesc'), "groups");
 	elgg_register_widget_type('poll_individual',elgg_echo('polls:individual'),elgg_echo('poll_individual_group:widget:description'), "profile");	
 	elgg_register_widget_type('questions', elgg_echo("widget:questions:title"), elgg_echo("widget:questions:description"), "groups");
-	elgg_register_widget_type('blog', elgg_echo('widget:blog:title'), elgg_echo('blog:widget:description'));
-	elgg_register_widget_type('filerepo', elgg_echo("widget:file:title"), elgg_echo("file:widget:description"));
+	elgg_register_widget_type('blog', elgg_echo('widget:blog:title'), elgg_echo('blog:widget:description'), "dashboard,groups");
+	elgg_register_widget_type('filerepo', elgg_echo("widget:file:title"), elgg_echo("file:widget:description"), "dashboard,groups");
     elgg_register_widget_type('friends', elgg_echo('widget:friends:title'), elgg_echo('friends:widget:description'));
     elgg_register_widget_type(
         "online_users",
