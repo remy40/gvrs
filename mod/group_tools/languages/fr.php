@@ -263,8 +263,8 @@ To visit the group please click on the following link:
 	
 		// Widgets
 		// Group River Widget
-		'widgets:group_river_widget:title' => "Group activity",
-	    'widgets:group_river_widget:description' => "Shows the activity of a group in a widget",
+		'widgets:group_river_widget:title' => "Activité des groupes",
+	    'widgets:group_river_widget:description' => "Vous permet de suivre l'activité des groupes sélectionnés",
 
 	    'widgets:group_river_widget:edit:num_display' => "Number of activities",
 		'widgets:group_river_widget:edit:group' => "Select a group",
@@ -283,13 +283,13 @@ To visit the group please click on the following link:
   		'widgets:group_members:view:no_members' => "No group members found",
   		
   		// Group Invitations
-		'widgets:group_invitations:title' => "Group invitations",
-	  	'widgets:group_invitations:description' => "Shows the outstanding group invitations for the current user",
+		'widgets:group_invitations:title' => "Mes invitations en attente",
+	  	'widgets:group_invitations:description' => "Affiche vos invitations à rejoindre des groupes qui sont en attente",
 	  	
 	  	// Discussion
 		"widgets:discussion:settings:group_only" => "Only show discussions from groups you are member of",
   		'widgets:discussion:more' => "View more discussions",
-  		"widgets:discussion:description" => "Shows the latest discussions",
+  		"widgets:discussion:description" => "Affiche les dernières discussions des groupes",
   		
 		// Forum topic widget
 		'widgets:group_forum_topics:description' => "Show the latest discussions",
@@ -304,8 +304,8 @@ To visit the group please click on the following link:
 	  	'widgets:featured_groups:edit:show_random_group' => "Show a random non-featured group",
 	  	
 		// group_news widget
-		"widgets:group_news:title" => "Group News", 
-		"widgets:group_news:description" => "Shows latest 5 blogs from various groups", 
+		"widgets:group_news:title" => "Derniers articles des groupes", 
+		"widgets:group_news:description" => "Affiche les derniers articles de blog des groupes", 
 		"widgets:group_news:no_projects" => "No groups configured", 
 		"widgets:group_news:no_news" => "No blogs for this group", 
 		"widgets:group_news:settings:project" => "Group", 

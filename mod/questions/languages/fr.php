@@ -1,5 +1,8 @@
 <?php
 add_translation('fr', array(
+    'questions:river:question:created' => "question: %s",
+    'questions:river:question:create' => "creation_question",
+
 	'item:object:question' => 'Questions',
 
 	'answers' => 'Réponses',
@@ -27,8 +30,8 @@ add_translation('fr', array(
 	 * Widgets
 	 */
 
-	'widget:questions:title' => "Questions",
-	'widget:questions:description' => "Vous pouvez afficher l'état de vos questions.",
+	'widget:questions:title' => "Mes questions",
+	'widget:questions:description' => "Affiche l'état de vos questions.",
 	'widget:questions:limit' => "Nombre de questions à afficher:",
 ));
 ?>

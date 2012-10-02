@@ -21,7 +21,7 @@ if (elgg_in_context('dashboard')) {
 
 $content = elgg_list_river($options);
 if ($content) {
-    $content .= "<a href='activity'>" . elgg_echo('gvisegoria:seeall:activity'). "</a>";
+    $content .= "<a href='activity'>" . elgg_echo('gvwidgets:seeall:activity'). "</a>";
 }
 else {
 	$content = elgg_echo('river:none');

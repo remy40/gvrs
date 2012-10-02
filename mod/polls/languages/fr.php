@@ -62,9 +62,9 @@
 	     * poll widget
 	     **/
 			'polls:latest_widget_title' => "Derniers sondages",
-			'polls:latest_widget_description' => "Afficher les plus récents sondages.",
+			'polls:latest_widget_description' => "Affiche les derniers sondages du réseau.",
 			'polls:my_widget_title' => "Mes sondages",
-			'polls:my_widget_description' => "Ce widget affichera vos sondages.",
+			'polls:my_widget_description' => "Affiche vos sondages.",
 			'polls:widget:label:displaynum' => "Combien de sondages souhaitez-vous afficher?",
 			'polls:individual' => "Dernier sondage",
 			'poll_individual_group:widget:description' => "Afficher le dernier sondage pour ce groupe.",
