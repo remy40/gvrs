@@ -10,26 +10,51 @@ elgg_register_event_handler('init', 'system', 'gvwidgets_init');
  */
 function gvwidgets_init() {
     
-    //register widget types
-    $widget_names = array('latest_files', 'latest_questions', 'latest_blogs', 'active_groups', 'new_groups', 'my_activity', 
-                          'my_discussion',  'group_new_members');
+    //register library
+    elgg_register_library("elgg:gvwidgets", elgg_get_plugins_path() . "gvwidgets/lib/widgets.php");
+
+    // remove old widget types that are not well defined
+    $old_widget_names = array('blog', 'filerepo', 'pages','event_calendar',
+                              'twitter_search', 'content_stats', 'poll', 'latestPolls',
+                              'poll_individual', 'featured_groups', 'index_groups', 'discussion',
+                              'group_forum_topics', 'thewire', 'profile_completeness', 'register', 
+                              'questions', 'etherpad', 'content_by_tag', 'entity_statistics', 'favorites',
+                              'image_slider', 'index_activity', 'index_login', 'index_members', 'index_members_online',
+                              'messages', 'tagcloud');
     
-    foreach ($widget_names as $widget_name) {
-        elgg_register_widget_type($widget_name, elgg_echo("widget:$widget_name:title"), elgg_echo("widget:$widget_name:description"));
+    foreach($old_widget_names as $old_widget_name) {
+        elgg_unregister_widget_type($old_widget_name);
     }
     
-    // modify widget by re-register widget types
-	elgg_register_widget_type('blog', elgg_echo('widget:blog:title'), elgg_echo('widget:blog:description'));
-	elgg_register_widget_type('filerepo', elgg_echo("widget:file:title"), elgg_echo("widget:file:description"));
+    //register new widget types
+    $widget_names = array('latest_files', 
+                          'latest_polls',
+                          'latest_questions', 
+                          'latest_blogs', 
+                          'latest_pages', 
+                          'latest_discussions', 
+                          'latest_events',
+                          'latest_wires',
+                          'active_groups', 
+                          'group_new_members',
+                          'new_groups', 
+                          'my_activities', 
+                          'my_blogs',
+                          'my_discussions',
+                          'my_events',
+                          'my_files',
+                          'my_pages',
+                          'my_polls',
+                          'my_questions',
+                          'my_wires'
+                          );
+    
+    foreach ($widget_names as $widget_name) {
+        elgg_register_widget_type($widget_name, elgg_echo("widget:$widget_name:title"), elgg_echo("widget:$widget_name:description"),"dashboard,profile,groups");
+    }
+    
+    // modify widget title and description by re-register widget types
     elgg_register_widget_type('friends', elgg_echo('widget:friends:title'), elgg_echo('widget:friends:description'));
-    elgg_register_widget_type('pages', elgg_echo('widget:pages:title'), elgg_echo('widget:pages:description'));
-    elgg_register_widget_type(
-        "online_users",
-        elgg_echo("admin:widget:online_users"),
-        elgg_echo("admin:widget:online_users:help"), "dashboard");
-
-    elgg_register_widget_type(
-        "new_users",
-        elgg_echo("admin:widget:new_users"),
-        elgg_echo("admin:widget:new_users:help"), "dashboard");
+    elgg_register_widget_type("online_users", elgg_echo("admin:widget:online_users"), elgg_echo("admin:widget:online_users:help"), "dashboard");
+    elgg_register_widget_type("new_users", elgg_echo("admin:widget:new_users"), elgg_echo("admin:widget:new_users:help"), "dashboard");
 }
