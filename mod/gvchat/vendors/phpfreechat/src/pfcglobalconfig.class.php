@@ -2,7 +2,7 @@
 /**
  * pfcglobalconfig.class.php
  *
- * Copyright Â© 2006 Stephane Gully <stephane.gully@gmail.com>
+ * Copyright © 2006 Stephane Gully <stephane.gully@gmail.com>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -567,7 +567,6 @@ class pfcGlobalConfig
    * It can be useful when url rewriting is done on the server.
    * (Default value: '' - means this parameter is automatically calculated from <code>data_private_path</code>)
    */
-  
   var $data_public_url = '';
 
   /**

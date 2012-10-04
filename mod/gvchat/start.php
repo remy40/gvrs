@@ -17,6 +17,8 @@ function gvchat_init() {
 		'href' => 'chat'
 	));
 
+	elgg_extend_view('css/elgg', 'gvchat/css');
+
     // add page handler
     elgg_register_page_handler('chat', 'gvchat_page_handler');
 

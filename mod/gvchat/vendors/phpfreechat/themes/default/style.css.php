@@ -12,7 +12,6 @@ div#pfc_container {
   background-color: #FFF;
   background-image: url("<?php echo $c->getFileUrlFromTheme('images/background.gif'); ?>");
   background-position: right;
-    font-size: 14px;
 /*  background-repeat: repeat-xy;*/
   font-family: Verdana, Sans-Serif; /* without this rule, the tabs are not correctly display on FF */
 }
@@ -223,7 +222,7 @@ input#pfc_words {
   background-color: #FAFAFA;
   width: 100%;
   font-size: 12px;
-  height: 50px;
+  height: 20px;
   vertical-align: bottom;
   font-size: 1em;
   height: 1.2em;
@@ -231,8 +230,6 @@ input#pfc_words {
 
 input#pfc_send {
   margin: 0; padding: 0;
-  width: 60px;
-  height: 50px;
   display: block;
   padding: 2px;
   border: 1px solid #555;

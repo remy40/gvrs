@@ -23,13 +23,15 @@ $params["channels"] = array(elgg_echo("gvchat:defaultchannel"));
 $params["max_channels"] = 10;
 $params["refresh_delay"] =  2000;
 $params["height"] =  "450px";
-$params["theme"] =  "default";
+$params["theme"] =  "msn";
 $params["theme_default_url"] = elgg_get_site_url()."mod/gvchat/vendors/phpfreechat/themes/";
 $params["theme_path"] = dirname(__FILE__)."/themes";
 $params["data_public_url"] = elgg_get_site_url()."mod/gvchat/vendors/phpfreechat/data/public";
 $params["server_script_url"] = elgg_get_site_url()."mod/gvchat/vendors/phpfreechat/index.php";
 $params["container_type"] = "File";
 $params["container_cfg_chat_dir"] = dirname(__FILE__)."/data/private/chat";
+$params["display_ping"] = false;
+$params["displaytabimage"] = false;
 
 $chat = new phpFreeChat( $params );
 
