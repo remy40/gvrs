@@ -7,7 +7,6 @@ add_translation('en', array(
 	'answers:addyours' => 'Add Your Answer',
 
 	'item:object:answer' => "Answers",
-	'item:object:question' => "Questions",
 
 	'questions' => 'Questions',
 	'questions:asked' => 'Asked by %s',
@@ -22,6 +21,11 @@ add_translation('en', array(
 
 	'object:question:title' => 'Question',
 	'object:question:description' => "Details",
+	'questions:river:question:created:by' => "%s Posted new Question.",
+	'questions:river:answer:created:by' => "%s posted Answer of Question",
+	'question:view' => " view",
+
+
 
 	/**
 	 * Widgets

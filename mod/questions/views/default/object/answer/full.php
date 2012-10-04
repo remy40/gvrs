@@ -7,9 +7,8 @@ $body = elgg_view_menu('entity', array(
 	'entity' => $vars['entity'],
 	'handler' => 'answers',
 	'sort_by' => 'priority',
-	'class' => 'elgg-menu-hz'
+	'class' => 'elgg-menu-hz',
 ));
-
 
 $body .= elgg_view('output/longtext', array('value' => $answer->description));
 

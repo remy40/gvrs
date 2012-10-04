@@ -19,8 +19,6 @@ $content = elgg_list_entities(array(
 	'list_type_toggle' => false
 ));
 
-elgg_register_title_button();
-
 if (!$content) {
 	$content = elgg_echo('questions:none');
 }

@@ -6,6 +6,9 @@ function questions_init() {
 	add_subtype("object", 'question', 'ElggQuestion');
 	update_subtype("object", 'question', 'ElggQuestion');
 	
+	add_subtype("object", 'answer', 'ElggAnswer');
+	update_subtype("object", 'answer', 'ElggAnswer');
+	
 	elgg_extend_view("css/elgg", "questions/css");
 	elgg_extend_view("js/elgg", "questions/js");
 	
@@ -18,9 +21,11 @@ function questions_init() {
 	elgg_register_entity_type("object", 'questions');
 	elgg_register_widget_type('questions', elgg_echo("widget:questions:title"), elgg_echo("widget:questions:description"));
 	
-	$actions_base = dirname(__FILE__) . '/actions/object/question';
+    $actions_base = dirname(__FILE__) . '/actions/object/question';
 	elgg_register_action("object/question/save", "$actions_base/save.php");
-	elgg_register_action("object/question/delete", "$actions_base/delete.php");
+	elgg_register_action("questions/delete", "$actions_base/delete.php");
+
+
 	
 	elgg_register_entity_url_handler('object', 'question', 'questions_url_handler');
 	
@@ -33,6 +38,7 @@ function questions_init() {
 	$actions_base = "$plugin_dir/actions/object/answer";
 	elgg_register_action('object/answer/add', "$actions_base/save.php");
 	elgg_register_action('object/answer/edit', "$actions_base/save.php");
+	elgg_register_action('answers/delete', "$actions_base/delete.php");
 	
 	elgg_register_plugin_hook_handler("register", "menu:owner_block", 'questions_owner_block_menu_handler');
 	elgg_register_plugin_hook_handler("register", "menu:user_hover", 'questions_user_hover_menu_handler');
@@ -41,6 +47,16 @@ function questions_init() {
 	
 	add_group_tool_option('questions', elgg_echo("questions:enable"), true);
 	elgg_extend_view("groups/tool_latest", "questions/group_module");
+	/**
+	* Add quesion button.
+	**/
+      elgg_register_menu_item('title', array(
+			'name' => 'addquestion',
+			'href' => "questions/add",
+			'text' => elgg_echo('questions:add'),
+			'link_class' => 'elgg-button elgg-button-action',
+			'contexts' => array('questions'),
+             ));
 }	
 
 function questions_owner_block_menu_handler($hook, $type, $items, $params) {
