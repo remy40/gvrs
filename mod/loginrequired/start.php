@@ -20,7 +20,7 @@ function loginrequired_init()
   global $CONFIG;
 
   // No need to do all the checking below if the user is already logged in... performance is key :)
-  if (elgg_is_logged_in()) return;
+//  if (elgg_is_logged_in()) return;
 
   elgg_extend_view('css/elgg', 'loginrequired/css');
 
