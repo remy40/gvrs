@@ -12,12 +12,6 @@ function gvagenda_init() {
 
     // extend css
     elgg_extend_view('css/elgg', 'gvagenda/css');
-
-    elgg_unregister_widget_type('event_calendar');
-
-    // the default event_calendar widget show only logged in user events -> convert it to my_calendar widget
-	elgg_register_widget_type('myagenda',elgg_echo("myagenda:widget_title"),elgg_echo('myagenda:widget:description'), 'groups,profile');
-	elgg_register_widget_type('agenda',elgg_echo("agenda:widget_title"),elgg_echo('agenda:widget:description'), 'dashboard,groups');
 }
 
 /**

@@ -13,6 +13,9 @@ function gvwidgets_init() {
     //register library
     elgg_register_library("elgg:gvwidgets", elgg_get_plugins_path() . "gvwidgets/lib/widgets.php");
 
+	// allow admins to set default widgets for groups
+	elgg_register_plugin_hook_handler('get_list', 'default_widgets', 'gvwidgets_default_widgets_hook');
+
     // remove old widget types that are not well defined
     $old_widget_names = array('blog', 'filerepo', 'pages','event_calendar',
                               'twitter_search', 'content_stats', 'poll', 'latestPolls',
@@ -35,8 +38,8 @@ function gvwidgets_init() {
                           'latest_discussions', 
                           'latest_events',
                           'latest_wires',
-                          'active_groups', 
-                          'group_new_members',
+//                          'active_groups', 
+//                          'group_new_members',
                           'new_groups', 
                           'my_activities', 
                           'my_blogs',
@@ -57,4 +60,26 @@ function gvwidgets_init() {
     elgg_register_widget_type('friends', elgg_echo('widget:friends:title'), elgg_echo('widget:friends:description'));
     elgg_register_widget_type("online_users", elgg_echo("admin:widget:online_users"), elgg_echo("admin:widget:online_users:help"), "dashboard");
     elgg_register_widget_type("new_users", elgg_echo("admin:widget:new_users"), elgg_echo("admin:widget:new_users:help"), "dashboard");
+}
+
+/**
+ * Register profile widgets with default widgets
+ *
+ * @param string $hook
+ * @param string $type
+ * @param array  $return
+ * @return array
+ */
+function gvwidgets_default_widgets_hook($hook, $type, $return) {
+	$return[] = array(
+		'name' => elgg_echo('group'),
+		'widget_context' => 'groups',
+		'widget_columns' => 3,
+
+		'event' => 'create',
+		'entity_type' => 'group',
+		'entity_subtype' => ELGG_ENTITIES_ANY_VALUE,
+	);
+
+	return $return;
 }
