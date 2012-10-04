@@ -14,6 +14,8 @@
                 'relationship_guid' => $group->guid,
                 'inverse_relationship' => true,
                 'types' => 'user',
+                'full_view' => FALSE,
+                'pagination' => FALSE,
                 'limit' => $limit,
             ));
 
