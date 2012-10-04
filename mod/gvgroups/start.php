@@ -324,6 +324,21 @@ function gvgroups_route_groups_handler($hook, $type, $return_value, $params) {
                 forward(REFERER);
                 $result = false;
                 break;
+            case 'profile':
+                $group = get_entity($page[1]);
+                
+                elgg_pop_breadcrumb();
+                if ($group instanceof ElggGroup) {
+                    if ($group->grouptype == 'local') {
+                        elgg_push_breadcrumb(elgg_echo('gvgroups:localgroups'), "groups/local");
+                    }
+                    else {
+                        elgg_push_breadcrumb(elgg_echo('gvgroups:workinggroups'), "groups/working");
+                    }
+                    groups_handle_profile_page($page[1]);
+                }
+                $result = false;
+                break;
 
             case 'edit':
                 groups_handle_edit_page('edit', 'default', $page[1]);

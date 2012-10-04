@@ -253,28 +253,6 @@ function groups_get_pagetitle($action, $type) {
 }
 
 /**
- * create breadcrumb according to options
- */
-function groups_getbreadcrumb($type = 'default') {
-    $breadcrumb = '';
-    
-    switch ($type)
-    {
-        case 'local':
-            $breadcrumb = elgg_echo('localgroups');
-            break;
-        case 'working':
-            $breadcrumb = elgg_echo('workinggroups');
-            break;
-        case 'default':
-        default:
-            $breadcrumb = elgg_echo('groups');
-    }
-
-    return $breadcrumb;
-}
-
-/**
  * Show create content button according to options
  */
 function groups_register_title_button($type) {
