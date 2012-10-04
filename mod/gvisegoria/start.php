@@ -16,6 +16,9 @@ function gvisegoria_init() {
     
     // remove dashboard item in the topbar
     elgg_unregister_menu_item('topbar', 'dashboard');
+
+    // deactivate some url handlers
+    elgg_register_plugin_hook_handler("route", "pages", "gvisegoria_route_pages_handler");
 }
 
 /**
@@ -40,4 +43,37 @@ function isegoria_page_handler() {
 
 	echo elgg_view_page($title, $body);
 	return true;
+}
+
+/**
+ * Re-route some url handler
+ */
+function gvisegoria_route_pages_handler($hook, $type, $return_value, $params) {
+    /**
+     * $return_value contains:
+     * $return_value['handler'] => requested handler
+     * $return_value['segments'] => url parts ($page)
+     */
+    $result = $return_value;
+
+    if(!empty($return_value) && is_array($return_value)){
+        $page = $return_value['segments'];
+
+        $base_dir = elgg_get_plugins_path() . 'gvisegoria/pages/';
+        switch ($page[0]) {
+            case 'owner':
+                include "$base_dir/owner.php";
+                $result = false;
+                break;
+                
+            case 'all':
+            case 'friends':
+                // remove this url to avoid sitewite page access
+                forward(REFERER);
+                $result = false;
+                break;
+        }
+    }
+    
+    return $result;
 }

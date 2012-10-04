@@ -4,6 +4,19 @@
      'gvwidgets:seeall:activity' => "Afficher toutes les activités ...",
      'widgets:add' => "Personnaliser le tableau de bord",
 
+    'thewire:more' => "Plus de messages du microblog",
+    'thewire:none' => "Aucun message du microblog",
+    'page:more' => "Plus de pages",
+    'page:none' => "Aucune page",
+    'blog:more' => "Plus d'articles de blog",
+    'blog:none' => "Aucun article de blog",
+    'event_calendar:more' => "Plus d'événements",
+    'event_calendar:none' => "Aucun événement",
+    'poll:more' => "Plus de sondages",
+    'poll:none' => "Aucun sondage",
+    'question:more' => "Plus de questions",
+    'question:none' => "Aucune question",
+
     /**
      * Widget strings
      */
