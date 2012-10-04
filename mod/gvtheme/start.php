@@ -2,10 +2,6 @@
 elgg_register_event_handler('init', 'system', 'gvtheme_init');
 
 function gvtheme_init() {
-
-    // custom index page
-    elgg_register_plugin_hook_handler('index', 'system', 'gvtheme_custom_index_page', 1);
-
     // custom topbar
     elgg_unregister_menu_item('topbar', 'elgg_logo');
     elgg_register_plugin_hook_handler('register', 'menu:topbar', 'gvtheme_custom_topbarmenu_setup');
@@ -27,21 +23,6 @@ function gvtheme_init() {
 function gvtheme_custom_usersettings_pagesetup(){
     elgg_unregister_menu_item('page', '1_statistics');
     elgg_unregister_menu_item('page', '1_plugins');
-}
-
-/* custom the index page */
-function gvtheme_custom_index_page($hook, $type, $return, $params){
-	if ($return == true) {
-		// another hook has already replaced the front page
-		return $return;
-	}
-
-	if (!include_once(dirname(__FILE__) . "/index.php")) {
-		return false;
-	}
-
-	// return true to signify that we have handled the front page
-	return true;
 }
 
 // custom the toolbar
