@@ -121,6 +121,9 @@ if (elgg_get_plugin_setting('hidden_groups', 'groups') == 'yes') {
 
 $tools = elgg_get_config('group_tool_options');
 if ($tools) {
+    echo "<table class='elgg-table'>";
+    echo "<tbody>";
+    echo "<tr><th class='center'>".elgg_echo('tools')."</th><th class='center'>".elgg_echo('enable')."</th></tr>";
 	usort($tools, create_function('$a,$b', 'return strcmp($a->label,$b->label);'));
 	foreach ($tools as $group_option) {
 		$group_option_toggle_name = $group_option->name . "_enable";
@@ -131,10 +134,11 @@ if ($tools) {
 		}
 		$value = $vars['entity']->$group_option_toggle_name ? $vars['entity']->$group_option_toggle_name : $group_option_default_value;
 ?>	
-<div>
-	<label>
+<tr>
+    <td>
 		<?php echo $group_option->label; ?>
-	</label>
+	</td>
+    <td class="center">
 		<?php echo elgg_view("input/radio", array(
 			"name" => $group_option_toggle_name,
 			"value" => $value,
@@ -142,11 +146,15 @@ if ($tools) {
 				elgg_echo('groups:yes') => 'yes',
 				elgg_echo('groups:no') => 'no',
 			),
+            'align' => 'horizontal',
 		));
 		?>
-</div>
+    </td>
+</tr>
 <?php
 	}
+    echo "</tbody>";
+    echo "</table>";
 }
 ?>
 <div class="elgg-foot">
