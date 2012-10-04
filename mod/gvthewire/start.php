@@ -40,7 +40,7 @@ function gvthewire_init() {
 function gvthewire_owner_block_menu($hook, $type, $return, $params) {
 
 	if (elgg_instanceof($params['entity'], 'group')) {
-		if ($params['entity']->thewire_enable != 'no') {
+		if (($params['entity']->thewire_enable != 'no') && ($params['entity']->isMember(elgg_get_logged_in_user_guid()))) {
 			$url = "thewire/group/{$params['entity']->guid}";
 			$item = new ElggMenuItem('thewire', elgg_echo('gvthewire:group'), $url);
 			$return[] = $item;
@@ -65,6 +65,7 @@ function gvthewire_route_handler($hook, $type, $return_value, $params){
         switch($page[0]){
             case "group":
                 if (isset($page[1])) {
+                    group_gatekeeper();
                     set_input('container_guid', $page[1]);
                     include "$base_dir/group.php";
                     $result = false;

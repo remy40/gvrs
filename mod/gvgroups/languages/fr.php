@@ -11,6 +11,9 @@ $french = array(
     'gvgroups:mygroups' => 'Mes groupes',
     'gvgroups:isegoria' => 'Isegoria',
 
+    'gvgroups:opengroups' => 'Ce groupe est ouvert mais vous n\'êtes pas membre. Vous pouvez poser une question aux membres du groupe en cliquant sur "Questions du groupe".',
+    'gvgroups:opengroups:request' => 'Vous pouvez aussi rejoindre le groupe en cliquant sur "Rejoindre le groupe".',
+
     'groups:grouptype' => 'Type de groupe :',
     'groups:grouptype:local' => 'groupe local',
     'groups:grouptype:working' => 'groupe de travail',

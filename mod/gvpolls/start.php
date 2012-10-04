@@ -13,6 +13,11 @@ function gvpolls_init() {
     // override polls library
 	elgg_register_library('elgg:polls', elgg_get_plugins_path() . 'gvpolls/models/model.php');
 
+	// Set up menu for logged in users
+    elgg_unregister_menu_item('site', 'polls');
+    $item = new ElggMenuItem('polls', elgg_echo('poll'), 'polls/all');
+	elgg_register_menu_item('site', $item);
+
     // override polls actions
 	$action_path = elgg_get_plugins_path() . 'gvpolls/actions/polls';
 	elgg_register_action("polls/edit","$action_path/edit.php");

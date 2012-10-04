@@ -21,7 +21,7 @@ add_translation('fr', array(
 	'questions:owner' => "Questions de %s",
 	'questions:none' => "Aucune question n'a encore été posée.",
 	'questions:friends' => "Questions de vos Amis",
-	'questions:group' => 'Les questions du Groupe',
+	'questions:group' => 'Questions du Groupe',
 
 	'object:question:title' => 'Question',
 	'object:question:description' => "Détails",

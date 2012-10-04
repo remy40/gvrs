@@ -14,16 +14,22 @@ if ($container_guid && $container && ($container instanceOf ElggGroup)) {
 
     $form_vars = array('class' => 'thewire-form');
     $body_vars = array('container_guid' => $container_guid);
-    $content = elgg_view_form('thewire/add', $form_vars, $body_vars);
-    $content .= elgg_view('input/urlshortener');
 
-    $content .= elgg_list_entities(array(
-        'type' => 'object',
-        'subtype' => 'thewire',
-        'container_guid' => $container_guid,
-        'limit' => 15,
-    ));
+    if ($container->isMember(elgg_get_logged_in_user_guid())) {
+        $content = elgg_view_form('thewire/add', $form_vars, $body_vars);
+        $content .= elgg_view('input/urlshortener');
 
+        $content .= elgg_list_entities(array(
+            'type' => 'object',
+            'subtype' => 'thewire',
+            'container_guid' => $container_guid,
+            'limit' => 15,
+        ));
+    }
+    else {
+        $content = '';
+    }
+    
     $body = elgg_view_layout('one_sidebar', array(
         'content' => $content,
         'title' => $title,

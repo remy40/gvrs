@@ -164,7 +164,7 @@ function questions_page_handler($segments) {
 			break;
 
 		case 'group':
-			group_gatekeeper();
+//			group_gatekeeper();
 			include "$pages/owner.php";
 			break;
 
