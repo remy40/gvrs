@@ -18,7 +18,7 @@
 		'group_tools:joinrequest:already:tooltip' => "Vous avez déjà demandé à rejoindre le groupe, cliquez-ici pour annuler la demande",
 		
 		// menu
-		'group_tools:menu:mail' => "Envoyer un mail aux membres",
+		'group_tools:menu:mail' => "Mailer les membres",
 		'group_tools:menu:invitations' => "Gérer les invitations",
 		
 		// plugin settings
