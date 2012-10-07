@@ -1,37 +1,39 @@
 <?php
 add_translation('fr', array(
+	'questions:river:question:created:by' => "%s a postÃ© une nouvelle question : %s",
+	'questions:river:answer:created:by' => "%s a rÃ©pondu Ã  la question : %s",
     'questions:river:question:created' => "question: %s",
     'questions:river:question:create' => "creation_question",
 
 	'item:object:question' => 'Questions',
 
-	'answers' => 'Réponses',
+	'answers' => 'RÃ©ponses',
 
-	'answers:addyours' => 'Ajouter votre Réponse',
+	'answers:addyours' => 'Ajouter votre RÃ©ponse',
 
-	'item:object:answer' => "Réponses",
+	'item:object:answer' => "RÃ©ponses",
 	'item:object:question' => "Questions",
 
 	'questions' => 'Questions',
-	'questions:asked' => 'Posée par %s',
-	'questions:answered' => 'Dernière réponse par %s %s',
+	'questions:asked' => 'PosÃ©e par %s',
+	'questions:answered' => 'DerniÃ¨re rÃ©ponse par %s %s',
 
 	'questions:everyone' => 'Toutes les Questions',
 	'questions:add' => 'Poser une Question',
 	'questions:owner' => "Questions de %s",
-	'questions:none' => "Aucune question n'a encore été posée.",
+	'questions:none' => "Aucune question n'a encore Ã©tÃ© posÃ©e.",
 	'questions:friends' => "Questions de vos Amis",
 	'questions:group' => 'Questions du Groupe',
 
 	'object:question:title' => 'Question',
-	'object:question:description' => "Détails",
+	'object:question:description' => "DÃ©tails",
 
 	/**
 	 * Widgets
 	 */
 
 	'widget:questions:title' => "Mes questions",
-	'widget:questions:description' => "Affiche l'état de vos questions.",
-	'widget:questions:limit' => "Nombre de questions à afficher:",
+	'widget:questions:description' => "Affiche l'Ã©tat de vos questions.",
+	'widget:questions:limit' => "Nombre de questions Ã  afficher:",
 ));
 ?>
