@@ -1,5 +1,7 @@
 <?php
 add_translation('fr', array(
+	'projects:add' => "Ajouter un projet",
+	'gvproject:participate' => "Si vous souhaitez participer à ce projet, n'hésitez pas à rejoindre le groupe %s !",
     'gvprojects' => "projets",
 	'gvprojects:byline' => "Proposé par %s",
 	'gvprojects:river:created:by' => "Le groupe %s a démarré un nouveau projet : %s",
@@ -20,6 +22,10 @@ add_translation('fr', array(
     'gvprojects:title:label' => "Titre",
     'gvprojects:short_desc:label' => "Description courte",
     'gvprojects:description:label' => "Description longue",
+    'gvprojects:competencies:label' => "Compétences nécessaires ou utiles",
+    'gvprojects:description' => "Description du projet:",
+    'gvprojects:competencies' => "Compétences nécessaires ou utiles:",
+	'gvproject:no_competency' => "Aucune compétence requise ou spécifiée",
     'gvprojects:tags:label' => "Mots-clés",
     
 ));

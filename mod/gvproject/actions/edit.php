@@ -10,6 +10,7 @@ $container_guid = (int)get_input('container_guid');
 $title = get_input('title');
 $short_desc = get_input('short_desc');
 $description = get_input('description');
+$competencies = get_input('competencies');
 $tags = get_input('tags');
 
 elgg_make_sticky_form('project');
@@ -39,6 +40,7 @@ $project->tags = $tags;
 $project->owner_guid = $container_guid;
 $project->container_guid = $container_guid;
 $project->access_id = ACCESS_LOGGED_IN;
+$project->competencies = $competencies;
 
 if ($project->save()) {
 

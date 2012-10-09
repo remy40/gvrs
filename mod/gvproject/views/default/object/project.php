@@ -14,7 +14,7 @@ $full_view = $vars['full_view'];
 if ($entity) {
 	$container = $entity->getContainerEntity();
 
-    $container_icon = elgg_view_entity_icon($container, 'tiny');
+	$container_icon = elgg_view_entity_icon($container, 'tiny');
 	$container_link = elgg_view('output/url', array(
 				'href' => "projects/group/{$container->guid}/all",
 				'text' => $container->name,
@@ -50,8 +50,21 @@ if ($entity) {
 	$subtitle .= "$author_text $date $comments_link";
 
     if ($full_view) {
-		$body = elgg_view('output/longtext', array('value' => $entity->description));
+		$body = "<br><label>" . elgg_echo("gvprojects:description") . "</label>";
+		$body .= elgg_view('output/longtext', array('value' => $entity->description));
+		$body .= "<br><label>" . elgg_echo("gvprojects:competencies") . "</label>";
 
+		if ($entity->competencies) {
+			$competencies = $entity->competencies;
+		}
+		else {
+			$competencies = elgg_echo("gvproject:no_competency");
+		}
+
+		$body .= elgg_view('output/longtext', array('value' => $competencies));
+		
+		$body .= "<br>" . elgg_echo("gvproject:participate", array($container_link));
+		
 		$params = array(
 			'entity' => $entity,
 			'metadata' => $metadata,
