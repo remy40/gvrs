@@ -5,17 +5,18 @@
 
 $french = array(
 	'gvdislikes:dislikes:this' => "n'a pas aimé ça",
+	'dislikes:this' => "n'a pas aimé ça",
 	'gvdislikes:dislikes:deleted' => "Votre appréciation a été retiré",
 	'gvdislikes:dislikes:see' => "Voir ceux qui n'ont pas aimé ça",
 	'gvdislikes:dislikes:remove' => "N'aime plus ça",
 	'gvdislikes:dislikes:notdeleted' => "Il y a eu un problème, lors de la suppresion d'appréciation",
 	'gvdislikes:dislikes' => "Vous n'aimez pas ça maintenant",
 	'gvdislikes:dislikes:failure' => "Il y a eu un problème d'appréciation sur cet élément",
-	'gvdislikes:dislikes:alreadyliked' => "Vous avez déjà porté votre appréciation ça",
+	'gvdislikes:dislikes:alreadyliked' => "Vous avez déjà porté votre appréciation sur cet élément",
 	'gvdislikes:dislikes:notfound' => "L'élément que vous essayez d'apprécier ne peut être trouvé",
 	'gvdislikes:dislikes:likethis' => "Aime ça",
-	'gvdislikes:dislikes:userlikedthis' => "%s n'aime pas",
-	'gvdislikes:dislikes:userslikedthis' => "%s n'aiment pas",
+	'gvdislikes:dislikes:userdislikedthis' => "%s n'aime pas",
+	'gvdislikes:dislikes:usersdislikedthis' => "%s n'aiment pas",
 	'gvdislikes:dislikes:river:annotate' => "n'aime pas",
 
 	'river:likes' => "n'aiment pas %s %s",

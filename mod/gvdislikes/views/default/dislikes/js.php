@@ -1,11 +1,11 @@
 <?php
 /**
- * Likes JavaScript extension for elgg.js
+ * Dislikes JavaScript extension for elgg.js
  */
 ?>
 
 /**
- * Repositions the likes popup
+ * Repositions the dislikes popup
  *
  * @param {String} hook    'getOptions'
  * @param {String} type    'ui.popup'
@@ -14,8 +14,8 @@
  *
  * @return {Object}
  */
-elgg.ui.likesPopupHandler = function(hook, type, params, options) {
-	if (params.target.hasClass('elgg-likes')) {
+elgg.ui.dislikesPopupHandler = function(hook, type, params, options) {
+	if (params.target.hasClass('elgg-dislikes')) {
 		options.my = 'right bottom';
 		options.at = 'left top';
 		return options;
@@ -23,4 +23,4 @@ elgg.ui.likesPopupHandler = function(hook, type, params, options) {
 	return null;
 };
 
-elgg.register_hook_handler('getOptions', 'ui.popup', elgg.ui.likesPopupHandler);
+elgg.register_hook_handler('getOptions', 'ui.popup', elgg.ui.dislikesPopupHandler);

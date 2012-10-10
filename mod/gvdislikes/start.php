@@ -10,14 +10,18 @@ elgg_register_event_handler('init', 'system', 'gvdislikes_init');
  */
 function gvdislikes_init() {
 
+	elgg_extend_view('css/elgg', 'dislikes/css');
+	elgg_extend_view('js/elgg', 'dislikes/js');
+
 	// registered with priority < 500 so other plugins can remove likes
 	elgg_register_plugin_hook_handler('register', 'menu:river', 'gvdislikes_river_menu_setup', 400);
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvdislikes_entity_menu_setup', 400);
 	
 	// register some actions
-	$actions_base = elgg_get_plugins_path() . 'gvdislikes/actions/dislikes';
-	elgg_register_action('dislikes/add', "$actions_base/add.php");
-	elgg_register_action('dislikes/delete', "$actions_base/delete.php");
+	$actions_base = elgg_get_plugins_path() . 'gvdislikes/actions/';
+	elgg_register_action('likes/add', "$actions_base/likes/add.php");
+	elgg_register_action('dislikes/add', "$actions_base/dislikes/add.php");
+	elgg_register_action('dislikes/delete', "$actions_base/dislikes/delete.php");
 }
 
 /**

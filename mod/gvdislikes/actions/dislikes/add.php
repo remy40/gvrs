@@ -11,6 +11,22 @@ if (elgg_annotation_exists($entity_guid, 'dislikes')) {
 	system_message(elgg_echo("gvdislikes:dislikes:alreadyliked"));
 	forward(REFERER);
 }
+
+//check to see if the user has already liked the item
+if (elgg_annotation_exists($entity_guid, 'likes')) {
+	$likes = elgg_get_annotations(array(
+	'guid' => $entity_guid,
+	'annotation_owner_guid' => elgg_get_logged_in_user_guid(),
+	'annotation_name' => 'likes',
+	));
+	
+	if ($likes) {
+		if ($likes[0]->canEdit()) {
+			$likes[0]->delete();
+		}
+	}
+}
+
 // Let's see if we can get an entity with the specified GUID
 $entity = get_entity($entity_guid);
 if (!$entity) {
@@ -39,7 +55,10 @@ if (!$annotation) {
 }
 
 // notify if poster wasn't owner
-if ($entity->owner_guid != $user->guid) {
+if (($entity instanceof ElggEntity) && 
+	($user instanceof ElggUser) &&
+	($entity->getOwnerEntity() instanceof ElggUser) && 
+	($entity->owner_guid != $user->guid)) {
 	gvdislikes_notify_user($entity->getOwnerEntity(), $user, $entity);
 }
 

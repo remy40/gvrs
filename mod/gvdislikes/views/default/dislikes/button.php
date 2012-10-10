@@ -18,7 +18,7 @@ if (elgg_is_logged_in() && $vars['entity']->canAnnotate(0, 'dislikes')) {
 		$params = array(
 			'href' => $url,
 			'text' => elgg_view_icon('thumbs-down'),
-			'title' => elgg_echo('gvlikes:dislikethis'),
+			'title' => elgg_echo('gvdislikes:dislikes:this'),
 			'is_action' => true,
 			'is_trusted' => true,
 		);
@@ -28,7 +28,7 @@ if (elgg_is_logged_in() && $vars['entity']->canAnnotate(0, 'dislikes')) {
 		$params = array(
 			'href' => $url,
 			'text' => elgg_view_icon('thumbs-down-alt'),
-			'title' => elgg_echo('gvlikes:dislikes:remove'),
+			'title' => elgg_echo('gvdislikes:dislikes:remove'),
 			'is_action' => true,
 			'is_trusted' => true,
 		);
