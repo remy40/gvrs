@@ -27,6 +27,9 @@ add_translation('fr', array(
     'gvprojects:competencies' => "Compétences nécessaires ou utiles:",
 	'gvproject:no_competency' => "Aucune compétence requise ou spécifiée",
     'gvprojects:tags:label' => "Mots-clés",
-    
+	'widget:latest_projects:title' => "Derniers projets",
+	'widget:latest_projects:description' => "Affiche les derniers projets proposés.",
+	'projects:more' => "Afficher plus de projets",
+	'projects:none' => "Aucun projet",
 ));
 ?>

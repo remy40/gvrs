@@ -4,7 +4,7 @@
  */
 
 $french = array(
-	'likes:this' => "a aimé çà",
+	'likes:this' => "a aimé ça",
 	'likes:deleted' => "Votre appréciation a été retiré",
 	'likes:see' => "Voir ceux qui ont aimé çà",
 	'likes:remove' => "N'aime pas çà",

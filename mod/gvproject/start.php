@@ -29,6 +29,8 @@ function gvproject_init() {
 	elgg_register_entity_type('object', 'project');
 
     elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'gvproject_owner_block_menu');
+
+    elgg_register_widget_type('latest_projects', elgg_echo("widget:latest_projects:title"), elgg_echo("widget:latest_projects:description"),"dashboard,profile,groups");
 }
 
 /**
