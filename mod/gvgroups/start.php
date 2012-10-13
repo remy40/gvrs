@@ -65,7 +65,13 @@ function gvgroups_init() {
 function gvgroups_entity_menu_setup($hook, $type, $return, $params) {
 
 	$handler = elgg_extract('handler', $params, false);
+
 	if ($handler != 'groups') {
+		foreach ($return as $index => $item) {
+			if (in_array($item->getName(), array('comment'))) {
+				unset($return[$index]);
+			}
+		}
 		return $return;
 	}
 
