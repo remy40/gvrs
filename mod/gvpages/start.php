@@ -11,6 +11,7 @@ elgg_register_event_handler('init', 'system', 'gvpages_init');
 function gvpages_init() {
     // deactivate some url handlers
     elgg_register_plugin_hook_handler("route", "pages", "gvpages_route_pages_handler");
+    elgg_register_plugin_hook_handler("route", "etherpad", "gvpages_route_pages_handler");
 }
 
 /**
@@ -24,10 +25,13 @@ function gvpages_route_pages_handler($hook, $type, $return_value, $params) {
      */
     $result = $return_value;
 
+	elgg_load_library('elgg:pages');
+
     if(!empty($return_value) && is_array($return_value)){
         $page = $return_value['segments'];
+        $handler = $return_value['handler'];
 
-        $base_dir = elgg_get_plugins_path() . 'gvpages/pages/';
+        $base_dir = elgg_get_plugins_path() . "gvpages/pages/$handler";
         switch ($page[0]) {
             case 'owner':
                 include "$base_dir/owner.php";

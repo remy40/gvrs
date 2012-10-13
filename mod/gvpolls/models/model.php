@@ -147,13 +147,13 @@ function polls_get_page_edit($page_type,$guid = 0) {
 			}
 			
 			// set breadcrumb
-			elgg_push_breadcrumb(elgg_echo('item:object:poll'),'polls/all');
-			
 			$container = get_entity($container_guid);
 			if (elgg_instanceof($container,'group')) {
-				elgg_push_breadcrumb($container->name, 'polls/group/' . $container->getGUID());
+				elgg_push_breadcrumb(elgg_echo("gvgroups:".$container->grouptype."groups"), "groups/".$container->grouptype);
+				elgg_push_breadcrumb($container->name, "polls/group/".$container->guid);
 			} else {
-				elgg_push_breadcrumb($container->name, 'polls/owner/' . $container->username);
+				elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+				elgg_push_breadcrumb($container->name, "polls/owner/".$container->username);
 			}
 			elgg_push_breadcrumb(elgg_echo("polls:edit"));
 		} else {
@@ -161,18 +161,16 @@ function polls_get_page_edit($page_type,$guid = 0) {
 			$content = elgg_echo('polls:no_such_poll');
 		}
 	} else {
-		// set breadcrumb
-		elgg_push_breadcrumb(elgg_echo('item:object:poll'),'polls/all');
 		if ($guid) {
 			elgg_set_page_owner_guid($guid);
 			$container = get_entity($guid);
-			
-			elgg_push_breadcrumb($container->name, 'polls/group/' . $container->getGUID());
+			elgg_push_breadcrumb(elgg_echo("gvgroups:".$container->grouptype."groups"), "groups/".$container->grouptype);
+			elgg_push_breadcrumb($container->name, "polls/group/".$container->guid);
 		} else {
 			$user = elgg_get_logged_in_user_entity();
 			elgg_set_page_owner_guid($user->getGUID());
-			
-			elgg_push_breadcrumb($user->name, 'polls/owner/' . $user->username);
+			elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+			elgg_push_breadcrumb($container->name, "polls/owner/".$container->username);
 		}
 		elgg_push_breadcrumb(elgg_echo('polls:add'));
 		
@@ -245,20 +243,17 @@ function polls_get_page_list($page_type, $container_guid = NULL) {
 		'limit'=>15,
 	);
 	
-	// set breadcrumb
-	elgg_push_breadcrumb(elgg_echo('item:object:poll'), 'polls/all');
-	
 	if ($page_type == 'group') {
 		$group = get_entity($container_guid);
 		if (!elgg_instanceof($group,'group') || !polls_activated_for_group($group)) {
 			forward();
 		}
-		$crumbs_title = $group->name;
-		$params['title'] = elgg_echo('polls:group_polls:listing:title', array(htmlspecialchars($crumbs_title)));
+		$params['title'] = elgg_echo('polls:group_polls:listing:title', array(htmlspecialchars($group->name)));
 		$params['filter'] = "";
 		
 		// set breadcrumb
-		elgg_push_breadcrumb($crumbs_title);
+		elgg_push_breadcrumb(elgg_echo("gvgroups:".$group->grouptype."groups"), "groups/".$group->grouptype);
+		elgg_push_breadcrumb($group->name, "polls/group/".$group->guid);
 		
 		elgg_push_context('groups');
 		
@@ -282,7 +277,8 @@ function polls_get_page_list($page_type, $container_guid = NULL) {
 				$options['owner_guid'] = $container_guid;
 				
 				$container_entity = get_user($container_guid);
-				elgg_push_breadcrumb($container_entity->name);
+				elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+				elgg_push_breadcrumb($container_entity->name, "polls/owner/".$container_entity->username);
 				
 				if ($user->guid == $container_guid) {
 					$params['title'] = elgg_echo('polls:your');
@@ -304,10 +300,13 @@ function polls_get_page_list($page_type, $container_guid = NULL) {
 				$params['filter_context'] = 'friends';
 				$params['title'] = elgg_echo('polls:friends');
 				
-				elgg_push_breadcrumb($container_entity->name, "polls/owner/{$container_entity->username}");
+				elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+				elgg_push_breadcrumb($container_entity->name, "polls/owner/".$container_entity->username);
 				elgg_push_breadcrumb(elgg_echo('friends'));
 				break;
 			case 'all':
+				elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+				elgg_push_breadcrumb(elgg_echo("polls"));
 				$params['filter_context'] = 'all';
 				$params['title'] = elgg_echo('item:object:poll');
 				break;
@@ -356,18 +355,20 @@ function polls_get_page_view($guid) {
 			$content .= elgg_view_comments($poll);
 		}
 		
-		elgg_push_breadcrumb(elgg_echo('item:object:poll'), "polls/all");
-		if (elgg_instanceof($page_owner,'user')) {
-			elgg_push_breadcrumb($page_owner->name, "polls/owner/{$page_owner->username}");
-		} else {
-			elgg_push_breadcrumb($page_owner->name, "polls/group/{$page_owner->guid}");
+		if ($page_owner instanceof ElggGroup) {
+			elgg_push_breadcrumb(elgg_echo("gvgroups:".$page_owner->grouptype."groups"), "groups/".$page_owner->grouptype);
+			elgg_push_breadcrumb($page_owner->name, "polls/group/".$page_owner->guid);
+		}
+		else {
+			elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+			elgg_push_breadcrumb($page_owner->name, "polls/owner/".$page_owner->username);
 		}
 		elgg_push_breadcrumb($poll->title);
 	} else {			
 		// Display the 'post not found' page instead
 		$title = elgg_echo("polls:notfound");	
 		$content = elgg_view("polls/notfound");	
-		elgg_push_breadcrumb(elgg_echo('item:object:poll'), "polls/all");
+		elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
 		elgg_push_breadcrumb($title);
 	}
 	

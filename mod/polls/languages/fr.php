@@ -7,7 +7,7 @@
 		 */
 	
 			'poll' => "Sondage",
-      'polls:add' => "Nouveau sondage",
+			'polls:add' => "Nouveau sondage",
 			'polls' => "Sondages",
 			'polls:votes' => "votes",
 			'polls:user' => "Sondage de %s",
