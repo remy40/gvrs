@@ -24,8 +24,6 @@ function questions_init() {
     $actions_base = dirname(__FILE__) . '/actions/object/question';
 	elgg_register_action("object/question/save", "$actions_base/save.php");
 	elgg_register_action("questions/delete", "$actions_base/delete.php");
-
-
 	
 	elgg_register_entity_url_handler('object', 'question', 'questions_url_handler');
 	
@@ -47,7 +45,23 @@ function questions_init() {
 	
 	add_group_tool_option('questions', elgg_echo("questions:enable"), true);
 	elgg_extend_view("groups/tool_latest", "questions/group_module");
+
+	elgg_register_plugin_hook_handler('container_permissions_check', 'object', 'questions_container_permissions_check');
 }	
+
+function questions_container_permissions_check($hook, $type, $return, $params) {
+	
+	// everyone can ask questions to a group
+	switch($params['subtype']) {
+		case 'question':
+			if ($params['container'] instanceof ElggGroup) {
+				$return = true;
+			}
+			break;
+	}
+	
+	return $return;
+}
 
 function questions_owner_block_menu_handler($hook, $type, $items, $params) {
 	$entity = $params['entity'];

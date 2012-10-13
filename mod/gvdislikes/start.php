@@ -14,8 +14,8 @@ function gvdislikes_init() {
 	elgg_extend_view('js/elgg', 'dislikes/js');
 
 	// registered with priority < 500 so other plugins can remove likes
-	elgg_register_plugin_hook_handler('register', 'menu:river', 'gvdislikes_river_menu_setup', 400);
-	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvdislikes_entity_menu_setup', 400);
+	elgg_register_plugin_hook_handler('register', 'menu:river', 'gvdislikes_river_menu_setup', 401);
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvdislikes_entity_menu_setup', 401);
 	
 	// register some actions
 	$actions_base = elgg_get_plugins_path() . 'gvdislikes/actions/';
