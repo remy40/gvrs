@@ -76,13 +76,13 @@ function gvthewire_route_handler($hook, $type, $return_value, $params){
                 include "$base_dir/owner.php";
                 $result = false;
                 break;
-/*            case "all":
+            case "all":
             case "friends":
                 // remove this url to avoid sitewite thewire access
                 forward(REFERER);
                 $result = false;
                 break;
-*/
+
             default:
                 break;
         }
