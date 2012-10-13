@@ -6,7 +6,7 @@ add_translation('fr', array(
 	'gvprojects:byline' => "Proposé par %s",
 	'gvprojects:river:created:by' => "Le groupe %s a démarré un nouveau projet : %s",
     'gvprojects:menu:projects' => "Projets en cours",
-    'gvprojects:menu:group' => "Projets du groupe",
+    'gvprojects:menu:group' => "Projets en cours",
     'gvprojects:delete:success' => "Projet supprimé avec succès !",
     'gvprojects:delete:failure' => "Erreur de suppression du projet",
     'gvprojects:error:no_title' => "Vous devez spécifier un titre lors de la création d'un nouveau projet !",

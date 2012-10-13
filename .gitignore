@@ -1,3 +1,6 @@
 engine/settings.php
 documentation/doxy
+mod/gvchat//vendors/phpfreechat/data/private/chat
+mod/gvchat//vendors/phpfreechat/data/private/cache
+mod/gvchat//vendors/phpfreechat/data/private/logs
 .htaccess

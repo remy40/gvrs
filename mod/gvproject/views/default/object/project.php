@@ -16,7 +16,7 @@ if ($entity) {
 
 	$container_icon = elgg_view_entity_icon($container, 'tiny');
 	$container_link = elgg_view('output/url', array(
-				'href' => "projects/group/{$container->guid}/all",
+				'href' => "groups/profile/{$container->guid}/{$container->name}",
 				'text' => $container->name,
 				'is_trusted' => true));
 	$author_text = elgg_echo('gvprojects:byline', array($container_link));

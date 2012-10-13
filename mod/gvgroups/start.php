@@ -53,6 +53,21 @@ function gvgroups_init() {
 
     // check if the user is member of the group before showing owner menu
 	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'gvgroups_owner_block_menu');
+
+	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvgroups_entity_menu_setup');
+}
+
+/**
+ * 
+ */
+function gvgroups_entity_menu_setup($hook, $type, $return, $params) {
+	foreach ($return as $index => $item) {
+		if (in_array($item->getName(), array('dislikes'))) {
+			unset($return[$index]);
+		}
+	}
+	
+	return $return;
 }
 
 /**

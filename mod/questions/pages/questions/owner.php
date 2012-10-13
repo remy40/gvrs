@@ -32,6 +32,9 @@ $vars = array(
 if ($page_owner instanceof ElggGroup) {
 	$vars['filter'] = false;
 }
+else if ($page_owner instanceof ElggUser) {
+	$vars['filter_context'] = 'mine';
+}
 
 $body = elgg_view_layout('content', $vars);
 

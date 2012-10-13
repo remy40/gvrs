@@ -30,12 +30,12 @@
 				$group_option_enabled = true;	
 			}
 			
-			if(elgg_get_plugin_setting("group_option_admin_only", "widget_manager") != "yes"){
-				// add the tool option for group admins
-				add_group_tool_option('widget_manager',elgg_echo('widget_manager:groups:enable_widget_manager'), $group_option_enabled);
-			} elseif(elgg_is_admin_logged_in()) {
-				add_group_tool_option('widget_manager',elgg_echo('widget_manager:groups:enable_widget_manager'), $group_option_enabled);
-			} elseif($group_option_enabled) {
+			if(((elgg_get_plugin_setting("group_option_admin_only", "widget_manager") == "yes") && elgg_is_admin_logged_in()) ||
+			   (elgg_get_plugin_setting("group_option_admin_only", "widget_manager") == "no")){
+					add_group_tool_option('widget_manager',elgg_echo('widget_manager:groups:enable_widget_manager'), $group_option_enabled);
+				}
+
+			if($group_option_enabled) {
 				// register event to make sure newly created groups have the group option enabled
 				elgg_register_event_handler("create", "group", "widget_manager_create_group_event_handler");
 			}

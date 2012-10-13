@@ -4,7 +4,8 @@
     $options = array(
         'type' => 'object',
         'subtype' => 'event_calendar',
-        'owner_guid' => elgg_get_logged_in_user_guid(),
+		'relationship' => 'personal_event',
+		'relationship_guid' => elgg_get_logged_in_user_guid(),
         'limit' => $num,
         'full_view' => FALSE,
         'pagination' => FALSE,
