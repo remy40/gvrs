@@ -14,7 +14,7 @@ Voir et commenter le nouveau fichier:
   'file:edit' => 'Editer le fichier',
   'file:more' => 'Plus de fichiers',
   'file:list' => 'Vue liste',
-  'file:group' => 'Fichiers du groupe',
+  'file:group' => 'Partage de fichiers',
   'file:gallery' => 'Vue galerie',
   'file:gallery_list' => 'Vue \'liste\' ou \'galerie\'',
   'file:num_files' => 'Nombre de fichiers à afficher',

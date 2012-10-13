@@ -11,10 +11,13 @@ $page_owner = elgg_get_page_owner_entity();
 
 $crumbs_title = $page_owner->name;
 
-if (elgg_instanceof($page_owner, 'group')) {
-	elgg_push_breadcrumb($crumbs_title, "questions/group/$page_owner->guid");
-} else {
-	elgg_push_breadcrumb($crumbs_title, "questions/owner/$page_owner->username");
+if ($page_owner instanceof ElggGroup) {
+	elgg_push_breadcrumb(elgg_echo("gvgroups:".$page_owner->grouptype."groups"), "groups/".$page_owner->grouptype);
+	elgg_push_breadcrumb($page_owner->name, "questions/group/".$page_owner->guid."/all");
+}
+else {
+	elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+	elgg_push_breadcrumb($page_owner->name, "questions/owner/".$page_owner->username);
 }
 
 $title = $question->title;

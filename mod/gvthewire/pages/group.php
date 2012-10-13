@@ -10,7 +10,8 @@ $container = get_entity($container_guid);
 if ($container_guid && $container && ($container instanceOf ElggGroup)) {
     $title = elgg_echo('thewire:group', array($container->name));
 
-    elgg_push_breadcrumb($container->name);
+	elgg_push_breadcrumb(elgg_echo("gvgroups:".$container->grouptype."groups"), "groups/".$container->grouptype);
+    elgg_push_breadcrumb($container->name, "thewire/group/".$container->guid);
 
     $form_vars = array('class' => 'thewire-form');
     $body_vars = array('container_guid' => $container_guid);

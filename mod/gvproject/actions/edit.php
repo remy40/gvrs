@@ -36,7 +36,7 @@ if ($project_guid) {
 $project->title = $title;
 $project->short_desc = $short_desc;
 $project->description = $description;
-$project->tags = $tags;
+$project->tags = explode(",", $tags);
 $project->owner_guid = $container_guid;
 $project->container_guid = $container_guid;
 $project->access_id = ACCESS_LOGGED_IN;

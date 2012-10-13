@@ -12,6 +12,7 @@ function gvgroups_init() {
 
     // override the groups library
     elgg_register_library('elgg:groups', elgg_get_plugins_path() . "gvgroups/lib/groups.php");
+	elgg_register_library('elgg:discussion', elgg_get_plugins_path() . 'gvgroups/lib/discussion.php');
 
     // add admin menu
 	elgg_register_admin_menu_item('administer', 'createlocal', 'groups');
@@ -22,6 +23,7 @@ function gvgroups_init() {
 
     // add some page handler
     elgg_register_plugin_hook_handler("route", "groups", "gvgroups_route_groups_handler");
+    elgg_register_plugin_hook_handler("route", "discussion", "gvgroups_route_discussion_handler");
     
    	// override some actions
 	$action_base = elgg_get_plugins_path() . 'gvgroups/actions';
@@ -383,6 +385,35 @@ function gvgroups_route_groups_handler($hook, $type, $return_value, $params) {
                 else {
                     groups_handle_all_page($page[0]);
                 }
+                $result = false;
+                break;
+        }
+    }
+    
+    return $result;
+}
+
+/**
+ * discussion page handler
+ */
+function gvgroups_route_discussion_handler($hook, $type, $return_value, $params) {
+    
+	elgg_load_library('elgg:discussion');
+    
+    /**
+     * $return_value contains:
+     * $return_value['handler'] => requested handler
+     * $return_value['segments'] => url parts ($page)
+     */
+    $result = $return_value;
+
+    if(!empty($return_value) && is_array($return_value)){
+        $page = $return_value['segments'];
+
+        switch ($page[0]) {
+            case 'all':
+                // remove this url to avoid sitewide discussion access
+                forward(REFERER);
                 $result = false;
                 break;
         }

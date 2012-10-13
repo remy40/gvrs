@@ -454,6 +454,10 @@ function groups_handle_mine_page() {
 
 	$title = elgg_echo('groups:yours');
 
+	elgg_pop_breadcrumb();
+	elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+	elgg_push_breadcrumb(elgg_get_logged_in_user_entity()->name, "pages/owner/".elgg_get_logged_in_user_guid()."/all");
+	
 	$group_options["type"] = 'group';
 	$group_options["relationship"] = 'member';
 	$group_options["relationship_guid"] = elgg_get_logged_in_user_guid();
@@ -659,8 +663,9 @@ function groups_handle_activity_page($guid) {
 
 	$title = elgg_echo('groups:activity');
 
-	elgg_push_breadcrumb($group->name, $group->getURL());
-	elgg_push_breadcrumb($title);
+	elgg_pop_breadcrumb();
+	elgg_push_breadcrumb(elgg_echo("gvgroups:".$group->grouptype."groups"), "groups/".$group->grouptype);
+	elgg_push_breadcrumb($group->name, "groups/activity/".$group->guid);
 
 	$db_prefix = elgg_get_config('dbprefix');
 

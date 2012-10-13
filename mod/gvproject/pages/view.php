@@ -17,8 +17,13 @@ group_gatekeeper();
 $container = elgg_get_page_owner_entity();
 $title = $project->title;
 
-if (elgg_instanceof($container, 'group')) {
-	elgg_push_breadcrumb($container->name, "projects/group/$container->guid/all");
+if ($container instanceof ElggGroup) {
+	elgg_push_breadcrumb(elgg_echo("gvgroups:".$container->grouptype."groups"), "groups/".$container->grouptype);
+	elgg_push_breadcrumb($container->name, "projects/group/".$container->guid."/all");
+}
+else {
+	elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+	elgg_push_breadcrumb($container->name, "projects/owner/".$container->guid."/all");
 }
 elgg_push_breadcrumb($title);
 

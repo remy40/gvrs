@@ -15,6 +15,15 @@ if (!elgg_instanceof($question, 'object', 'question') || !$question->canEdit()) 
 
 $title = elgg_echo('questions:edit');
 
+$page_owner = elgg_get_page_owner_entity();
+if ($page_owner instanceof ElggGroup) {
+	elgg_push_breadcrumb(elgg_echo("gvgroups:".$page_owner->grouptype."groups"), "groups/".$page_owner->grouptype);
+	elgg_push_breadcrumb($page_owner->name, "questions/group/".$page_owner->guid."/all");
+}
+else {
+	elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
+	elgg_push_breadcrumb($page_owner->name, "questions/owner/".$page_owner->username);
+}
 elgg_push_breadcrumb($title);
 
 $vars = array(

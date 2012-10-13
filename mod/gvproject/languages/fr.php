@@ -2,7 +2,7 @@
 add_translation('fr', array(
 	'projects:add' => "Ajouter un projet",
 	'gvproject:participate' => "Si vous souhaitez participer à ce projet, n'hésitez pas à rejoindre le groupe %s !",
-    'gvprojects' => "projets",
+    'gvprojects' => "Projets",
 	'gvprojects:byline' => "Proposé par %s",
 	'gvprojects:river:created:by' => "Le groupe %s a démarré un nouveau projet : %s",
     'gvprojects:menu:projects' => "Projets en cours",

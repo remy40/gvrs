@@ -6,6 +6,8 @@
 
 $french = array(
 
+	'menu:home' => "Accueil",
+
     /**
      * Overloads some strings 
      */

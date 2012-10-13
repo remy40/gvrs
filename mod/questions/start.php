@@ -47,16 +47,6 @@ function questions_init() {
 	
 	add_group_tool_option('questions', elgg_echo("questions:enable"), true);
 	elgg_extend_view("groups/tool_latest", "questions/group_module");
-	/**
-	* Add quesion button.
-	**/
-      elgg_register_menu_item('title', array(
-			'name' => 'addquestion',
-			'href' => "questions/add",
-			'text' => elgg_echo('questions:add'),
-			'link_class' => 'elgg-button elgg-button-action',
-			'contexts' => array('questions'),
-             ));
 }	
 
 function questions_owner_block_menu_handler($hook, $type, $items, $params) {
@@ -129,24 +119,24 @@ function questions_notify_message_handler($hook, $entity_type, $returnvalue, $pa
 }
 
 function questions_page_handler($segments) {
-	elgg_push_breadcrumb(elgg_echo('questions'), "/questions/all");
+//	elgg_push_breadcrumb(elgg_echo('questions'), "/questions/all");
 
 	$pages = dirname(__FILE__) . "/pages/questions";
 
 	switch ($segments[0]) {
-		case "all":
+/*		case "all":
 			include "$pages/all.php";
 			break;
-
+*/
 		case "owner":
 			include "$pages/owner.php";
 			break;
-
+/*
 		case "friends":
 			gatekeeper();
 			include "$pages/friends.php";
 			break;
-
+*/
 		case "view":
 			set_input('guid', $segments[1]);
 			include "$pages/view.php";
@@ -154,6 +144,7 @@ function questions_page_handler($segments) {
 
 		case "add":
 			gatekeeper();
+			set_input('guid', $segments[1]);
 			include "$pages/add.php";
 			break;
 

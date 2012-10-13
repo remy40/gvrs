@@ -6,6 +6,7 @@
 $title = elgg_echo('gvprojects:all');
 
 elgg_pop_breadcrumb();
+elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
 elgg_push_breadcrumb(elgg_echo('gvprojects'));
 
 $content = elgg_list_entities(array(
