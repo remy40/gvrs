@@ -84,7 +84,8 @@ function help_page_handler($page) {
 			break;
 		// index page or unknown requests
 		case 'index':
-			require "$pages_dir/index.php";
+			set_input('category', "getting_started");
+			require "$pages_dir/category.php";
 			break;
 		// unrecognized help page so we don't handle it
 		default:

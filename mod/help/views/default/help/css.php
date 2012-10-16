@@ -40,9 +40,10 @@
 	float: left;
 	display: block;
 	width: 252px;
+	height: 252px;
 	padding: 20px;
 	border: 1px solid #cccccc;
-	background-color: #eeeeee;
+	background-color: #f8f8f8;
 }
 .help-category:hover {
 	text-decoration: none;
