@@ -20,6 +20,7 @@ $options = array(
 	'metadata_name' => 'category',
 	'metadata_value' => $category,
 	'limit' => NULL,
+	'reverse_order_by' => true,
 );
 
 // first, creates the table of contents
