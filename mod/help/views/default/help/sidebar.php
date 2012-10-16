@@ -5,19 +5,19 @@
  * @uses $vars['category']
  */
 
-$category = $vars['category'];
+$current_category = $vars['category'];
+$categories = help_get_categories();
 
-$heading = elgg_echo('help:topics');
+$heading = elgg_echo('help:categories');
 
-$options = array(
-	'type' => 'object',
-	'subtype' => 'help',
-	'metadata_name' => 'category',
-	'metadata_value' => $category,
-	'limit' => 0,
-	'full_view' => false,
-	'list_class' => 'help-list',
-);
-$body = elgg_list_entities_from_metadata($options);
+echo "<ul class='help-categories-sidebar'>";
+foreach($categories as $code => $name) {
+	if ($code != $current_category) {
+		$url = "help/category/$code";
+		$link  = elgg_view("output/url", array('text' => $name, 'href' => $url));
+		$body .= "<li>$link</li>";
+	}
+}
+echo "<ul>";
 
 echo elgg_view_module('aside', $heading, $body);

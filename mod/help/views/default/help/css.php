@@ -11,6 +11,17 @@
 ?>
 /************************* begin help *****************************/
 
+.help-table-of-contents-container {
+	border:1px solid #CCCCCC;
+	background-color: #F8F8F8;
+	padding: 5px;
+}
+
+#help-table-of-contents-title {
+	display:block;
+	text-align: center;
+}
+
 /*** Help object ***/
 .help-list, .help-list > li {
 	border: none;
@@ -44,12 +55,7 @@
 }
 
 .mbl h2 {
-	border: 1px solid #cccccc;
-	background-color: #eeeeee;
-}
-
-.mtn {
-	border: 1px solid #cccccc;
+	border-bottom: 1px solid #cccccc;
 }
 
 /**************************** end help ****************************/

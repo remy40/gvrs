@@ -1,5 +1,6 @@
 <?php
 $language = array (
+  'help:tableofcontents' => "Sommaire",
   'help:title:pages' => 'Pages',
   'help:title:settings' => 'Mes paramètres',
   'help:blurb:blogging' => 'Ecrire, sauver, prévisualiser',
