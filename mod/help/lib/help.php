@@ -49,8 +49,8 @@ function help_get_categories() {
 		'getting_started',
 		'isegoria',
 		'groups',
-		'tools',
 		'mystuff',
+		'tools',
 		'misc',
 	);
 	$categories = array();
