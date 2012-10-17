@@ -1,6 +1,7 @@
 <?php
 
 $subtype_content_filter = get_input("subtype_content_filter");
+$type_content_filter = get_input("type_content_filter");
 $offset = get_input("offset", 0);
 $limit = 50;
 
@@ -25,12 +26,23 @@ if (!empty($registered_entities)) {
 }
 
 $form_body = "<label>".elgg_echo("content_manager:content_filter")."</label>";
+
 $form_body .= elgg_view("input/checkboxes", array("name" => "subtype_content_filter", "value" => $subtype_content_filter, "options" => $filter_subtype_contents, "class" => "cb-content-subtype"))."</br>";
+$form_body .= elgg_view("input/checkboxes", array("name" => "type_content_filter", "value" => $type_content_filter, "options" => $filter_type_contents, "class" => "cb-content-subtype"))."</br>";
 $form_body .= elgg_view("input/submit", array("value" => elgg_echo("content_manager:filtrer")));
 echo elgg_view("input/form", array("disable_security" => true, "action" => "/admin/administer_utilities/content_manager", "method" => "POST", "body" => $form_body));
 
 // show content
-$options = array('type' => 'object',
+
+if (!empty($type_content_filter) && empty($subtype_content_filter)) {
+	$types = array();
+}
+else {
+	$types = array('object');
+}
+
+$types = array_merge($types, $type_content_filter); 
+$options = array('types' => $types,
 				 'subtypes' => $subtype_content_filter,
 				 'pagination' => true,
 				 'full_view' => false,
@@ -64,6 +76,15 @@ foreach($entities as $entity) {
 	$container = $entity->getContainerEntity();
 	$timeCreated = $entity->getTimeCreated();
 	$entities_guids[] = $entity->guid;
+	
+	if ($entity->type == 'object') {
+		$title = $entity->title;
+		$type = get_subtype_from_id($entity->subtype);
+	}
+	else {
+		$title = $entity->name;
+		$type  = $entity->type;
+	}
 
 	if ($container instanceof ElggGroup) {
 		$container_type = "Group";
@@ -74,11 +95,11 @@ foreach($entities as $entity) {
 	
 	$form_body .= "<tr>";
 	$form_body .= "<td class='center'>".elgg_view('input/checkbox', array('name' => "entity-{$entity->guid}"))."</td>";
-	$form_body .= "<td class='center'>".get_subtype_from_id($entity->subtype)."</td>";
+	$form_body .= "<td class='center'>".$type."</td>";
 	$form_body .= "<td class='center' title='$owner->name'>".$owner->username."</td>";
 	$form_body .= "<td class='center' title='$container->name'>".$container_type."</td>";
 	$form_body .= "<td class='center'>".date("Y-m-d", $timeCreated)."</td>";
-	$form_body .= "<td>".$entity->title."</td>";
+	$form_body .= "<td>".$title."</td>";
 	$form_body .= "</tr>";
 }
 
