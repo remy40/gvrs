@@ -1,9 +1,7 @@
 <?php
 
-$subtype_content_filter = get_input("subtype_content_filter");
-$type_content_filter = get_input("type_content_filter");
-$offset = get_input("offset", 0);
-$limit = 50;
+$subtype_content_filter = get_input("subtype_content_filter", array());
+$type_content_filter = get_input("type_content_filter", array());
 
 $registered_entities = elgg_get_config("registered_entities");
 
@@ -33,8 +31,7 @@ $form_body .= elgg_view("input/submit", array("value" => elgg_echo("content_mana
 echo elgg_view("input/form", array("disable_security" => true, "action" => "/admin/administer_utilities/content_manager", "method" => "POST", "body" => $form_body));
 
 // show content
-
-if (!empty($type_content_filter) && empty($subtype_content_filter)) {
+if ((count($type_content_filter) != 0) && (count($subtype_content_filter) == 0)) {
 	$types = array();
 }
 else {
@@ -46,14 +43,8 @@ $options = array('types' => $types,
 				 'subtypes' => $subtype_content_filter,
 				 'pagination' => true,
 				 'full_view' => false,
-				 'count' => true);
-
-$count = elgg_get_entities($options);
-
-unset($options['count']);
-$options['limit'] = $limit;
-$options['offset'] = $offset;
-
+				 'limit' => NULL);
+			
 $entities = elgg_get_entities($options);
 
 $form_body = "</br><label>".elgg_echo("content_manager:content")."</label>";
@@ -105,14 +96,6 @@ foreach($entities as $entity) {
 
 $form_body .= "</tbody>";
 $form_body .= "</table>";
-
-$form_body .= elgg_view('navigation/pagination', array(
-				'base_url' => 'admin/administer_utilities/content_manager',
-				'offset' => $offset,
-				'count' => $count,
-				'limit' => $limit,
-				'offset_key' => "offset",
-			));
 
 $form_body .= elgg_view('input/hidden', array('name' => 'entities_guids', 'value' => $entities_guids));
 $form_body .= elgg_view('input/hidden', array('name' => 'subtype_content_filter', 'value' => $subtype_content_filter));
