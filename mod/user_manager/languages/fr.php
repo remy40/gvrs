@@ -5,6 +5,7 @@ $french = array(
 	"user_manager:isadmin" => "Admin ?",
 	"user_manager:yes" => "oui",
 	"user_manager:no" => "non",
+	"admin:users:users_list" => "User manager",
 );
 
 add_translation("fr", $french);
