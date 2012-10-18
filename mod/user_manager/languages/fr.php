@@ -1,5 +1,6 @@
 <?php
 $french = array(
+	"user_manager:guid" => "GUID",
 	"user_manager:username" => "Nom utilisateur",
 	"user_manager:name" => "Nom à afficher",
 	"user_manager:isadmin" => "Admin ?",

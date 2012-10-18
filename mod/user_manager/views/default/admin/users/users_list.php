@@ -8,6 +8,7 @@ $users = elgg_get_entities($options);
 echo "<table class='elgg-table user-manager-table'>";
 echo "<thead>";
 echo "<tr>";
+echo "<th class='center'>".elgg_echo("user_manager:guid")."</th>";
 echo "<th class='center'>".elgg_echo("user_manager:username")."</th>";
 echo "<th class='center'>".elgg_echo("user_manager:name")."</th>";
 echo "<th class='center'>".elgg_echo("user_manager:isadmin")."</th>";
@@ -26,6 +27,7 @@ foreach($users as $user) {
 	}
 
 	echo "<tr>";
+	echo "<td class='center'>".$user->guid."</td>";
 	echo "<td>".elgg_view('output/url', array('text' => $user->username, 'href' => $user->getURL()))."</td>";
 	echo "<td>".$user->name."</td>";
 	echo "<td class='center $classAdmin'>".$isAdmin."</td>";
