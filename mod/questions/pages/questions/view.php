@@ -43,12 +43,12 @@ $content .= elgg_view_module('info', "$count " . elgg_echo('answers'), elgg_view
 $entity_owner = $question->getOwnerEntity();
 
 $can_post_answer = true;
-if (elgg_instanceof($page_owner, 'ElggGroup')) {
+/*if (elgg_instanceof($page_owner, 'ElggGroup')) {
 	// the entity owner is the current user or a member of the group
 	$can_post_answer = ($entity_owner->guid == elgg_get_logged_in_user_guid()) ||
 					   ($page_owner->isMember($entity_owner->guid));
 }
-
+*/
 if ($can_post_answer) {
 	$user_icon = elgg_view_entity_icon(elgg_get_logged_in_user_entity(), 'small');
 	$add_form = elgg_view_form('object/answer/add', array(), array('container_guid' => $question->guid));
