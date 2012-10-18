@@ -28,9 +28,16 @@ function show_edit_widget_panel($entity) {
 function show_my_stuff_widget($entity, $type, $base_path = '', $show_more_link = true) {
     $num = $entity->num_display;
 
+	if (elgg_in_context('profile')) {
+		$owner = elgg_get_page_owner_entity();
+	}
+	else {
+		$owner = elgg_get_logged_in_user_entity();
+	}
+	
     $options = array(
         'type' => 'object',
-        'owner_guid' => elgg_get_logged_in_user_guid(),
+        'owner_guid' => $owner->guid,
         'limit' => $num,
         'full_view' => FALSE,
         'pagination' => FALSE,
@@ -59,7 +66,7 @@ function show_my_stuff_widget($entity, $type, $base_path = '', $show_more_link =
 
     if ($content) {
         if ($show_more_link) {
-            $url_more = "$base_path/owner/" . elgg_get_page_owner_entity()->username;
+            $url_more = "$base_path/owner/" . $owner->username;
             $more_link = elgg_view('output/url', array(
                 'href' => $url_more,
                 'text' => elgg_echo("$base_type:more"),

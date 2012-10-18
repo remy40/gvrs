@@ -1,0 +1,3 @@
+<?php
+
+	$widget = $vars["entity"];
