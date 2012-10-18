@@ -73,7 +73,7 @@ function gvwidgets_default_widgets_hook($hook, $type, $return) {
 	$return[] = array(
 		'name' => elgg_echo('group'),
 		'widget_context' => 'groups',
-		'widget_columns' => 3,
+		'widget_columns' => 2,
 
 		'event' => 'create',
 		'entity_type' => 'group',
