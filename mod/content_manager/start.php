@@ -20,8 +20,3 @@ function gvcontentmanager_init() {
 	$action_path = elgg_get_plugins_path() . "content_manager/actions/";
 	elgg_register_action('content_manager', "$action_path/content_manager.php");
 }
-
-//
-function content_manager_show_entities($entities, $vars = array(), $offset = 0, $limit = 10, $full_view = true,
-$list_type_toggle = true, $pagination = true) {
-}
