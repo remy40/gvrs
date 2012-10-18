@@ -138,10 +138,10 @@ function questions_page_handler($segments) {
 	$pages = dirname(__FILE__) . "/pages/questions";
 
 	switch ($segments[0]) {
-/*		case "all":
+		case "all":
 			include "$pages/all.php";
 			break;
-*/
+
 		case "owner":
 			include "$pages/owner.php";
 			break;

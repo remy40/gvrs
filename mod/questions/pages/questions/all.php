@@ -18,6 +18,7 @@ $title = elgg_echo('questions:everyone');
 $body = elgg_view_layout('content', array(
 	'title' => $title,
 	'content' => $content,
+	'filter' => '',
 ));
 
 echo elgg_view_page($title, $body);
