@@ -1,8 +1,9 @@
 <?php
 ?>
 
-.cb-content-subtype > li {
+.cb-content-list-type > li {
 	float:left;
+	float-style: none;
 }
 
 .content-manager-table th {
