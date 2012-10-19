@@ -1,6 +1,7 @@
 <?php
 
 	$french = array(
+	 'gvwidgets:reinitialize' => "Réinitialiser",
      'gvwidgets:seeall:activity' => "Afficher toutes les activités ...",
      'widgets:add' => "Personnaliser le tableau de bord",
 

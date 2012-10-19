@@ -16,6 +16,10 @@ function gvwidgets_init() {
 	// allow admins to set default widgets for groups
 	elgg_register_plugin_hook_handler('get_list', 'default_widgets', 'gvwidgets_default_widgets_hook');
 
+	// register actions
+	$action_base = elgg_get_plugins_path() . 'gvwidgets/actions';
+	elgg_register_action("dashboard/reinitialize", "$action_base/dashboard/reinitialize.php");
+
     // remove old widget types that are not well defined
     $old_widget_names = array('blog', 'filerepo', 'pages','event_calendar',
                               'twitter_search', 'content_stats', 'poll', 'latestPolls',

@@ -76,7 +76,7 @@ function gvgroups_entity_menu_setup($hook, $type, $return, $params) {
 	}
 
 	foreach ($return as $index => $item) {
-		if (in_array($item->getName(), array('dislikes', 'feature'))) {
+		if (in_array($item->getName(), array('dislikes_count', 'likes_count', 'likes', 'dislikes', 'feature'))) {
 			unset($return[$index]);
 		}
 	}
