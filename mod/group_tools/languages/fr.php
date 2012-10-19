@@ -263,7 +263,7 @@ To visit the group please click on the following link:
 	
 		// Widgets
 		// Group River Widget
-		'widgets:group_river_widget:title' => "Activité des groupes",
+		'widgets:group_river_widget:title' => "Activité de groupe",
 	    'widgets:group_river_widget:description' => "Vous permet de suivre l'activité des groupes sélectionnés",
 
 	    'widgets:group_river_widget:edit:num_display' => "Number of activities",

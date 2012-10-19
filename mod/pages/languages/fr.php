@@ -44,7 +44,7 @@ Voir et commenter la nouvelle page:
   'pages:error:no_title' => 'Vous devez spécifier un titre pour cette page.',
   'pages:delete:success' => 'Votre page a bien été effacée.',
   'pages:delete:failure' => 'Votre page n\'a pu être effacée.',
-  'pages:strapline' => 'Dernière mise à jour le %s par %s',
+  'pages:strapline' => 'Dernière mise à jour %s par %s',
   'pages:revision:subtitle' => 'Révision créé %s par %s',
   'pages:num' => 'Nombre de pages à afficher',
   'pages:widget:description' => 'Voici la liste des vos pages.',
