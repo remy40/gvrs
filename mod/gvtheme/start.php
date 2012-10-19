@@ -6,6 +6,7 @@ function gvtheme_init() {
     elgg_unregister_menu_item('topbar', 'elgg_logo');
     elgg_register_plugin_hook_handler('register', 'menu:topbar', 'gvtheme_custom_topbarmenu_setup');
     elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvtheme_custom_entitymenu_setup');
+    elgg_register_plugin_hook_handler('register', 'menu:river', 'gvtheme_custom_rivermenu_setup');
 
     elgg_register_event_handler('pagesetup', 'system', 'gvtheme_custom_usersettings_pagesetup');
 
@@ -30,16 +31,32 @@ function gvtheme_custom_usersettings_pagesetup(){
 function gvtheme_custom_entitymenu_setup($hook, $type, $values, $params) {
 	$entity = $params['entity'];
 
+	$return_values = array();
 	foreach($values as $key => $item) {
-		error_log("item name: ".$item->getName());
 		if ($item->getName() == 'edit') {
 			$title = elgg_echo('edit');
 			$class = "elgg-icon elgg-icon-settings-alt";
 			$item->setText("<span class='$class' title='$title'></span>");
 		}
+		
+		$return_values[] = $item;
 	}
 	
-	return $values;
+	return $return_values;
+}
+
+//
+function gvtheme_custom_rivermenu_setup($hook, $type, $values, $params) {
+	$entity = $params['entity'];
+
+	$return_values = array();
+	foreach($values as $key => $item) {
+		if ($item->getName() != 'comment'){
+			$return_values[] = $item;
+		}
+	}
+	
+	return $return_values;
 }
 
 // custom the toolbar
