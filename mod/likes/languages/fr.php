@@ -14,8 +14,8 @@ $french = array(
 	'likes:alreadyliked' => "Vous avez déjà porté votre appréciation sur cet élément",
 	'likes:notfound' => "L'élément que vous essayez d'apprécier ne peut être trouvé",
 	'likes:likethis' => "Aime ça",
-	'likes:userlikedthis' => "%s aime",
-	'likes:userslikedthis' => "%s aiment",
+	'likes:userlikedthis' => "%s",
+	'likes:userslikedthis' => "%s",
 	'likes:river:annotate' => "aime",
 
 	'river:likes' => "aiment %s %s",

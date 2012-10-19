@@ -5,6 +5,7 @@ function gvtheme_init() {
     // custom topbar
     elgg_unregister_menu_item('topbar', 'elgg_logo');
     elgg_register_plugin_hook_handler('register', 'menu:topbar', 'gvtheme_custom_topbarmenu_setup');
+    elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvtheme_custom_entitymenu_setup');
 
     elgg_register_event_handler('pagesetup', 'system', 'gvtheme_custom_usersettings_pagesetup');
 
@@ -23,6 +24,22 @@ function gvtheme_init() {
 function gvtheme_custom_usersettings_pagesetup(){
     elgg_unregister_menu_item('page', '1_statistics');
     elgg_unregister_menu_item('page', '1_plugins');
+}
+
+//
+function gvtheme_custom_entitymenu_setup($hook, $type, $values, $params) {
+	$entity = $params['entity'];
+
+	foreach($values as $key => $item) {
+		error_log("item name: ".$item->getName());
+		if ($item->getName() == 'edit') {
+			$title = elgg_echo('edit');
+			$class = "elgg-icon elgg-icon-settings-alt";
+			$item->setText("<span class='$class' title='$title'></span>");
+		}
+	}
+	
+	return $values;
 }
 
 // custom the toolbar

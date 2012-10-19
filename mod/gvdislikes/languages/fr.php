@@ -15,8 +15,8 @@ $french = array(
 	'gvdislikes:dislikes:alreadyliked' => "Vous avez déjà porté votre appréciation sur cet élément",
 	'gvdislikes:dislikes:notfound' => "L'élément que vous essayez d'apprécier ne peut être trouvé",
 	'gvdislikes:dislikes:likethis' => "Aime ça",
-	'gvdislikes:dislikes:userdislikedthis' => "%s n'aime pas",
-	'gvdislikes:dislikes:usersdislikedthis' => "%s n'aiment pas",
+	'gvdislikes:dislikes:userdislikedthis' => "%s",
+	'gvdislikes:dislikes:usersdislikedthis' => "%s",
 	'gvdislikes:dislikes:river:annotate' => "n'aime pas",
 
 	'river:likes' => "n'aiment pas %s %s",

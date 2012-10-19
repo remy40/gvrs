@@ -5,6 +5,52 @@
  */
 ?>
 
+/***************************
+ ICONS
+****************************/
+
+.elgg-icon-thumbs-down {
+	background-position: 0 -864px;
+}
+
+.elgg-icon-thumbs-down-alt:hover {
+	background-position: 0 -864px;
+}
+.elgg-icon-thumbs-down:hover,
+.elgg-icon-thumbs-down-alt {
+	background-position: 0 -864px;
+}
+
+.elgg-icon-thumbs-up {
+	background-position: 0 -882px;
+}
+
+.elgg-icon-thumbs-up-alt:hover {
+	background-position: 0 -882px;
+}
+.elgg-icon-thumbs-up:hover,
+.elgg-icon-thumbs-up-alt {
+	background-position: 0 -882px;
+}
+
+.elgg-icon-friends {
+	background-position: 0 -1494px;
+}
+
+.elgg-icon-group-open {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/gvtheme/icons/group-open.png) no-repeat left;
+	width: 18px;
+	height: 18px;
+	margin: 0 2px;
+}
+
+.elgg-icon-group-closed {
+	background: transparent url(<?php echo elgg_get_site_url(); ?>mod/gvtheme/icons/group-closed.png) no-repeat left;
+	width: 18px;
+	height: 18px;
+	margin: 0 2px;
+}
+
 /****************************************
 	LOGIN PAGE
 ****************************************/
@@ -116,4 +162,17 @@ padding-left: 6px;
 text-decoration: none;
 color: #FFF;
 background-color: #0046A9;
+}
+
+/********************************
+ LIKE / DISLIKE ITEMS
+********************************/
+.elgg-menu-item-likes-count > a {
+	font-weight: bold;
+	color: #23aa00;
+}
+
+.elgg-menu-item-dislikes-count > a {
+	font-weight: bold;
+	color: #dd0000;
 }
