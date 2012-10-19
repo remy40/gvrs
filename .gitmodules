@@ -1,6 +1,6 @@
 [submodule "mod/event_calendar"]
 	path = mod/event_calendar
-	url = git@github.com:remy40/Elgg-Event-Calendar.git
+	url = https://github.com/remy40/Elgg-Event-Calendar.git
 [submodule "mod/etherpad"]
 	path = mod/etherpad
-	url = git@github.com:remy40/elggpad-lite.git
+	url = https://github.com/remy40/elggpad-lite.git
