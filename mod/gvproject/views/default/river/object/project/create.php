@@ -15,4 +15,9 @@ $question_url = elgg_view('output/url', array(
 	'encode_text' => TRUE,
 ));
 
-echo elgg_echo("gvprojects:river:created:by", array($owner_url, $question_url));
+$content = elgg_echo("gvprojects:river:created:by", array($owner_url, $question_url));
+
+echo elgg_view('river/elements/layout', array(
+	'item' => $vars['item'],
+	'summary' => $content,
+));
