@@ -3,4 +3,6 @@ documentation/doxy
 mod/gvchat/vendors/phpfreechat/data/private/chat
 mod/gvchat/vendors/phpfreechat/data/private/cache
 mod/gvchat/vendors/phpfreechat/data/private/logs
+mod/gvchat/vendors/phpfreechat/data/private/filemtime.test
+mod/gvchat/vendors/phpfreechat/data/private/filemtime2.test
 .htaccess
