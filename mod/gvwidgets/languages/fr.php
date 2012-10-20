@@ -3,6 +3,7 @@
 	$french = array(
 	 'gvwidgets:reinitialize' => "Réinitialiser",
      'gvwidgets:seeall:activity' => "Afficher toutes les activités ...",
+     'gvwidgets:seeall:my_activity' => "Afficher toutes mes activités...",
      'widgets:add' => "Personnaliser le tableau de bord",
 
     'thewire:more' => "Plus de messages du microblog",
