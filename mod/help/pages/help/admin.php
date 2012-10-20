@@ -13,7 +13,7 @@ $title = elgg_echo('help:admin');
 
 $content = elgg_view_title($title);
 
-$content .= elgg_view_form('help/save');
+$content .= elgg_view_form('help/save', $vars);
 
 // use special admin layout
 $body = elgg_view_layout('admin', array('content' => $content));

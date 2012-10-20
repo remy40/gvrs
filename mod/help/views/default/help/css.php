@@ -11,6 +11,10 @@
 ?>
 /************************* begin help *****************************/
 
+.help-modify-link {
+	float: right;
+}
+
 .help-table-of-contents-container {
 	border:1px solid #CCCCCC;
 	background-color: #F8F8F8;

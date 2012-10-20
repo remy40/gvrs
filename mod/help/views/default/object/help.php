@@ -10,6 +10,15 @@ $item = $vars['entity'];
 $question = $item->title;
 $answer = $item->description;
 
+$modify_link='';
+if (elgg_is_admin_logged_in()) {
+	$modify_link = elgg_view('output/url', array(
+								'href' => "help/admin?guid=".$item->guid,
+								'text' => elgg_echo("help:question:modify"),
+								'class' => 'help-modify-link',
+								'is_trusted' => true));
+}
+
 // full view means we display the question and answer
 if ($vars['full_view']) {
 	$body = elgg_view('output/longtext', array(
@@ -19,8 +28,7 @@ if ($vars['full_view']) {
 
 	echo <<<HTML
 <div class="mbl" id="$item->guid">
-	$menu
-	<h2>$question</h2>
+	<h2>$question</h2> $modify_link
 	$body
 </div>
 HTML;
@@ -33,4 +41,5 @@ HTML;
 		'text' => $question,
 		'is_trusted' => true,
 	));
+	echo $modify_link;
 }

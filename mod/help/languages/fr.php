@@ -1,5 +1,6 @@
 <?php
 $language = array (
+   'help:question:modify' => "Modifier",
   'help:tableofcontents' => "Sommaire",
   'help:title:pages' => 'Pages',
   'help:title:settings' => 'Mes paramètres',

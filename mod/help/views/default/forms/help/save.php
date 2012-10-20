@@ -20,7 +20,6 @@ if ($topic) {
 	$access_id = $topic->access_id;
 }
 
-
 $instructions = elgg_echo('help:admin:instruct');
 
 $category_label = elgg_echo('help:label:category');
