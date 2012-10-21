@@ -19,12 +19,12 @@ $container_guid = get_input('container_guid');
 if (!$container_guid) {
 	$container_guid = elgg_get_logged_in_user_guid();
 }
-
+/*
 if ($adding && !can_write_to_container(0, $container_guid, 'object', 'answer')) {
 	register_error("You do not have permission to answer that question!");
 	forward(REFERER);
 }
-
+*/
 $question = get_entity($container_guid);
 
 $description = get_input('description');
