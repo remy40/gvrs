@@ -13,7 +13,7 @@
     $frei_trans['pwdby']             =          'Réalisé par';
     $frei_trans['noline']            =          'Aucune personne connectée';
     $frei_trans['noperms']           =          'Connectez-vous!';
-    $frei_trans['on_offline']        =          'Initialisation...<br/>Interrogation de la Base<br/>..............................';
+    $frei_trans['on_offline']        =          'Recherche utilisateurs...';
     $frei_trans['go_online']         =          '-> Online';
     $frei_trans['go_offline']        =          '-> Offline';
     $frei_trans['go_invisible']      =          '-> Invisible';
@@ -34,6 +34,12 @@
     $frei_trans['status_busy']          =       'Vous êtes Occupé';
     $frei_trans['status_invisible']     =       'Vous êtes Invisible';
     $frei_trans['status_offline']       =       'Vous êtes Déconnecté';
+    $frei_trans['default_status']       =       'Je suis disponible';
+
+    $frei_trans['status_txt_online']        =       'Disponible';
+    $frei_trans['status_txt_busy']          =       'Occupé';
+    $frei_trans['status_txt_invisible']     =       'Invisible';
+    $frei_trans['status_txt_offline']       =       'Hors ligne';
 
     $frei_trans['chatHistoryNotFound']  = 'historique non trouvé!';
     $frei_trans['chatHistoryDeleted']   = 'historique effacé';

@@ -1,10 +1,19 @@
 <?php
 add_translation('fr', array(
+	'answers:unknown' => "Cette réponse n'est pas valide !",
+	'answers:edit' => "Modification de votre réponse",
+	'answers:answer' => "Réponse",
+	'answers:empty_description' => "Votre réponse ne peut être vide !",
+	'answers:edit_error' => "Vous n'avez pas le droit d'éditer cette question", 
+	'questions:edit_error' => "Vous n'avez pas le droit d'éditer cette question", 
 	'questions:river:question:created:by' => "%s a posté une nouvelle question : %s",
 	'questions:river:answer:created:by' => "%s a répondu à la question : %s",
     'questions:river:question:created' => "question: %s",
     'questions:river:question:create' => "creation_question",
-
+	'questions:empty_fields' => "Vous devez indiquer un titre et une description !",
+	'answers:save_error' => "Votre réponse n'a pu être sauvée",
+	'questions:save_error' => "Votre question n'a pu être sauvée",
+	'questions:edit' => "Modification de votre question", 
 	'item:object:question' => 'Questions',
 
 	'answers' => 'Réponses',

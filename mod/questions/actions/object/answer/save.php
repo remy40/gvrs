@@ -4,14 +4,19 @@ elgg_make_sticky_form('answer');
 
 $guid = get_input('guid');
 
-$answer = new ElggAnswer($guid);
-
-$adding = !$answer->guid;
-
-$editing = !$adding;
+if ($guid) {
+	$answer = get_entity($guid);
+	$editing = true;
+	$adding = false;
+}
+else {
+	$answer = new ElggAnswer($guid);
+	$editing = false;
+	$adding = true;
+}
 
 if ($editing && !$answer->canEdit()) {
-	register_error("You do not have permission to edit this answer!");
+	register_error(elgg_echo('answers:edit_error'));
 	forward(REFERER);
 }
 
@@ -30,7 +35,7 @@ $question = get_entity($container_guid);
 $description = get_input('description');
 
 if (empty($container_guid) || empty($description)) {
-	register_error("A body is required: $container_guid, $title, $description");
+	register_error(elgg_echo('answers:empty_description'));
 	forward(REFERER);
 }
 
@@ -45,7 +50,7 @@ try {
 		add_to_river('river/object/answer/create', 'create', elgg_get_logged_in_user_guid(), $question->guid, $question->access_id);
 	}
 } catch (Exception $e) {
-	register_error("There was a problem saving your answer!");
+	register_error(elgg_echo('answers:save_error'));
 	register_error($e->getMessage());
 }
 

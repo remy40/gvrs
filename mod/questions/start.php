@@ -24,6 +24,9 @@ function questions_init() {
     $actions_base = dirname(__FILE__) . '/actions/object/question';
 	elgg_register_action("object/question/save", "$actions_base/save.php");
 	elgg_register_action("questions/delete", "$actions_base/delete.php");
+
+    $actions_base = dirname(__FILE__) . '/actions/object/answer';
+	elgg_register_action("object/answer/save", "$actions_base/save.php");
 	
 	elgg_register_entity_url_handler('object', 'question', 'questions_url_handler');
 	
@@ -32,6 +35,7 @@ function questions_init() {
 	elgg_register_entity_url_handler('object', 'answer', 'answers_url');
 
 	elgg_register_page_handler('questions', 'questions_page_handler');
+	elgg_register_page_handler('answers', 'answers_page_handler');
 	
 	$actions_base = "$plugin_dir/actions/object/answer";
 	elgg_register_action('object/answer/add', "$actions_base/save.php");
@@ -130,6 +134,20 @@ function questions_notify_message_handler($hook, $entity_type, $returnvalue, $pa
 	}
 
 	return null;
+}
+
+function answers_page_handler($segments) {
+	$pages = dirname(__FILE__) . "/pages/answers";
+
+	switch ($segments[0]) {
+		case "edit":
+			gatekeeper();
+			set_input('guid', $segments[1]);
+			include "$pages/edit.php";
+			break;
+	}
+	
+	return true;
 }
 
 function questions_page_handler($segments) {

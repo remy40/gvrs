@@ -11,7 +11,7 @@ $adding = !$question->guid;
 $editing = !$adding;
 
 if ($editing && !$question->canEdit()) {
-	register_error("You do not have permission to edit this question!");
+	register_error(elgg_echo('questions:edit_error'));
 	forward(REFERER);
 }
 
@@ -32,7 +32,7 @@ $description = get_input('description');
 $tags = string_to_tag_array(get_input('tags', ''));
 
 if (empty($container_guid) || empty($title) || empty($description)) {
-	register_error("A title and description are required: $container_guid, $title, $description");
+	register_error(elgg_echo('questions:empty_fields'));
 	forward(REFERER);
 }
 
@@ -49,7 +49,7 @@ try {
 		add_to_river('river/object/question/create', 'create', elgg_get_logged_in_user_guid(), $question->guid, $question->access_id);
 	}
 } catch (Exception $e) {
-	register_error("There was a problem saving your question!");
+	register_error(elgg_echo('questions:save_error'));
 	register_error($e->getMessage());
 	forward(REFERER);
 }
