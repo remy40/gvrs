@@ -14,7 +14,7 @@ $params["serverid"] =  md5($_SERVER['HTTP_REFERER']);
 $params["language"] = "fr_FR";
 $params["debug"] =  false;
 $params["title"] = " ";
-$params["nick"] =  elgg_get_logged_in_user_entity()->username;
+$params["nick"] =  elgg_get_logged_in_user_entity()->name;
 $params["frozen_nick"] =  true;
 $params["nickmeta"]    = array("avatar" => elgg_get_logged_in_user_entity()->getIconURL("medium"));
 $params["isadmin"] = false;
