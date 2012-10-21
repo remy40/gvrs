@@ -10,10 +10,10 @@ $freichatheadimg = 'room_selected.png';
 $frei_user_brandimg = 'chatroom.jpeg';
 $frei_tools_optionsimg = 'chatroom.jpeg';
 $frei_optionsimg = 'chatroom.jpeg';
-$freismileyimg = 'chatroom73597.jpeg';
+$freismileyimg = 'chatroom.jpeg';
 
 
-$chatroomimg = 'chatroom14040.jpeg';
+$chatroomimg = 'chatroom.jpeg';
 $chatroom_head = 'room_head.png';
 $chatroom_leftpanel = 'left_panel.png';
 $chatroom_selected = 'room_selected.png';
@@ -44,27 +44,12 @@ $optimg = 'opt.gif';   //Image on the chatbox for options
 $toolimg = 'tool.png';   //Image on the chatbox for tools
 $uploadimg = 'upload.png'; //Image for sending files
 $fnopermsht = 36; //Height When user has no permissions
-$fnoonlineht = 15; //Height When No one is online
-$fonlineht = 100; //Height When Users are online
+$fnoonlineht = 18; //Height When No one is online
+$fone_onlineht = 25; //Height When one User is online
 $fmaxht = 200;
 $jquery_theme = 'ui-lightness'; //jquery ui theme
 $rtlimg_enabled = 'rtl.jpg';
 $rtlimg_disabled = 'rtl_disabled.jpg';
 
-$smiley_smileimg = 'smile.png';
-$smiley_cryimg = 'cry.jpeg';
-$smiley_coolimg = 'cool.png';
-$smiley_sadimg = 'sad.png';
-$smiley_laughingimg = 'laughing.png';
-$smiley_cheerfulimg = 'cheerful.png';
-$smiley_winkimg = 'wink.png';
-$smiley_tongueimg = 'tongue.png';
-$smiley_angryimg = 'angry.png';
-$smiley_unsureimg = 'unsure.png';
-$smiley_shockedimg = 'shocked.png';
-$smiley_wassatimg = 'wassat.png';
-$smiley_ermmimg = 'ermm.png';
-$smiley_grinimg = 'grin.png';
-$smiley_sillyimg = 'silly.png';
-$smiley_w00timg = 'w00t.png';
-?>
+$smiley_chatroomimg = 'smiley_chatroom.png';
+$videoimg = 'webcam.png';
