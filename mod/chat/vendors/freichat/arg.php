@@ -38,7 +38,7 @@
         $freichat_theme=$parameters['freichat_theme'];
         $css=$freichat_theme; //background color
         $color=$css; //colour for chatbuttons
-        $lang=$parameters['lang']; //Language please do not include .php here only file name
+        $lang= 'french';//$parameters['lang']; //Language please do not include .php here only file name
 
         $load=$parameters['load']; //chatbox
         $dyncss='disable'; //template patch
