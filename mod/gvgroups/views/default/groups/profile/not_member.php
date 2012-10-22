@@ -6,7 +6,14 @@ echo elgg_echo('gvgroups:opengroups');
 echo "</p>";
 if (elgg_is_logged_in()) {
 echo "<p>";
-	echo ' ' . elgg_echo('gvgroups:opengroups:request');
+	$group = $vars['entity'];
+	
+	if ($group->grouptype == 'local') {
+		echo ' ' . elgg_echo('gvgroups:opengroups:localgroup');
+	}
+	else {
+		echo ' ' . elgg_echo('gvgroups:opengroups:request');
+	}
 echo "</p>";
 }
 ?>

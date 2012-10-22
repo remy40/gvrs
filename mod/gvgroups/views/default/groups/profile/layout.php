@@ -12,7 +12,7 @@ if (group_gatekeeper(false)) {
         echo elgg_view('groups/profile/widgets', $vars);
     }
     else {
-        echo elgg_view('groups/profile/not_member');
+        echo elgg_view('groups/profile/not_member', $vars);
     }
 } else {
 	echo elgg_view('groups/profile/closed_membership');

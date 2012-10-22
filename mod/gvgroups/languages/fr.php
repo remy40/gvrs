@@ -12,6 +12,7 @@ $french = array(
     'gvgroups:isegoria' => 'Isegoria',
 
     'gvgroups:opengroups' => 'Ce groupe est ouvert mais vous n\'êtes pas membre. Vous pouvez poser une question aux membres du groupe en cliquant sur "Questions du groupe".',
+	'gvgroups:opengroups:localgroup' => "Ce groupe est un groupe local et vous ne pouvez pas directement rejoindre un groupe local. Pour vous inscrire, vous devez remplir votre code postal dans votre profil et vous serez automatiquement inscrit dans les groupes locaux correspondants.",
     'gvgroups:opengroups:request' => 'Vous pouvez aussi rejoindre le groupe en cliquant sur "Rejoindre le groupe".',
 
     'groups:grouptype' => 'Type de groupe :',
