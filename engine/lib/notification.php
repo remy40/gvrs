@@ -353,10 +353,7 @@ function elgg_send_email($from, $to, $subject, $body, array $params = NULL) {
 	$body = preg_replace("/(\r\n|\r)/", "\n", $body); // Convert to unix line endings in body
 	$body = preg_replace("/^From/", ">From", $body); // Change lines starting with From to >From
 
-	$result = mail($to, $subject, wordwrap($body), $headers);
-	error_log("[MAIL] SENT : To=$to, Subject=$subject, Header=$headers, Body=$body, Result=$result");
-	
-	return $result;
+	return mail($to, $subject, wordwrap($body), $headers);
 }
 
 /**

@@ -4,3 +4,6 @@
 [submodule "mod/etherpad"]
 	path = mod/etherpad
 	url = https://github.com/remy40/elggpad-lite.git
+[submodule "mod/phpmailer"]
+	path = mod/phpmailer
+	url = https://github.com/cash/elgg-phpmailer.git
