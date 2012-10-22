@@ -1,0 +1,1 @@
+ *To install and upgrade see : http://webgalli.com/blog/facebook-like-chat-for-elgg/
