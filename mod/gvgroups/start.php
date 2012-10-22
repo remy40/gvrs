@@ -53,9 +53,6 @@ function gvgroups_init() {
     // extend CSS view
     elgg_extend_view('css/elgg', 'gvgroups/css');
 
-    // check if the user is member of the group before showing owner menu
-	elgg_register_plugin_hook_handler('register', 'menu:owner_block', 'gvgroups_owner_block_menu');
-
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvgroups_entity_menu_setup');
 }
 
@@ -82,33 +79,6 @@ function gvgroups_entity_menu_setup($hook, $type, $return, $params) {
 	}
 	
 	return $return;
-}
-
-/**
- * manage ownerblock
- * 
- * @param string $hook
- * @param string $type
- * @param array  $return
- * @param array  $params
- */
-function gvgroups_owner_block_menu($hook, $type, $return, $params) {
-
-    $return_value = $return;
-    
-	if (elgg_instanceof($params['entity'], 'group')) {
-		if (!$params['entity']->isMember(elgg_get_logged_in_user_guid())) {
-            $return_value = array();
-            foreach ($return as $item) {
-                if (($item->getName() == 'questions') ||
-                    ($item->getName() == 'blog')){
-                    $return_value[] = $item;
-                }
-            }
-		}
-	}
-
-	return $return_value;
 }
 
 function add_user_to_local_group($user, $groupname, $localtype) {
