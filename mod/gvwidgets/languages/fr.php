@@ -6,6 +6,7 @@
      'gvwidgets:seeall:my_activity' => "Afficher toutes mes activités...",
      'widgets:add' => "Personnaliser le tableau de bord",
 
+	'groupforumtopic:none' => "Aucune discussion",
     'thewire:more' => "Plus de messages du microblog",
     'thewire:none' => "Aucun message du microblog",
     'page:more' => "Plus de pages",
