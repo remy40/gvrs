@@ -58,9 +58,8 @@ function questions_container_permissions_check($hook, $type, $return, $params) {
 	// everyone can ask questions to a group
 	switch($params['subtype']) {
 		case 'question':
-			if ($params['container'] instanceof ElggGroup) {
-				$return = true;
-			}
+		case 'answer':
+			$return = true;
 			break;
 	}
 	
