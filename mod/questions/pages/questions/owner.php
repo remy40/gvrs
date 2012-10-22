@@ -33,7 +33,8 @@ $content = elgg_list_entities(array(
 	'subtype' => 'question',
 	'container_guid' => $page_owner->guid,
 	'full_view' => false,
-	'list_type_toggle' => false
+	'list_type_toggle' => false,
+	'limit' => 30,
 ));
 
 if (!$content) {
