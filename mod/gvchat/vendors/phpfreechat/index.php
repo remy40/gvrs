@@ -32,6 +32,7 @@ $params["container_type"] = "File";
 $params["container_cfg_chat_dir"] = dirname(__FILE__)."/data/private/chat";
 $params["display_ping"] = false;
 $params["displaytabimage"] = false;
+$params["nickmeta_key_to_hide"] = array('ip');
 
 $chat = new phpFreeChat( $params );
 
