@@ -7,8 +7,14 @@ if ($groupguid) {
     $group = get_entity($groupguid);
     
     if ($group && ($group instanceof ElggGroup)) {
-        $title = elgg_echo('gvchat:group_chat', array($group->name));
-        $content = elgg_view('page/chat', array('view_id'=> $group->name . "$groupguid"));
+		if ($group->isMember(elgg_get_logged_in_user_guid())) {
+			$title = elgg_echo('gvchat:group_chat', array($group->name));
+			$content = elgg_view('page/chat', array('view_id'=> $group->name . "$groupguid"));
+		}
+		else {
+			register_error(elgg_echo('membershiprequired'));
+			forward(REFERER);
+		}
     }
     else {
         $group_error = true;
