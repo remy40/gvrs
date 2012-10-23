@@ -1,6 +1,11 @@
 <?php
 $answer = $vars['entity'];
 
+$date = elgg_view_friendly_time($answer->time_created);
+$poster = $answer->getOwnerEntity();
+$poster_text = elgg_echo('answers:answered', array($poster->name));
+$subtitle = "<div class='elgg-subtext'>$poster_text - $date</div>";
+
 $image = elgg_view_entity_icon(get_entity($answer->owner_guid), 'small');
 
 $body = elgg_view_menu('entity', array(
@@ -10,6 +15,7 @@ $body = elgg_view_menu('entity', array(
 	'class' => 'elgg-menu-hz',
 ));
 
+$body .= $subtitle;
 $body .= elgg_view('output/longtext', array('value' => $answer->description));
 
 //feels hacky...

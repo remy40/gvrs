@@ -1,5 +1,6 @@
 <?php
 add_translation('fr', array(
+	'answers:answered' => "Réponse de %s",
 	'answers:unknown' => "Cette réponse n'est pas valide !",
 	'answers:edit' => "Modification de votre réponse",
 	'answers:answer' => "Réponse",
