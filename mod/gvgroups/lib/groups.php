@@ -454,13 +454,22 @@ function groups_handle_mine_page() {
 
 	$title = elgg_echo('groups:yours');
 
+	$username = get_input('username');
+	if ($username) {
+		$user = get_user_by_username($username);
+	}
+	
+	if (!$username || !$user) {
+		$user = elgg_get_logged_in_user_entity();
+	}
+	
 	elgg_pop_breadcrumb();
 	elgg_push_breadcrumb(elgg_echo("menu:home"), "dashboard");
-	elgg_push_breadcrumb(elgg_get_logged_in_user_entity()->name, "pages/owner/".elgg_get_logged_in_user_guid()."/all");
+	elgg_push_breadcrumb(elgg_get_logged_in_user_entity()->name, "pages/owner/".$user->guid."/all");
 	
 	$group_options["type"] = 'group';
 	$group_options["relationship"] = 'member';
-	$group_options["relationship_guid"] = elgg_get_logged_in_user_guid();
+	$group_options["relationship_guid"] = $user->guid;
 	$group_options["inverse_relationship"] = false;
 	$group_options["full_view"] = false;
 	$group_options["limit"] = NULL;
@@ -492,19 +501,6 @@ function groups_handle_mine_page() {
 	}
     
     $pagecontent .= $content;
-
-    // finally, free groups
-/*    $group_options["metadata_name"] = 'grouptype';
-    $group_options["metadata_value"] = 'default';
-
-    $pagecontent .= elgg_view('page/elements/subtitle', array('title' => elgg_echo('freegroups:mine'), 'class' => 'elgg-subtitle'));
-
-	$content = elgg_list_entities_from_relationship_count($group_options);
-	if (!$content) {
-		$content = elgg_echo('groups:none');
-	}
-    $pagecontent .= $content;
-*/    
 
 	$params = array(
 		'content' => $pagecontent,
@@ -582,13 +578,19 @@ function groups_handle_edit_page($page, $type, $guid = 0) {
 function groups_handle_invitations_page() {
 	gatekeeper();
 
-	$user = elgg_get_page_owner_entity();
+	$username = get_input('username');
+	if ($username) {
+		$user = get_user_by_username($username);
+	}
+	
+	if (!$username || !$user) {
+		$user = elgg_get_logged_in_user_entity();
+	}
 
 	$title = elgg_echo('groups:invitations');
 	elgg_push_breadcrumb($title);
 
-	// @todo temporary workaround for exts #287.
-	$invitations = groups_get_invited_groups(elgg_get_logged_in_user_guid());
+	$invitations = groups_get_invited_groups($user->guid);
 	$content = elgg_view('groups/invitationrequests', array('invitations' => $invitations));
 
 	$params = array(
