@@ -32,7 +32,7 @@ if ($owner instanceof ElggGroup) {
 
 $content = elgg_list_entities(array(
 	'types' => 'object',
-	'subtypes' => array('etherpad', 'subpad'),
+	'subtypes' => array('etherpad'),
 	'container_guid' => elgg_get_page_owner_guid(),
 	'full_view' => false,
 ));

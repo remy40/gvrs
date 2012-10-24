@@ -37,7 +37,7 @@ $integrate_in_pages = elgg_get_plugin_setting('integrate_in_pages', 'etherpad') 
 if ($owner instanceof ElggGroup) {
     $content = elgg_list_entities(array(
         'types' => 'object',
-        'subtypes' => $integrate_in_pages ? array('page_top', 'etherpad', 'page', 'subpad') : array('page_top', 'page'),
+        'subtypes' => $integrate_in_pages ? array('page_top', 'etherpad') : array('page_top'),
         'container_guid' => elgg_get_page_owner_guid(),
         'full_view' => false,
     ));
@@ -45,7 +45,7 @@ if ($owner instanceof ElggGroup) {
 else {
     $content = elgg_list_entities(array(
         'types' => 'object',
-        'subtypes' => $integrate_in_pages ? array('page_top', 'etherpad', 'page', 'subpad') : array('page_top', 'page'),
+        'subtypes' => $integrate_in_pages ? array('page_top', 'etherpad') : array('page_top'),
         'owner_guid' => elgg_get_page_owner_guid(),
         'full_view' => false,
     ));
