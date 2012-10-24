@@ -54,6 +54,10 @@ function gvgroups_init() {
     elgg_extend_view('css/elgg', 'gvgroups/css');
 
 	elgg_register_plugin_hook_handler('register', 'menu:entity', 'gvgroups_entity_menu_setup');
+
+	// check groups subscription at login
+    elgg_register_event_handler('login', 'user', 'gvgroups_profileupdate');
+
 }
 
 /**
