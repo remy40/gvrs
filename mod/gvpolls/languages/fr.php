@@ -1,6 +1,8 @@
 <?php
 
 	$french = array(
+		'gvpolls:add_response_label' => "Autoriser les utilisateurs à ajouter de nouvelles réponses ?",
+		'polls:validate_new_choices' => "Confirmer les réponses ajoutées",
         'gvpolls:description' => "Description :",
         'gvpolls:answers' => "Réponses possibles :",
         'gvpolls:results' => "Résultats des votes :",

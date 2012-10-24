@@ -18,7 +18,11 @@ $tags = get_input('tags');
 $access_id = get_input('access_id');
 $container_guid = get_input('container_guid');
 $guid = get_input('guid');
-$multiple_choices = get_input('multiple_choices');
+$multiple_choices = get_input('multiple_choices', false);
+$add_response = get_input('add_response', false);
+
+error_log("multiple_choices:$multiple_choices");
+error_log("add_response:$add_response");
 
 // Convert string of tags into a preformatted array
 $tagarray = string_to_tag_array($tags);
@@ -56,6 +60,7 @@ if ($guid) {
             $poll->description = $description;
 			$poll->title = $question;
             $poll->multiple_choices = $multiple_choices;
+			$poll->add_response = $add_response;
 				
 			if (!$poll->save()) {
 				register_error(elgg_echo("polls:error"));
@@ -119,6 +124,7 @@ if ($guid) {
 		$poll->description = $description;
 		$poll->title = $question;
         $poll->multiple_choices = $multiple_choices;
+        $poll->add_response = $add_response;
 
 		if (!$poll->save()) {
 			register_error(elgg_echo("polls:error"));

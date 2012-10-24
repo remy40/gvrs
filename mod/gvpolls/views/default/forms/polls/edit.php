@@ -10,7 +10,8 @@ $question = $vars['fd']['question'];
 $description = $vars['fd']['description'];
 $tags = $vars['fd']['tags'];
 $access_id = $vars['fd']['access_id'];
-$multiple_choices = $vars['fd']['multiple_choices'];
+$multiple_choices_checked = ($vars['fd']['multiple_choices'] != 'disabled') ? 'checked' : false;
+$add_response_checked = ($vars['fd']['add_response'] != 'disabled') ? 'checked' : false;
 
 $question_label = elgg_echo('polls:question');
 $question_textbox = elgg_view('input/text', array('name' => 'question', 'value' => $question));
@@ -22,7 +23,10 @@ $responses_label = elgg_echo('polls:responses');
 $responses_control = elgg_view('polls/input/choices',array('poll'=>$poll));
 
 $multiple_choices_label = elgg_echo('gvpolls:multiple_choices_label');
-$multiple_choices_input = elgg_view('input/checkbox', array('name' => 'multiple_choices', 'value' => $multiple_choices));
+$multiple_choices_input = elgg_view('input/checkbox', array('name' => 'multiple_choices', 'value' => 'enabled', 'checked' => $multiple_choices_checked, 'default' => 'disabled'));
+
+$add_response_label = elgg_echo('gvpolls:add_response_label');
+$add_response_input = elgg_view('input/checkbox', array('name' => 'add_response', 'value' => 'enabled', 'checked' => $add_response_checked, 'default' => 'disabled'));
 
 $tag_label = elgg_echo('tags');
 $tag_input = elgg_view('input/tags', array('name' => 'tags', 'value' => $tags));
@@ -71,6 +75,9 @@ echo <<<__HTML
 		</p>
 		<p>
 			$multiple_choices_input<label>$multiple_choices_label</label><br />
+        </p>
+		<p>
+			$add_response_input<label>$add_response_label</label><br />
         </p>
 		<p>
 			<label>$tag_label</label><br />

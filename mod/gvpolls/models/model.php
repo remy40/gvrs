@@ -63,7 +63,15 @@ function polls_get_choice_array($poll) {
 }
 
 function polls_add_choices($poll,$choices) {
-	$i = 0;
+	$existing_choices = polls_get_choices($poll);
+	
+	if ($existing_choices) {
+		$i = count($existing_choices);
+	}
+	else {
+		$i = 0;
+	}
+	
 	if ($choices) {
 		foreach($choices as $choice) {
 			$poll_choice = new ElggObject();

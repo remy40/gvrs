@@ -22,5 +22,11 @@ function gvpolls_init() {
 	$action_path = elgg_get_plugins_path() . 'gvpolls/actions/polls';
 	elgg_register_action("polls/edit","$action_path/edit.php");
 	elgg_register_action("polls/vote","$action_path/vote.php");
+	elgg_register_action("polls/add_choices","$action_path/add_choices.php");
 	elgg_register_action("polls/cancelvote","$action_path/cancelvote.php");
+
+	// register the JavaScript
+	$js = elgg_get_simplecache_url('js', 'polls/js');
+	elgg_register_simplecache_view('js/polls/js');
+	elgg_register_js('elgg.polls', $js);
 }
