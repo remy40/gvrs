@@ -9,8 +9,6 @@
  * @uses $vars['show_access']      Show the access control (true)
  */
 
-error_log("view widget layout");
-
 $num_columns = elgg_extract('num_columns', $vars, 3);
 $show_add_widgets = elgg_extract('show_add_widgets', $vars, true);
 $exact_match = elgg_extract('exact_match', $vars, false);
@@ -108,8 +106,6 @@ if(elgg_in_context("iframe_dashboard")){
 		echo elgg_extract("content", $vars);
 	}
 	
-	error_log("context: $context");
-	
 	if($context == "groups"){
 		echo "<div class=\"elgg-col-1of1 elgg-widgets widget-manager-groups-widgets-top-row\" id=\"elgg-widget-col-3\">";
 		
@@ -146,7 +142,6 @@ if(elgg_in_context("iframe_dashboard")){
 		if (sizeof($column_widgets) > 0) {
 			foreach ($column_widgets as $widget) {
 				if (array_key_exists($widget->handler, $widget_types)) {
-					error_log("index view widget entity");
 					echo elgg_view_entity($widget, array('show_access' => $show_access));
 				}
 			}

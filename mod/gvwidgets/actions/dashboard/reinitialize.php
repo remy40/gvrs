@@ -21,7 +21,6 @@ if ($context) {
 			foreach ($column_widgets as $widget) {
 				if ($widget) {
 					$widget->delete();
-					error_log("suppression widget !");
 				}
 			}
 		}
