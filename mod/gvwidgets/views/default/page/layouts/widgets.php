@@ -112,7 +112,6 @@ if(elgg_in_context("iframe_dashboard")){
 		if (isset($widgets[3]) && (sizeof($widgets[3]) > 0)) {
 			foreach ($widgets[3] as $widget) {
 				if (array_key_exists($widget->handler, $widget_types)) {
-					error_log("group view widget entity");
 					echo elgg_view_entity($widget, array('show_access' => $show_access));
 				}
 			}

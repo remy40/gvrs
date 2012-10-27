@@ -82,7 +82,7 @@ if ($full) {
 	$list_body .= elgg_view('output/longtext', array('value' => $question->description));
 	
 	//feels hacky...
-	$river_item = new ElggRiverItem();
+	$river_item = new ElggRiverItem($question);
 	$river_item->object_guid = $question->guid;
 	$list_body .= elgg_view('river/elements/footer', array('item' => $river_item));
 	

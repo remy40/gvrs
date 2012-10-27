@@ -19,7 +19,7 @@ $body .= $subtitle;
 $body .= elgg_view('output/longtext', array('value' => $answer->description));
 
 //feels hacky...
-$river_item = new ElggRiverItem();
+$river_item = new ElggRiverItem($answer);
 $river_item->object_guid = $answer->guid;
 $body .= elgg_view('river/elements/footer', array('item' => $river_item));
 

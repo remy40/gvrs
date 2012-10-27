@@ -26,7 +26,6 @@ foreach ($variables as $name => $type) {
 			echo '<br />';
 		}
 
-        error_log("ici c'est full pourtant !");
 		echo elgg_view("input/$type", array(
 			'name' => $name,
 			'value' => $vars[$name],
