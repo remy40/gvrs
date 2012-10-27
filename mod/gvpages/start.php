@@ -11,7 +11,8 @@ elgg_register_event_handler('init', 'system', 'gvpages_init');
 function gvpages_init() {
     // deactivate some url handlers
     elgg_register_plugin_hook_handler("route", "pages", "gvpages_route_pages_handler");
-    elgg_register_plugin_hook_handler("route", "etherpad", "gvpages_route_pages_handler");
+   
+	elgg_extend_view('css/elgg', 'gvpages/css');
 }
 
 /**
