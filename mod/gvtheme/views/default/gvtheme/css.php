@@ -102,6 +102,7 @@ border: 1px;
 }
 .elgg-page-default .elgg-page-footer > .elgg-inner {
 	width: 100%;
+	padding: 0;
 }
 
 /****************************************
