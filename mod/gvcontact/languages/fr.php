@@ -4,8 +4,6 @@
         'gvcontact:contact' => "Contact",
     
         'gvcontact:intro' => "Ce formulaire vous permet de contacter l'équipe des webmestres pour toute question. Pour que votre requête soit correctement traitée, essayer d'être le plus clair possible. Merci !",
-        'gvcontact:yourname' => "Votre nom :",
-        'gvcontact:yourmail' => "Votre email :",
         'gvcontact:yourmessage' => "Votre message :",
         'gvcontact:contactus' => "Envoyer",
         
@@ -15,10 +13,12 @@
         'gvcontact:misc' => "autre requête",
 
         'gvcontact:category' => "Type de requête :",
-        'gvcontact:email' => "Email des webmestres",
+        'gvcontact:settings:admin' => "Administrateur(s) à notifier",
+        'gvcontact:settings:admin:description' => "la liste des noms d'utilisateur des personnes à notifier lorsque le formulaire de contact est validé. Les noms d'utilisateurs doivent être séparés par une virgule ou un point-virgule.",
+        'gvcontact:settings:category' => "Liste des catégories",
+        'gvcontact:settings:category:description' => "Pour permettre à l'utilisateur de classer son message dans une des catégories. Les catégories sont traduites en utilisant l'identfiant gvcontact:nom_categorie (par exemple, pour 'bug', 'gvcontact:bug').",
+        'gvcontact:settings:method' => "Méthode d'envoi de la requête",
         
-        'gvcontact:yourname_error' => "Vous devez saisir votre nom.",
-        'gvcontact:yourmail_error' => "Vous devez saisir votre mail.",
         'gvcontact:category_error' => "Vous devez choisir une catégorie.",
         'gvcontact:yourmessage_error' => "Vous devez saisir votre message.",
         
