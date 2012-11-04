@@ -24,7 +24,7 @@ function loginrequired_init()
 
   elgg_extend_view('css/elgg', 'loginrequired/css');
 
-  elgg_unextend_view('page/elements/header', 'search/header');
+//  elgg_unextend_view('page/elements/header', 'search/header');
 
   elgg_register_plugin_hook_handler('index','system','loginrequired_index', 1);
 
