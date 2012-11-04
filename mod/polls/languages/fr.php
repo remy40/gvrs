@@ -95,7 +95,7 @@
 			'polls:edited' => "Votre sondage a été enregistré.",
 			'polls:responded' => "Merci d'avoir voté, votre réponse a été enregistrée.",
 			'polls:deleted' => "Votre sondage a été supprimé.",
-			'polls:totalvotes' => "Nombre total de votes: ",
+			'polls:totalvotes' => "Nombre total de votants: ",
 			'polls:voted' => "Votre vote a été pris en compte pour ce sondage. Merci d'avoir voté.",
 			
 	
