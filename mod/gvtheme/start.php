@@ -12,6 +12,8 @@ function gvtheme_init() {
 
 	elgg_extend_view('css/elgg', 'gvtheme/css');
 
+	elgg_extend_view('page/elements/head', 'gvtheme/head');
+
     // remove entities statistics views from user account
     elgg_unextend_view('core/settings/statistics', 'core/settings/statistics/numentities');
     
@@ -20,6 +22,17 @@ function gvtheme_init() {
 	elgg_register_action("avatar/upload", "$action_base/avatar/upload.php");
 	elgg_register_action("avatar/crop", "$action_base/avatar/crop.php");
 	elgg_register_action("friends/add", "$action_base/friends/add.php");
+
+	// get number of users
+	$num_members = get_number_users();
+
+    elgg_register_menu_item('topbar', array(
+		'name' => 'member_number',
+		'href' => "members/newest",
+		'text' => elgg_echo("gvtheme:num_members", array($num_members)),
+		'priority' => 1000,
+		'section' => 'alt',
+		));
 }
 
 function gvtheme_custom_usersettings_pagesetup(){

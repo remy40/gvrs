@@ -3,6 +3,7 @@
  * GV Theme language pack
  */
 $french = array(
+	'gvtheme:num_members' => "%s membres",
     /* Override some site menu item strings */
 //     'pages' => "Documents",
      'file' => "Partage de fichiers",
