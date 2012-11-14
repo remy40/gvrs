@@ -39,8 +39,14 @@ if (isset($vars['entity'])) {
 	// get number of voters
 //	$voters_count = elgg_get_annotations($options);
 if ($user_responses_count) {
+	for($i=0;$i<$user_responses_count;$i++) {
+		$voter = get_entity($user_responses[$i]->getOwnerGUID());
+		error_log("[username=".$voter->username." name=".$voter->name. " value=".$user_responses[$i]->value."]");
+	}
+
 	$voters_count = 1;
 	for($i=1;$i<$user_responses_count;$i++) {
+		error_log("user_responses[guid=");
 		if($user_responses[$i-1]->getOwnerGUID() != $user_responses[$i]->getOwnerGUID()) {
 			$voters_count++;
 		}
