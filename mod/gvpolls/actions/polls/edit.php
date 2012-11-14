@@ -21,9 +21,6 @@ $guid = get_input('guid');
 $multiple_choices = get_input('multiple_choices', false);
 $add_response = get_input('add_response', false);
 
-error_log("multiple_choices:$multiple_choices");
-error_log("add_response:$add_response");
-
 // Convert string of tags into a preformatted array
 $tagarray = string_to_tag_array($tags);
 

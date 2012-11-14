@@ -16,7 +16,7 @@ else
 //convert $responses to radio inputs for form display
 $responses = polls_get_choice_array($poll);
  
-if ($poll->multiple_choices) {
+if ($poll->multiple_choices == 'enabled') {
     $response_inputs = elgg_view('input/checkboxes', array('name' => 'response','options' => $responses));
 }
 else {
@@ -24,7 +24,7 @@ else {
 }
 
 // add "add response" box 
-if ($poll->add_response) {
+if ($poll->add_response == 'enabled') {
 	$add_response_input = elgg_view('input/hidden', array('name'	=>	'number_of_choices', 'id'	=>	'number_of_choices', 'value' => 0));
 	$add_response_input .= elgg_view('input/hidden',array('name' =>	'poll_guid', 'id' =>	'poll_guid', 'value' => 	$poll->guid));
 	$add_response_input .= '<div id="new_choices_area"></div>';
