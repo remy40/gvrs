@@ -25,13 +25,21 @@ unset($vars['parse_urls']);
 $text = $vars['value'];
 unset($vars['value']);
 
+error_log("text_1:".elgg_get_excerpt($text));
+
 if ($parse_urls) {
 	$text = parse_urls($text);
 }
 
+error_log("text_2:".elgg_get_excerpt($text));
+
 $text = filter_tags($text);
 
+error_log("text_3:".elgg_get_excerpt($text));
+
 $text = autop($text);
+
+error_log("text_4:".elgg_get_excerpt($text));
 
 $attributes = elgg_format_attributes($vars);
 
