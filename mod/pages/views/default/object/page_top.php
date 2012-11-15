@@ -85,6 +85,9 @@ if ($full) {
 	$params = $params + $vars;
 	$summary = elgg_view('object/elements/summary', $params);
 
+	error_log("page_excerpt=".elgg_get_excerpt($annotation->value));
+	error_log("body=$body");
+
 	echo elgg_view('object/elements/full', array(
 		'entity' => $page,
 		'title' => false,
