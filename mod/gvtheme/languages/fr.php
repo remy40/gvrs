@@ -4,6 +4,8 @@
  */
 $french = array(
 	'gvtheme:num_members' => "%s membres",
+	'gvtheme:initiatives' => "Initiatives",
+	'gvtheme:cnc' => "La CNC",
     /* Override some site menu item strings */
 //     'pages' => "Documents",
      'file' => "Partage de fichiers",

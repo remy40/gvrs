@@ -33,6 +33,14 @@ function gvtheme_init() {
 		'priority' => 1000,
 		'section' => 'alt',
 		));
+
+	$initiatives_item = new ElggMenuItem('initiatives', elgg_echo('gvtheme:initiatives'));
+		
+	$cnc_item = new ElggMenuItem('cnc', elgg_echo('gvtheme:cnc'), 'file/group/9545/all');
+	$cnc_item->setItemClass('gvgroup-child-menu');
+	$initiatives_item->addChild($cnc_item);
+
+    elgg_register_menu_item('site', $initiatives_item);
 }
 
 function gvtheme_custom_usersettings_pagesetup(){
